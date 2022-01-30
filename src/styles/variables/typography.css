@@ -1,0 +1,125 @@
+:root {
+  /* Font Stack */
+  --font-sans: -apple-system, blinkmacsystemfont, "Helvetica Neue", "Segoe UI",
+    roboto, arial, "PingFang TC", "Microsoft YaHei", "Source Han Sans TC",
+    "Noto Sans CJK TC", "WenQuanYi Micro Hei", sans-serif;
+  --font-roboto: -apple-system, blinkmacsystemfont, roboto, arial,
+    "Helvetica Neue", "Segoe UI", "PingFang SC", "Microsoft YaHei",
+    "Source Han Sans SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+
+  /* Type Scale */
+  --font-size-sm-s: 0.8125rem; /* 13px */
+  --font-size-sm: 1rem; /* 16px */
+  --font-size-md-s: 1.125rem; /* 18px */
+  --font-size-md: 1.5rem; /* 24px */
+  --font-size-xm: 1.75rem; /* 28px */
+  --font-size-lg: 2.25rem; /* 36px */
+  --font-size-xl: 3rem; /* 48px */
+  --font-size-xxl: 4rem; /* 64px */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Banner Title */
+  --font-size-banner-title: var(--font-size-lg);
+  --line-height-banner-title: 1.25;
+
+  /* Section Title */
+  --font-size-section-title: var(--font-size-xm);
+  --line-height-section-title: 1.16; /* 56/48 */
+
+  /* Header Title */
+  --font-size-header-title: var(--font-size-md);
+  --line-height-header-title: 1.3333; /* 48/36 */
+
+  /* Article Title */
+  --font-size-article-title: var(--font-size-md-s);
+  --line-height-article-title: 1.5; /* 32/24 */
+
+  /* Article Body */
+  --font-size-article-body: var(--font-size-sm);
+  --line-height-article-body: 1.3333; /* 24/18 */
+
+  /* Information Text */
+  --font-size-information-text: var(--font-size-sm);
+  --line-height-information-text: 1.3333; /* 24/18 */
+
+  /* Logbook number */
+  --font-size-logbook-number: var(--font-size-sm-s);
+  --line-height-logbook-number: 1.2308; /* 16/13 */
+
+  /* Article Heading */
+  --font-size-article-h1: 1.375rem; /* 22px */
+  --font-size-article-h2: 1.25rem; /* 20px */
+  --font-size-article-h3: 1.125rem; /* 18px */
+  --font-size-article-h4: 1rem; /* 16px */
+  --font-size-article-h5: 0.875rem; /* 14px */
+  --font-size-article-h6: 0.75rem; /* 12px */
+  --line-height-article-heading: 1.3333;
+}
+
+@media (--sm-up) {
+  :root {
+    /* Type Scale */
+    --font-size-sm-s: 0.8125rem; /* 13px */
+    --font-size-sm: 1rem; /* 16px */
+    --font-size-md-s: 1.125rem; /* 18px */
+    --font-size-md: 1.5rem; /* 24px */
+    --font-size-xm: 1.75rem; /* 28px */
+    --font-size-lg: 2.25rem; /* 36px */
+    --font-size-xl: 3rem; /* 48px */
+    --font-size-xxl: 4rem; /* 64px */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+
+    /* Base */
+    --font-size-base: var(--font-size-sm);
+    --font-weight-base: var(--font-weight-normal);
+    --line-height-base: 1.5;
+
+    /* Banner Title */
+    --font-size-banner-title: var(--font-size-xxl);
+    --font-weight-banner-title: var(--font-weight-bold);
+    --line-height-banner-title: 1.25;
+
+    /* Section Title */
+    --font-size-section-title: var(--font-size-lg);
+    --line-height-section-title: 1.16; /* 56/48 */
+    --font-weight-section-title: var(--font-weight-bold);
+
+    /* Header Title */
+    --font-size-header-title: var(--font-size-lg);
+    --line-height-header-title: 1.3333; /* 48/36 */
+    --font-weight-header-title: var(--font-weight-bold);
+
+    /* Article Title */
+    --font-size-article-title: var(--font-size-md);
+    --line-height-article-title: 1.5; /* 32/24 */
+    --font-weight-article-title: var(--font-weight-bold);
+
+    /* Article Body */
+    --font-size-article-body: var(--font-size-md-s);
+    --line-height-article-body: 1.3333; /* 24/18 */
+    --font-weight-article-body: var(--font-weight-normal);
+
+    /* Information Text */
+    --font-size-information-text: var(--font-size-md-s);
+    --line-height-information-text: 1.3333; /* 24/18 */
+    --font-weight-information-text: var(--font-weight-medium);
+
+    /* Logbook number */
+    --font-size-logbook-number: var(--font-size-sm-s);
+    --line-height-logbook-number: 1.2308; /* 16/13 */
+    --font-weight-logbook-number: var(--font-weight-bold);
+
+    /* Article Heading */
+    --font-size-article-h1: 1.375rem; /* 22px */
+    --font-size-article-h2: 1.25rem; /* 20px */
+    --font-size-article-h3: 1.125rem; /* 18px */
+    --font-size-article-h4: 1rem; /* 16px */
+    --font-size-article-h5: 0.875rem; /* 14px */
+    --font-size-article-h6: 0.75rem; /* 12px */
+    --line-height-article-heading: 1.3333;
+  }
+}

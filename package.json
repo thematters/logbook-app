@@ -1,0 +1,55 @@
+{
+  "name": "logbook-app",
+  "description": "Logbook Web App",
+  "version": "1.0.0",
+  "author": "Matters Dev <dev@matters.news>",
+  "license": "Apache License",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thematters/logbook-app"
+  },
+  "keywords": [
+    "matters",
+    "logbook",
+    "traveloggers",
+    "nft",
+    "nextjs",
+    "next"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "npm run lint:ts && npm run lint:css",
+    "lint:ts": "next lint",
+    "lint:ts:fix": "next lint --fix",
+    "lint:css": "stylelint 'src/**/*.css'",
+    "lint:css:fix": "stylelint 'src/**/*.css' --fix",
+    "format": "prettier --write \"src/**/*.{ts,js,jsx,tsx,json,md}\"",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "next": "12.0.9",
+    "postcss-calc": "^8.2.3",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-mixins": "^9.0.1",
+    "postcss-preset-env": "^7.2.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.13",
+    "@types/react": "17.0.38",
+    "eslint": "8.7.0",
+    "eslint-config-next": "12.0.9",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1",
+    "stylelint": "^14.3.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-standard": "^24.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "typescript": "4.5.5"
+  }
+}
