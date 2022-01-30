@@ -1,6 +1,5 @@
 import NextHead from "next/head";
 import { useRouter } from "next/router";
-import { useContext } from "react";
 
 const isProd = process.env.NEXT_PUBLIC_RUNTIME_ENV === "production";
 
@@ -14,35 +13,25 @@ interface HeadProps {
 }
 
 export const Head: React.FC<HeadProps> = (props) => {
-  const {
-    title: rawTitle,
-    description,
-    keywords,
-    path,
-    image,
-    noSuffix,
-  } = props;
+  const { title, description, keywords, path, image, noSuffix } = props;
 
-  const { locale, asPath } = useRouter();
+  const { asPath } = useRouter();
 
   const domain = process.env.NEXT_PUBLIC_SITE_DOMAIN;
-  const title = rawTitle;
   const siteName = "Logbook";
 
   const head = {
     title: title ? (noSuffix ? title : `${title} - ${siteName}`) : siteName,
-    description: description
-      ? trans({ ...description, lang })
-      : defaultDescription,
-    keywords: keywords
-      ? `${keywords.join(",")},${defaultKeywords}`
-      : defaultKeywords,
+    description: description || "...",
+    keywords: `${(keywords || []).join(
+      ","
+    )},logbook,matters,traveloggers,matters.news`,
     url: path
       ? `//${domain}${path}`
       : asPath
       ? `//${domain}${asPath}`
       : `//${domain}`,
-    image: image || defaultImage,
+    image: image || "...",
   };
   const canonicalUrl = head.url?.split("#")[0].split("?")[0];
 
@@ -89,11 +78,6 @@ export const Head: React.FC<HeadProps> = (props) => {
         key="og:description"
         content={head.description}
       />
-      <meta
-        property="og:locale"
-        key="og:locale"
-        content={langConvert.toOg(lang)}
-      />
       <meta name="twitter:url" key="twitter:url" content={head.url} />
       <meta name="twitter:card" key="twitter:card" content="summary" />
       <meta name="twitter:title" key="twitter:title" content={head.title} />
@@ -103,18 +87,6 @@ export const Head: React.FC<HeadProps> = (props) => {
         content={head.description}
       />
       <meta name="twitter:image" key="twitter:image" content={head.image} />
-
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        key="google-font-preconnect"
-      />
-
-      <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap"
-        rel="stylesheet"
-        key="google-font"
-      />
     </NextHead>
   );
 };

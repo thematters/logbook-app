@@ -49,6 +49,46 @@ Recommended Libraries:
 
 ### File Structure
 
+```bash
+src
+├── components # all reusable components
+│   ├── Button # component files in one folder
+│   │   ├── styles.module.css # isolated styles
+│   │   └── index.tsx
+│   ├── Dialog
+│   │   ├── Header # sub-components can be nesting
+│   │   │   └── index.tsx
+│   │   └── index.tsx
+│   ├── Head
+│   │   └── index.tsx
+│   ├── Icon
+│   │   └── index.tsx
+│   ├── LogbookCard
+│   │   └── index.tsx
+│   └── index.tsx
+├── enums
+│   └── index.tsx
+├── pages # all pages, import from `views` to avoid page components being compiled as pages
+│   ├── _app.tsx
+│   ├── _document.tsx
+│   ├── index.tsx # homepage
+│   └── logbook.tsx # logbook page
+├── styles # global styles, imported in `_app.tsx`
+│   ├── base.css
+│   ├── reset.css
+│   ├── spacing.css
+│   └── variables
+│       ├── breakpoints.css
+│       ├── colors.css
+│       └── typography.css
+└── views # de facto page components used by `pages`
+    ├── Homepage
+    │   ├── index.tsx
+    │   └── styles.module.css
+    └── Logbook
+        └── index.tsx
+```
+
 ## Design System
 
 The foundation of [Logbook Deisgn System](https://www.figma.com/file/Ffj9jWOJ8ag4wvApRD0HwZ/Logbook-2.0?node-id=1%3A30) is consisted of:
@@ -61,18 +101,18 @@ The foundation of [Logbook Deisgn System](https://www.figma.com/file/Ffj9jWOJ8ag
 
 Responsive Principles:
 
-- Mobile-First: write mobile-first styles, and use media queries to scale up to desktop
-- Relative Units: use `rem` instead of `px`
-- DRY: Using CSS variables to reduce your code (selectors, properties and media queries)
-- Pure CSS: use CSS to style your responsive components, not JavaScript
-- Vector Images: use `svg` as icons
+- **Mobile-First**: write mobile-first styles, and use media queries to scale up to desktop
+- **Relative Units**: use `rem` instead of `px`
+- **DRY**: Using CSS variables to reduce your code (selectors, properties and media queries)
+- **Pure CSS**: use CSS to style your responsive components, not JavaScript
+- **Vector Images**: use SVG as icons
 
 ## Collaboration
 
 ### Environments
 
-- Development: `main` branch, `.env.production`
-- Production: `develop` branch, `.env.development`
+- **Development**: `main` branch, `.env.production`
+- **Production**: `develop` branch, `.env.development`
 
 ### Gitflow
 
@@ -111,7 +151,7 @@ Filename:
 ├── utils
 │   └── api.ts # camelCase for non-component files
 └── components
-    └── AuthButton # PascalCase for component and its file
+    └── AuthButton # PascalCase for component files
 ```
 
 ### UI Components
