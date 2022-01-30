@@ -67,9 +67,18 @@ Responsive Principles:
 - Pure CSS: use CSS to style your responsive components, not JavaScript
 - Vector Images: use `svg` as icons
 
-## Conventions
+## Collaboration
 
-### Naming
+### Environments
+
+- Development: `main` branch, `.env.production`
+- Production: `develop` branch, `.env.development`
+
+### Gitflow
+
+The default branch of [Logbook Repository](https://github.com/thematters/logbook) is `develop`. To start develop new feature, you should fork this branch as your local branch and create a [Pull Request](https://github.com/thematters/logbook/pulls) to the `develop` branch. After the PR is merged, the [GitHub Actions](#testing--deployment) will automatically deploy your changes to development environment.
+
+### Naming Conventions
 
 JavaScript:
 
