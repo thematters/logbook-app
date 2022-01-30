@@ -31,8 +31,8 @@ We use React framework [Next.js](https://nextjs.org/) for the frontend developme
 
 Recommended Libraries:
 
-- [Formik](https://formik.org/) for forms
-- [SVGR](https://react-svgr.com/docs/next/) for icons
+- [Formik](https://formik.org/): form components
+- [SVGR](https://react-svgr.com/docs/next/): SVG icon components
 
 ### Data Fetching
 
@@ -66,13 +66,15 @@ src
 │   ├── LogbookCard
 │   │   └── index.tsx
 │   └── index.tsx
-├── enums
+├── enums # enums and contants
+│   └── index.tsx
+├── utils # global utilities
 │   └── index.tsx
 ├── pages # all pages, import from `views` to avoid page components being compiled as pages
 │   ├── _app.tsx
 │   ├── _document.tsx
 │   ├── index.tsx # homepage
-│   └── logbook.tsx # logbook page
+│   └── logbook.tsx # logbook detail page
 ├── styles # global styles, imported in `_app.tsx`
 │   ├── base.css
 │   ├── reset.css
@@ -120,7 +122,7 @@ The default branch of [Logbook Repository](https://github.com/thematters/logbook
 
 ### Naming Conventions
 
-JavaScript:
+**JavaScript**
 
 ```tsx
 // TypeScript type & enum
@@ -131,7 +133,7 @@ export enum PascalCaseEnum {}
 export const CONSTANT_CASE = {}
 ```
 
-CSS:
+**CSS**
 
 ```css
 /* kebab-case for variables and mixins */
@@ -145,7 +147,7 @@ CSS:
 }
 ```
 
-Filename:
+**Filename**
 
 ```bash
 ├── utils
@@ -158,15 +160,15 @@ Filename:
 
 Based on Design System, UI components should follow the following principles:
 
-- Atomic: the most basic UI components (`<Button>`, `<Icon>`) can't be broken down further
-- Reusable: more complex components (`<LogbookCard>`) should be composed of other components
-- Stateless: UI components stay in pure UI as functional components
+- **Atomic**: the most basic UI components (`<Button>`, `<Icon>`) can't be broken down further
+- **Reusable**: more complex components (`<LogbookCard>`) should be composed of other components
+- **Stateless**: UI components stay in pure UI as functional components
 
 ## Testing && Deployment
 
 We use GitHub Actions for the CI/CD pipeline.
 
-- Testing: `.github/workflows/test.yml`:
-- Deployment: `.github/workflows/deploy.yml`:
+- **Testing**: `.github/workflows/test.yml`:
+- **Deployment**: `.github/workflows/deploy.yml`:
 
 Besides, [Husky](https://github.com/typicode/husky) will run linting before you commit the code.
