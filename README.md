@@ -4,7 +4,7 @@
 
 ### Requirements
 
-- Node.js 12.22+
+- Node.js 12.22 or above
 
 ### Installation
 
@@ -76,10 +76,10 @@ src
 ├── styles # global styles, imported in `_app.tsx`
 │   ├── base.css
 │   ├── reset.css
-│   ├── spacing.css
 │   └── variables
 │       ├── breakpoints.css
 │       ├── colors.css
+│       ├── spacing.css
 │       └── typography.css
 └── views # de facto page components used by `pages`
     ├── Homepage
