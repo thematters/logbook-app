@@ -3,3 +3,6 @@
 export const Icon = () => {
   return <span>Icon</span>;
 };
+
+export * from "./IconLogo";
+export * from "./IconMenu";
