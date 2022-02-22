@@ -10,7 +10,7 @@ export type DialogProps = {
   slideIn?: boolean;
 } & DialogOverlayProps;
 
-const Dialog = () => {
+const Dialog = (props: DialogProps) => {
   return <span>Dialog</span>;
 };
 
