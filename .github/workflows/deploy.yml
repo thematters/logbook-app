@@ -40,7 +40,7 @@ jobs:
 
       - name: Deploy (Develop)
         if: github.base_ref == 'develop'
-        uses: aquiladev/ipfs-action@v1
+        uses: aquiladev/ipfs-action@v0.2.0
         id: ipfs
         with:
           path: ./build
