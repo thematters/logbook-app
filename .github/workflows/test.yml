@@ -30,7 +30,7 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
 
       - name: Prepare Env
-        run: cp .env.development.json .env.json
+        run: cp .env.development .env
 
       - name: Build
         run: |
