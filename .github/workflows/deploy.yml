@@ -1,1 +1,51 @@
-# name: Deployment
+name: Deployment
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+    types: [closed]
+
+jobs:
+  build_and_deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Cache Dependencies
+        id: cache
+        uses: actions/cache@v2.1.5
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Prepare Env (Develop)
+        if: github.base_ref == 'develop'
+        run: cp .env.development .env
+
+      - name: Build
+        run: |
+          npm ci --legacy-peer-deps && \
+          npm run build && \
+          npm run export
+
+      - name: Deploy (Develop)
+        if: github.base_ref == 'develop'
+        uses: aquiladev/ipfs-action@v1
+        id: ipfs
+        with:
+          path: ./build
+          host: ipfs.komputing.org
+          port: 443
+          protocol: https
+          timeout: 180000
+          verbose: true

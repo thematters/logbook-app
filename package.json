@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export -o build",
     "start": "next start",
     "lint": "npm run lint:ts && npm run lint:css",
     "lint:ts": "next lint",
