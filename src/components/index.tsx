@@ -4,6 +4,7 @@ export * from "./Icon";
 export * from "./Dialog";
 export * from "./Dropdown";
 export * from "./Head";
+export * from "./Form";
 
 // Composed
 export * from "./DropdownDialog";

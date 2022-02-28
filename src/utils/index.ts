@@ -1,3 +1,1 @@
-export const dummy = () => {
-
-}
+export const dummy = () => {};

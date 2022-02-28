@@ -36,3 +36,114 @@ svg {
   width: auto;
   user-select: none;
 }
+
+/* Forms
+   ========================================================================== */
+form {
+  width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  line-height: 1.15;
+  color: inherit;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  appearance: none;
+}
+
+button {
+  display: inline-block;
+  width: auto;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+
+  @mixin inline-flex-center-all;
+
+  & > * {
+    vertical-align: middle;
+  }
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    cursor: default;
+    cursor: not-allowed;
+  }
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+}
+
+select {
+  text-transform: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &::-ms-value {
+    color: inherit;
+    background: none;
+  }
+}
+
+label {
+  cursor: pointer;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration,
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-results-button,
+[type="search"]::-webkit-search-results-decoration {
+  appearance: none;
+}
+
+::-webkit-file-upload-button {
+  appearance: button;
+  font: inherit;
+}

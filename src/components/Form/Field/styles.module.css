@@ -1,0 +1,40 @@
+.field {
+  margin: var(--spacing-loose) var(--spacing-base);
+
+  & label {
+    font-size: var(--font-size-md-s);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5rem;
+    color: var(--color-grey-darker);
+  }
+
+  & input,
+  & textarea {
+    margin: var(--spacing-x-tight) 0;
+  }
+
+  & input {
+    @mixin form-input;
+
+    height: 3rem;
+  }
+
+  & textarea {
+    @mixin form-input;
+
+    min-height: 5rem;
+  }
+}
+
+.hint,
+.error {
+  font-size: var(--font-size-sm-s);
+}
+
+.hint {
+  color: var(--color-grey);
+}
+
+.error {
+  color: var(--color-error);
+}

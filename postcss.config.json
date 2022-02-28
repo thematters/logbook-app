@@ -1,5 +1,11 @@
 {
   "plugins": [
+    [
+      "postcss-mixins",
+      {
+        "mixinsFiles": "./src/styles/mixins.css"
+      }
+    ],
     "postcss-flexbugs-fixes",
     [
       "postcss-preset-env",
