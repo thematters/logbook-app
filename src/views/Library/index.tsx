@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import Link from "next/link";
 import { Head, Form } from "~/components";
+import Footer from "~/components/Layout/Footer";
 import * as Yup from "yup";
 
 interface FormValues {
@@ -68,6 +69,8 @@ const Library: React.FC = () => {
           </Form>
         )}
       </Formik>
+
+      <Footer />
     </>
   );
 };

@@ -1,6 +1,7 @@
 import { Head } from "~/components";
 
 import Header from "./Header";
+// import Footer from "./Footer";
 
 export const Layout: React.FC = ({ children }) => {
   return (
@@ -16,3 +17,6 @@ export const Layout: React.FC = ({ children }) => {
     </>
   );
 };
+
+// Layout.Header = Header;
+// Layout.Footer = Footer;
