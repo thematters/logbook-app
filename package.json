@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@reach/visually-hidden": "^0.16.0",
+    "@svgr/webpack": "^6.2.1",
     "@tippyjs/react": "^4.2.6",
     "classnames": "^2.3.1",
     "formik": "^2.2.9",
@@ -52,6 +53,7 @@
     "eslint": "8.7.0",
     "eslint-config-next": "12.0.9",
     "eslint-config-prettier": "^8.3.0",
+    "file-loader": "^6.2.0",
     "husky": "^7.0.4",
     "prettier": "^2.5.1",
     "stylelint": "^14.3.0",
@@ -59,6 +61,7 @@
     "stylelint-config-recess-order": "^3.0.0",
     "stylelint-config-standard": "^24.0.0",
     "stylelint-prettier": "^2.0.0",
-    "typescript": "4.5.5"
+    "typescript": "4.5.5",
+    "url-loader": "^4.1.1"
   }
 }
