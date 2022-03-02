@@ -88,13 +88,9 @@ export type ButtonProps = {
   htmlHref?: string;
   htmlTarget?: "_blank";
   type?: "button" | "submit";
-  disabled?: boolean;
-  form?: string;
-  rel?: string;
   onClick?: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => any;
   onMouseEnter?: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => any;
   onMouseLeave?: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => any;
-
   [key: string]: any;
 };
 
