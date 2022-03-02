@@ -1,6 +1,7 @@
 // Atomic
 export * from "./Button";
 export * from "./Icon";
+export * from "./TextIcon";
 export * from "./Dialog";
 export * from "./Dropdown";
 export * from "./Head";

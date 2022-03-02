@@ -1,15 +1,23 @@
 import Link from "next/link";
 
-import { IconLogo, IconMenu } from "~/components";
+import { IconLogo, IconMenu, Button, TextIcon } from "~/components";
 
-import * as styles from "./styles.module.css";
+import styles from "./styles.module.css";
 
 const Header = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <Link href="/">
         <a>
-          <IconLogo size="xxl" />
+          <Button
+            width="5.25rem"
+            height="5.25rem"
+            borderRadius="50%"
+            bgColor="heavyMetal"
+            bgActiveColor="heavyMetalHover"
+          >
+            <TextIcon icon={<IconLogo size="xl" />}></TextIcon>
+          </Button>
         </a>
       </Link>
 

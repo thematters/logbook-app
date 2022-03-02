@@ -154,3 +154,40 @@
     height: 0 !important;
   }
 }
+
+@define-mixin text-fill-gradient-color {
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  background-size: 100%;
+}
+
+@define-mixin background-gradient-transition-start {
+  @mixin expand-to-container;
+  @mixin all-transition;
+
+  content: "";
+  border-radius: inherit;
+  opacity: 0;
+}
+
+@define-mixin background-gradient-transition-end {
+  opacity: 1;
+}
+
+@define-mixin multiline-text-with-ellipsis {
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  -webkit-box-orient: vertical;
+
+  /* BOTH of the following are required for text-overflow */
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* usage: */
+
+  /* @mixin multiline-text-with-ellipsis; */
+
+  /* -webkit-line-clamp: 4; */
+}
