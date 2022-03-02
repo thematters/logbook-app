@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import classNames from "classnames";
 
 import { Button } from "~/components";
@@ -39,7 +39,7 @@ export const Hero = () => (
         </div>
       </section>
       <section className={styles.right}>
-        <Image
+        <img
           src="/images/logbook-intro.png"
           alt="intro"
           width="640"
