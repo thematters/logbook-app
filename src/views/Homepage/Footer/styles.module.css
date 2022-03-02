@@ -1,0 +1,20 @@
+.footer {
+  @mixin flex-center-space-between;
+  @mixin text-fill-gradient-color;
+
+  margin: var(--spacing-xx-loose);
+  background-color: var(--color-gradient-green-start);
+  background-image: linear-gradient(
+    0deg,
+    var(--color-gradient-green-start),
+    var(--color-gradient-green-end)
+  );
+
+  & div {
+    display: inline-flex;
+
+    & div {
+      margin: 0 var(--spacing-xx-tight) 0 var(--spacing-xx-tight);
+    }
+  }
+}

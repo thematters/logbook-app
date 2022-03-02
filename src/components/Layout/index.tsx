@@ -1,18 +1,25 @@
+import type { ReactNode } from "react";
+
 import { Head } from "~/components";
 
 import Header from "./Header";
-// import Footer from "./Footer";
+import Footer from "./Footer";
 
-export const Layout: React.FC = ({ children }) => {
+type PageProps = {
+  footer?: ReactNode;
+};
+
+export const Layout: React.FC<PageProps> = ({ children, footer }) => {
   return (
     <>
       <Head />
 
       <div className="l-container">
+        <Header />
         <main className="l-row">
-          <Header />
           <article className="l-col-full">{children}</article>
         </main>
+        {footer ?? <Footer />}
       </div>
     </>
   );

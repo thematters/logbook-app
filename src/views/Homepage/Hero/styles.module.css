@@ -1,0 +1,62 @@
+.hero {
+  @mixin flex-center-all;
+
+  position: relative;
+  margin: 0;
+
+  & section {
+    gap: 1rem;
+  }
+
+  & .left {
+    & h2 {
+      font-size: var(--font-size-xxl);
+    }
+
+    & .dynamic {
+      font-size: var(--font-size-lg);
+      background-color: var(--color-gradient-green-start);
+      background-image: linear-gradient(
+        0deg,
+        var(--color-gradient-green-start),
+        var(--color-gradient-green-end)
+      );
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+      background-size: 100%;
+    }
+
+    & div.buttons {
+      @mixin flex-center-space-between;
+
+      justify-content: space-around;
+      margin-top: 1rem;
+    }
+  }
+
+  & .right {
+    border: 0;
+  }
+}
+
+& .leftBackground {
+  position: absolute;
+  top: 164px;
+  right: 86.04%;
+  left: 0%;
+  height: 523px;
+  pointer-events: none;
+
+  /* background: radial-gradient(109.17% 51.66% at -1.6% 52.2%, rgb(106 120 255 / 41.3%) 0%, rgba(109, 123, 255, 0.32578) 20.79%, rgba(119, 132, 255, 0.25844) 36.83%, rgba(135, 147, 255, 0.19782) 51.27%, rgba(158, 168, 255, 0.14119) 64.78%, rgba(188, 195, 255, 0.08722) 77.64%, rgba(225, 228, 255, 0.03598) 89.84%, rgba(255, 255, 255, 0) 98.42%); */
+}
+
+& .rightBackground {
+  position: absolute;
+  top: 62px;
+  right: 0%;
+  left: 79.31%;
+  height: 774px;
+
+  /* background: radial-gradient(109.17% 51.66% at 101.61% 47.8%, rgba(251, 134, 255, 0.287) 0%, rgba(251, 137, 255, 0.22113) 22.6%, rgba(251, 147, 255, 0.17031) 40.03%, rgba(252, 163, 255, 0.12453) 55.73%, rgba(253, 186, 255, 0.08169) 70.41%, rgba(254, 216, 255, 0.04095) 84.38%, rgba(255, 253, 255, 0.00223205) 97.65%, rgba(255, 255, 255, 0) 98.42%); */
+}

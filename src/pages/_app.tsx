@@ -7,11 +7,17 @@ import "../styles/reset.css";
 import "../styles/base.css";
 import "../styles/layout.css";
 
-import type { AppProps } from "next/app";
+import type { AppLayoutProps } from "next/app";
 
 import { Layout } from "~/components";
 
-function LogbookApp({ Component, pageProps }: AppProps) {
+function LogbookApp({ Component, pageProps }: AppLayoutProps) {
+  const getLayout = Component.getLayout;
+
+  if (getLayout) {
+    return getLayout(<Component {...pageProps} />);
+  }
+
   return (
     <Layout>
       <Component {...pageProps} />

@@ -1,8 +1,8 @@
 import { Formik } from "formik";
 import Link from "next/link";
-import { Head, Form, LogbookCard } from "~/components";
-import Footer from "~/components/Layout/Footer";
 import * as Yup from "yup";
+
+import { Head, Form, LogbookCard } from "~/components";
 
 interface FormValues {
   title: string;
@@ -80,8 +80,6 @@ const Library: React.FC = () => {
         <LogbookCard padding="loose" shadow borderHover></LogbookCard>
         <br></br>
       </div>
-
-      <Footer />
     </>
   );
 };

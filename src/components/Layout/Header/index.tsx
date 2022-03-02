@@ -6,7 +6,7 @@ import { IconLogo, Button, TextIcon, Nav } from "~/components";
 import styles from "./styles.module.css";
 
 const Header = () => {
-  const cls = classNames([styles.header, 'l-col-full'])
+  const cls = classNames([styles.header, "l-col-full"]);
 
   return (
     <header className={cls}>
