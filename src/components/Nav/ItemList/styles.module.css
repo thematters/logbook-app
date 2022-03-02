@@ -1,0 +1,21 @@
+.itemList {
+  position: absolute;
+  z-index: var(--z-index-header);
+  min-width: 300px;
+  margin-top: var(--spacing-xx-loose);
+  pointer-events: none;
+  opacity: 0;
+
+  &.show {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (--sm-up) {
+    @mixin all-transition;
+
+    right: 0;
+    margin-top: 58px;
+    transform: translateY(20px);
+  }
+}

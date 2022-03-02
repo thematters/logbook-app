@@ -1,0 +1,38 @@
+.header {
+  @mixin flex-center-space-between;
+
+  @media (--sm-up) {
+    @mixin flex-center-end;
+  }
+}
+
+.button {
+  @mixin inline-flex-center-all;
+
+  @media (--sm-up) {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+.close {
+  @mixin all-transition;
+
+  transform: rotate(0deg);
+
+  &:hover {
+    transform: rotate(180deg);
+  }
+}
+
+.menu {
+  & path {
+    @mixin all-transition;
+  }
+
+  &:hover {
+    & path {
+      d: path("M 0 2 h 45 M 0 22 h 45 M 0 42 h 45");
+    }
+  }
+}

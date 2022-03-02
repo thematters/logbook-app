@@ -1,0 +1,12 @@
+.socials {
+  @mixin inline-flex-center-all;
+
+  & > * + * {
+    padding-left: var(--spacing-loose);
+  }
+
+  @media (--sm-up) {
+    display: none;
+    font-size: 0;
+  }
+}

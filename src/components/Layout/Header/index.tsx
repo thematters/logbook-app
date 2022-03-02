@@ -1,12 +1,15 @@
 import Link from "next/link";
+import classNames from "classnames";
 
-import { IconLogo, IconMenu, Button, TextIcon } from "~/components";
+import { IconLogo, Button, TextIcon, Nav } from "~/components";
 
 import styles from "./styles.module.css";
 
 const Header = () => {
+  const cls = classNames([styles.header, 'l-col-full'])
+
   return (
-    <header className={styles.header}>
+    <header className={cls}>
       <Link href="/">
         <a>
           <Button
@@ -21,11 +24,7 @@ const Header = () => {
         </a>
       </Link>
 
-      <Link href="/">
-        <a>
-          <IconMenu size="xxl" />
-        </a>
-      </Link>
+      <Nav />
     </header>
   );
 };

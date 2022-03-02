@@ -1,0 +1,22 @@
+.item {
+  @mixin flex-center-start;
+
+  margin-bottom: var(--spacing-base);
+  cursor: pointer;
+
+  @media (--sm-up) {
+    @mixin flex-center-end;
+
+    margin-bottom: var(--spacing-loose);
+  }
+}
+
+.itemButton {
+  @mixin all-transition;
+
+  transform: scale(1);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

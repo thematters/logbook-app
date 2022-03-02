@@ -1,0 +1,12 @@
+.navWrapper {
+  position: relative;
+
+  &.show {
+    @mixin expand-to-container;
+
+    position: fixed;
+    z-index: var(--z-index-dialog);
+    padding: 54px 27px 0 var(--spacing-base);
+    background: var(--color-grey-lighter);
+  }
+}
