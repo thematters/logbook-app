@@ -1,0 +1,15 @@
+.hero {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+
+  & section {
+    gap: 1rem;
+  }
+
+  & .right {
+    border: 0;
+  }
+}

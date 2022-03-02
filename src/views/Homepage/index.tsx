@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { Head } from "~/components";
 
+import { Hero } from "./Hero";
+
 import styles from "./styles.module.css";
 
 const Homepage: NextPage = () => {
@@ -22,6 +24,8 @@ const Homepage: NextPage = () => {
           <Link href="library">Library</Link>
         </li>
       </ul>
+
+      <Hero />
     </>
   );
 };
