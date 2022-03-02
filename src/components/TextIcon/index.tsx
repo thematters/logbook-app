@@ -3,16 +3,22 @@ import React from "react";
 
 import styles from "./styles.module.css";
 
-type TextIconColor =
-  | "black"
-  | "green"
+export type TextIconColor =
   | "gold"
-  | "grey"
-  | "greyLight"
+  | "red"
+  | "black"
   | "greyDarker"
   | "greyDark"
+  | "grey"
+  | "greyLight"
+  | "greyLighter"
+  | "greenLighter"
   | "white"
-  | "red";
+  | "noir"
+  | "blueGreen"
+  | "blueGreenDarker"
+  | "heavyMetal"
+  | "heavyMetalHover";
 
 export interface TextIconProps {
   icon?: React.ReactNode;

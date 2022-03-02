@@ -10,6 +10,7 @@
   --color-grey-lighter: #f7f7f7;
   --color-white: #fff;
   --color-green-lighter: #f2faf7;
+  --color-nav-btn: #cfedeb;
   --color-border: rgb(0 0 0 / 8%);
   --color-gradient-green-start: #1cb0ab;
   --color-gradient-green-end: #33a5c9;
@@ -20,4 +21,36 @@
   --color-gradient-heavy-metal-start: #43c0b9;
   --color-gradient-heavy-metal-middle: #228cda;
   --color-gradient-heavy-metal-end: #b81def;
+  --color-blue-green: linear-gradient(
+    90deg,
+    var(--color-gradient-green-start) 6.76%,
+    var(--color-gradient-green-end) 94.6%
+  );
+  --color-blue-green-darker: linear-gradient(
+    83.99deg,
+    var(--color-gradient-green-start-hover) 7.31%,
+    var(--color-gradient-green-end-hover) 92.87%
+  );
+  --color-light-metal: linear-gradient(
+    135deg,
+    var(--color-gradient-light-metal-start) 0%,
+    var(--color-gradient-light-metal-end) 100%
+  );
+  --color-light-metal-hover: linear-gradient(
+    135deg,
+    var(--color-gradient-light-metal-start) 0%,
+    var(--color-gradient-light-metal-end) 34.34%
+  );
+  --color-heavy-metal: linear-gradient(
+    106.84deg,
+    var(--color-gradient-heavy-metal-start) 8.4%,
+    var(--color-gradient-heavy-metal-middle) 51.17%,
+    var(--color-gradient-heavy-metal-end) 97.66%
+  );
+  --color-heavy-metal-hover: linear-gradient(
+    112.36deg,
+    var(--color-gradient-heavy-metal-start) -42.22%,
+    var(--color-gradient-heavy-metal-middle) -3.82%,
+    var(--color-gradient-heavy-metal-end) 63.32%
+  );
 }

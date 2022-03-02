@@ -1,80 +1,242 @@
-/* via https://www.joshwcomeau.com/css/custom-css-reset/ */
-
-/*
-  1. Use a more-intuitive box-sizing model.
-*/
-*,
-*::before,
-*::after {
+/* @styled-jsx=global */
+/* stylelint-disable */
+/* Document
+   ========================================================================== */
+html {
   box-sizing: border-box;
+  border-collapse: collapse;
+  -webkit-text-size-adjust: 100%;
 }
 
-/*
-  2. Remove default margin
-*/
-* {
+html,
+body {
+  padding: 0;
   margin: 0;
 }
 
-/*
-  3. Allow percentage-based heights in the application
-*/
-html,
-body {
-  height: 100%;
+* {
+  border-collapse: inherit;
 }
 
-/*
-  Typographic tweaks!
-  4. Add accessible line-height
-  5. Improve text rendering
-*/
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
-/*
-  6. Improve media defaults
-*/
-img,
-picture,
-video,
-canvas,
-svg {
+/* Sections
+   ========================================================================== */
+main {
   display: block;
-  max-width: 100%;
 }
 
-/*
-  7. Remove built-in form typography styles
-*/
-input,
-button,
-textarea,
-select {
-  font: inherit;
+ol,
+ul {
+  list-style: none;
 }
 
-/*
-  8. Avoid text overflows
-*/
-p,
+ol,
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-  overflow-wrap: break-word;
+h6,
+p,
+blockquote,
+pre,
+code {
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
-/*
-  9. Create a root stacking context
-*/
-/* stylelint-disable */
-#root,
-#__next {
-  isolation: isolate;
+code,
+kbd,
+samp,
+pre {
+  font-family: monospace;
+  font-size: 1em;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+a {
+  background-color: transparent;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+form {
+  width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  line-height: 1.15;
+  color: inherit;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  appearance: none;
+}
+
+button {
+  display: inline-block;
+  width: auto;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+
+  @mixin inline-flex-center-all;
+
+  & > * {
+    vertical-align: middle;
+  }
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: default;
+    cursor: not-allowed;
+  }
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+}
+
+select {
+  text-transform: none;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &::-ms-value {
+    color: inherit;
+    background: none;
+  }
+}
+
+label {
+  cursor: pointer;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type='search'] {
+  appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type='search']::-webkit-search-decoration,
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-results-button,
+[type='search']::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  appearance: button;
+  font: inherit;
+}
+
+/* Interactive
+   ========================================================================== */
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+[hidden] {
+  display: none !important;
 }
 /* stylelint-enable */
