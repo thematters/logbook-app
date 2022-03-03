@@ -1,0 +1,29 @@
+.footer {
+  @mixin flex-center-start;
+
+  & > * {
+    margin-right: var(--spacing-x-tight);
+  }
+
+  & > *:last-child {
+    margin-right: 0;
+  }
+
+  @media (--sm-up) {
+    & > * {
+      margin-right: var(--spacing-base);
+    }
+  }
+}
+
+.button {
+  & path {
+    @mixin all-transition;
+  }
+
+  &:hover {
+    & path {
+      stroke: var(--color-gradient-green-start);
+    }
+  }
+}

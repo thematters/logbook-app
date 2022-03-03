@@ -1,0 +1,72 @@
+.card {
+  display: flex;
+}
+
+.content {
+  @mixin multiline-text-with-ellipsis;
+
+  -webkit-line-clamp: 4;
+  font-size: var(--font-size-article-body);
+  line-height: var(--line-height-article-body);
+  color: var(--color-grey-dark);
+
+  @media (--sm-up) {
+    -webkit-line-clamp: 3;
+  }
+}
+
+.logbookCard {
+  --border-heavy-metal-color: linear-gradient(
+    106.84deg,
+    var(--color-gradient-heavy-metal-start) 8.4%,
+    var(--color-gradient-heavy-metal-middle) 51.17%,
+    var(--color-gradient-heavy-metal-end) 97.66%
+  );
+
+  & > * {
+    padding-bottom: var(--spacing-base);
+  }
+
+  & > *:last-child {
+    padding-bottom: 0;
+  }
+
+  /* padding */
+  &.paddingBase {
+    padding: var(--spacing-base);
+  }
+
+  &.paddingLoose {
+    padding: var(--spacing-loose);
+  }
+
+  &.bgWhite {
+    background: white;
+  }
+
+  &.bgTransparent {
+    background: transparent;
+  }
+
+  &.shadow {
+    box-shadow: 0 4px 18px rgb(0 0 0 / 4%);
+  }
+
+  &.border {
+    border: 3px solid transparent;
+    border-radius: 1.25rem;
+  }
+
+  &.borderHover {
+    border: 3px solid transparent;
+    border-radius: 1.25rem;
+
+    &:hover,
+    &:focus {
+      background: linear-gradient(to right, white, white),
+        var(--border-heavy-metal-color);
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+    }
+  }
+}

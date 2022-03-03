@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import Link from "next/link";
-import { Head, Form } from "~/components";
+import { Head, Form, LogbookCard } from "~/components";
 import Footer from "~/components/Layout/Footer";
 import * as Yup from "yup";
 
@@ -69,6 +69,17 @@ const Library: React.FC = () => {
           </Form>
         )}
       </Formik>
+
+      <div className="l-col-full">
+        <LogbookCard padding="base"></LogbookCard>
+        <hr></hr>
+        <LogbookCard padding="base"></LogbookCard>
+        <br></br>
+        <LogbookCard padding="loose" shadow border></LogbookCard>
+        <br></br>
+        <LogbookCard padding="loose" shadow borderHover></LogbookCard>
+        <br></br>
+      </div>
 
       <Footer />
     </>

@@ -1,0 +1,26 @@
+.titleContainer {
+  @mixin flex-center-start;
+
+  max-height: 3rem;
+  font-size: var(--font-size-article-title);
+  font-weight: var(--font-weight-article-title);
+  text-overflow: ellipsis;
+  @media (--sm-up) {
+    max-height: 2rem;
+  }
+}
+
+.giftSign {
+  margin-right: var(--spacing-base);
+}
+
+.content {
+  @mixin multiline-text-with-ellipsis;
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  -webkit-line-clamp: 2;
+
+  @media (--sm-up) {
+    /* stylelint-disable-next-line value-no-vendor-prefix */
+    -webkit-line-clamp: 1;
+  }
+}
