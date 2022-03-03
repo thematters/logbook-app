@@ -4,9 +4,4 @@
   & > * + * {
     padding-left: var(--spacing-loose);
   }
-
-  @media (--sm-up) {
-    display: none;
-    font-size: 0;
-  }
 }

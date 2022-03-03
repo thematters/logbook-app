@@ -23,7 +23,7 @@ export const Header: React.FC<HeaderProps> = forwardRef(
     }
     return (
       <div className={styles.header}>
-        {show ? <Socials /> : <></>}
+        {show && !isSmallUp ? <Socials /> : <></>}
         <span className={styles.button}>
           <Button onClick={onClick} ref={ref}>
             <TextIcon>
