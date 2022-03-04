@@ -2,22 +2,36 @@
 import classNames from "classnames";
 
 import { Button } from "~/components";
+import { useResponsive } from "~/hooks";
 // import { BannerVideo } from "~/components/BannerVideo";
 
 import styles from "./styles.module.css";
 
-export const Hero = () => (
-  <section className={styles.hero}>
-    <section className={styles.leftRadial} />
-    <section className={styles.rightRadial} />
+export const Hero = () => {
+  const isSmallUp = useResponsive("sm-up");
 
-    <section className={styles.intro}>
-      <h2>Deliver value and share benefits</h2>
-      <p className={styles.subtitle}>Create, Transfer, Relay</p>
+  return (
+    <section className={styles.hero}>
+      <section className={styles.intro}>
+        <h2>Deliver value and share benefits</h2>
+        <p className={styles.subtitle}>Create, Transfer, Relay</p>
+      </section>
 
-      <div className={styles.buttons}>
+      <section className={styles.dynamic}>
+        <div
+          style={{
+            minWidth: "340px",
+            minHeight: "340px",
+            backgroundImage: `url("/images/logbook-intro.png")`,
+          }}
+        ></div>
+        {/* <BannerVideo /> */}
+      </section>
+
+      <section className={styles.buttons}>
         <Button
-          width="15rem"
+          // width="15rem"
+          width={isSmallUp ? "15rem" : "100%"}
           // spacing={["tight", "loose"]}
           spacing={["tight", 0]}
           textColor="blueGreen"
@@ -30,7 +44,7 @@ export const Hero = () => (
           Claim
         </Button>
         <Button
-          width="15rem"
+          width={isSmallUp ? "15rem" : "100%"}
           // spacing={["tight", "loose"]}
           spacing={["tight", 0]}
           textColor="white"
@@ -42,17 +56,10 @@ export const Hero = () => (
         >
           My Bookcase
         </Button>
-      </div>
+      </section>
+
+      <section className={styles.leftRadial} />
+      <section className={styles.rightRadial} />
     </section>
-    <section className={styles.dynamic}>
-      <div
-        style={{
-          minWidth: "340px",
-          minHeight: "340px",
-          backgroundImage: `url("/images/logbook-intro.png")`,
-        }}
-      ></div>
-      {/* <BannerVideo /> */}
-    </section>
-  </section>
-);
+  );
+};

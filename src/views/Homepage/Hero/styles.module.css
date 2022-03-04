@@ -1,14 +1,82 @@
 .hero {
-  @mixin flex-center-all;
+  display: grid;
+  grid-template-areas:
+    "intro"
+    "dynamic"
+    "buttons";
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  min-height: 100vh;
+  margin: 1rem;
+  margin-top: 5rem;
 
-  flex-direction: column;
-
-  @media (--md-up) {
-    flex-direction: row;
+  @media (--sm-up) {
+    grid-template-areas:
+      "intro dynamic"
+      "buttons dynamic";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    margin-right: 60px;
+    margin-left: 180px;
   }
 
-  margin: 0;
-  margin-top: 4rem;
+  & .intro {
+    grid-area: intro;
+    place-self: center;
+
+    & h2 {
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 48px;
+      color: #333;
+
+      @media (--sm-up) {
+        font-size: 64px;
+        line-height: 80px;
+      }
+    }
+
+    & .subtitle {
+      /* @mixin text-fill-gradient-color; */
+
+      margin-top: var(--spacing-tight);
+      font-size: 24px;
+      font-weight: var(--font-weight-bold);
+      line-height: 32px;
+      background-image: var(--color-heavy-metal);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+      background-size: 100%;
+
+      @media (--sm-up) {
+        font-size: 36px;
+        line-height: 48px;
+      }
+    }
+  }
+
+  & .dynamic {
+    grid-area: dynamic;
+    border: 0;
+  }
+
+  & .buttons {
+    display: flex;
+    flex-direction: column;
+    grid-area: buttons;
+    gap: 1.5rem;
+    width: 100%;
+    text-align: center;
+
+    @media (--sm-up) {
+      flex-direction: row;
+      align-self: flex-start;
+    }
+
+    & button {
+      font-size: var(--font-size-lg);
+    }
+  }
 
   & .leftRadial {
     position: absolute;
@@ -50,48 +118,5 @@
       rgb(255 255 255 / 0%) 100%
     );
     background-position: right;
-  }
-
-  & section {
-    flex: 1 0 50%;
-    gap: 1rem;
-  }
-
-  & .intro {
-    max-width: 523px;
-    margin-left: 100px;
-
-    & h2 {
-      font-size: var(--font-size-xxl);
-      font-weight: var(--font-weight-bold);
-    }
-
-    & .subtitle {
-      /* @mixin text-fill-gradient-color; */
-
-      margin-top: var(--spacing-tight);
-      font-size: var(--font-size-lg);
-      font-weight: var(--font-weight-bold);
-      background-image: var(--color-heavy-metal);
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -moz-text-fill-color: transparent;
-      background-size: 100%;
-    }
-
-    & div.buttons {
-      @mixin flex-center-all;
-
-      gap: 1.5rem;
-      margin-top: 1rem;
-
-      & button {
-        font-size: var(--font-size-lg);
-      }
-    }
-  }
-
-  & .dynamic {
-    border: 0;
   }
 }

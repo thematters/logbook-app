@@ -9,7 +9,7 @@ type PageProps = {
   footer?: ReactNode;
 };
 
-export const Layout: React.FC<PageProps> = ({ children, footer }) => {
+const Layout: React.FC<PageProps> = ({ children, footer }) => {
   return (
     <>
       <Head />
@@ -25,7 +25,4 @@ export const Layout: React.FC<PageProps> = ({ children, footer }) => {
   );
 };
 
-// Layout.Header =
-export { Header };
-
-// Layout.Footer = Footer;
+export { Layout, Header };
