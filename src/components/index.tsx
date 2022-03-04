@@ -6,6 +6,7 @@ export * from "./Dialog";
 export * from "./Dropdown";
 export * from "./Head";
 export * from "./Form";
+export * from "./SearchBar"
 
 // Composed
 export * from "./DropdownDialog";
