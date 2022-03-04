@@ -2,7 +2,9 @@ import { Formik } from "formik";
 import Link from "next/link";
 import * as Yup from "yup";
 
-import { Head, Form, LogbookCard } from "~/components";
+import { Head, Form, LogbookCard, SearchBar } from "~/components";
+
+import styles from "./styles.module.css";
 
 interface FormValues {
   title: string;
@@ -31,7 +33,12 @@ const Library: React.FC = () => {
     <>
       <Head title="Library" />
 
-      <h1>Library</h1>
+      <section className={styles.header}>
+        <h1 className={styles.title}>Library</h1>
+        <div className={styles.searchBarWrapper}>
+          <SearchBar onSearch={(e) => console.log(e)} />
+        </div>
+      </section>
 
       <ul>
         <li>

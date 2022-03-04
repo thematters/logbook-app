@@ -1,0 +1,15 @@
+.header {
+  @mixin flex-center-space-between;
+
+  & .searchBarWrapper {
+    width: 46%;
+    @media (--sm-up) {
+      width: 65%;
+    }
+  }
+}
+
+.title {
+  font-size: var(--font-size-section-title);
+  line-height: var(--line-height-section-title);
+}

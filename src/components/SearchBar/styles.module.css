@@ -1,0 +1,41 @@
+.searchBar {
+  position: relative;
+
+  & input {
+    width: 100%;
+    height: 3rem;
+    padding: 1rem 2.25rem;
+    color: var(--color-black);
+    caret-color: var(--color-gradient-green-start);
+    background: var(--color-grey-lighter);
+    border-radius: 1.5rem;
+    transition: all 0.2s ease-in-out 0s;
+
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+
+    &::placeholder {
+      color: var(--color-grey);
+    }
+  }
+
+  & button.search {
+    position: absolute;
+    top: var(--spacing-base);
+    left: var(--spacing-base);
+  }
+
+  & .clear {
+    position: absolute;
+    top: var(--spacing-base);
+    right: var(--spacing-base);
+
+    & path {
+      stroke-width: 5px;
+    }
+  }
+}
