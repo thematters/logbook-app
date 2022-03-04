@@ -7,46 +7,52 @@ import { Button } from "~/components";
 import styles from "./styles.module.css";
 
 export const Hero = () => (
-  <>
-    <section className={styles.leftBackground} />
-    <section className={styles.rightBackground} />
+  <section className={styles.hero}>
+    <section className={styles.leftRadial} />
+    <section className={styles.rightRadial} />
 
-    <section className={classNames([styles.hero, "l-col-full"])}>
-      <section className={styles.left}>
-        <h2>Deliver value and share benefits</h2>
-        <p className={styles.dynamic}>Create, Transfer, Relay</p>
-        <div className={styles.buttons}>
-          <Button
-            // width="12rem"
-            spacing={["tight", "loose"]}
-            textColor="blueGreen"
-            // bgColor="lightMetal"
-            // shadow={true}
-            onClick={() => {}}
-          >
-            Claim
-          </Button>
-          <Button
-            // width="12rem"
-            spacing={["tight", "loose"]}
-            textColor="white"
-            // bgColor="heavyMetal"
-            // shadow={true}
-            onClick={() => {}}
-          >
-            My Bookcase
-          </Button>
-        </div>
-      </section>
-      <section className={styles.right}>
-        <img
-          src="/images/logbook-intro.png"
-          alt="intro"
-          width="640"
-          height="700"
-        />
-        {/* <BannerVideo /> */}
-      </section>
+    <section className={styles.intro}>
+      <h2>Deliver value and share benefits</h2>
+      <p className={styles.subtitle}>Create, Transfer, Relay</p>
+
+      <div className={styles.buttons}>
+        <Button
+          width="15rem"
+          // spacing={["tight", "loose"]}
+          spacing={["tight", 0]}
+          textColor="blueGreen"
+          bgColor="lightMetal"
+          bgActiveColor="lightMetalHover"
+          // shadow={true}
+          borderRadius="1.5rem"
+          onClick={() => {}}
+        >
+          Claim
+        </Button>
+        <Button
+          width="15rem"
+          // spacing={["tight", "loose"]}
+          spacing={["tight", 0]}
+          textColor="white"
+          bgColor="heavyMetal"
+          bgActiveColor="heavyMetalHover"
+          // shadow={true}
+          borderRadius="1.5rem"
+          onClick={() => {}}
+        >
+          My Bookcase
+        </Button>
+      </div>
     </section>
-  </>
+    <section className={styles.dynamic}>
+      <div
+        style={{
+          minWidth: "340px",
+          minHeight: "340px",
+          backgroundImage: `url("/images/logbook-intro.png")`,
+        }}
+      ></div>
+      {/* <BannerVideo /> */}
+    </section>
+  </section>
 );

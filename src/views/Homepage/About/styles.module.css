@@ -32,12 +32,7 @@
     margin-top: var(--spacing-tight);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-bold);
-    background-image: linear-gradient(
-      106.84deg,
-      #43c0b9 8.4%,
-      #228cda 51.17%,
-      #b81def 97.66%
-    );
+    background-image: var(--color-heavy-metal);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;

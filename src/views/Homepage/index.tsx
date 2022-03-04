@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { NextPage } from "next";
 import Link from "next/link";
-import { Head, Layout } from "~/components";
+import { Head, Layout, Header } from "~/components";
 
 import { About } from "./About";
 
@@ -19,8 +19,6 @@ const Homepage: Page = () => {
     <>
       <Head title="Homepage" />
 
-      <h1 className={styles.title}>Homepage</h1>
-
       <Hero />
       <About />
     </>
@@ -28,7 +26,15 @@ const Homepage: Page = () => {
 };
 
 Homepage.getLayout = function getLayout(page) {
-  return <Layout footer={<Footer />}>{page}</Layout>;
+  return (
+    <div style={{ display: "grid" }}>
+      <Header />
+      <main>
+        <article>{page}</article>
+      </main>
+      <Footer />
+    </div>
+  );
 };
 
 export default Homepage;

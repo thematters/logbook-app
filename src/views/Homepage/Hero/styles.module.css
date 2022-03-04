@@ -1,26 +1,78 @@
 .hero {
   @mixin flex-center-all;
 
-  position: relative;
+  flex-direction: column;
+
+  @media (--md-up) {
+    flex-direction: row;
+  }
+
   margin: 0;
+  margin-top: 4rem;
+
+  & .leftRadial {
+    position: absolute;
+    top: 164px;
+    left: 0;
+    z-index: -1;
+    width: 201px;
+    height: 523px;
+    background-image: radial-gradient(
+      109.17% 51.66% at -1.6% 52.2%,
+      rgb(106 120 255 / 41.3%) 0%,
+      rgb(109 123 255 / 32.6%) 21%,
+      rgb(119 132 255 / 25.8%) 36%,
+      rgb(135 147 255 / 19.8%) 51%,
+      rgb(158 168 255 / 14.11%) 64%,
+      rgb(188 195 255 / 8.72%) 78%,
+      rgb(225 228 255 / 3.59%) 90%,
+      rgb(255 255 255 / 0%) 100%
+    );
+    background-position: left;
+  }
+
+  & .rightRadial {
+    position: absolute;
+    top: 62px;
+    right: 0;
+    z-index: -1;
+    width: 298px;
+    height: 774px;
+    background-image: radial-gradient(
+      109.17% 51.66% at 101.61% 47.8%,
+      rgb(251 134 255 / 28.7%) 0%,
+      rgb(251 137 255 / 22.11%) 22.6%,
+      rgb(251 147 255 / 17.03%) 40.03%,
+      rgb(252 163 255 / 12.45%) 55.73%,
+      rgb(253 186 255 / 8.17%) 70.41%,
+      rgb(254 216 255 / 4.1%) 84.38%,
+      rgb(255 253 255 / 0.22%) 97.65%,
+      rgb(255 255 255 / 0%) 100%
+    );
+    background-position: right;
+  }
 
   & section {
+    flex: 1 0 50%;
     gap: 1rem;
   }
 
-  & .left {
+  & .intro {
+    max-width: 523px;
+    margin-left: 100px;
+
     & h2 {
       font-size: var(--font-size-xxl);
+      font-weight: var(--font-weight-bold);
     }
 
-    & .dynamic {
+    & .subtitle {
+      /* @mixin text-fill-gradient-color; */
+
+      margin-top: var(--spacing-tight);
       font-size: var(--font-size-lg);
-      background-color: var(--color-gradient-green-start);
-      background-image: linear-gradient(
-        0deg,
-        var(--color-gradient-green-start),
-        var(--color-gradient-green-end)
-      );
+      font-weight: var(--font-weight-bold);
+      background-image: var(--color-heavy-metal);
       background-clip: text;
       -webkit-text-fill-color: transparent;
       -moz-text-fill-color: transparent;
@@ -28,35 +80,18 @@
     }
 
     & div.buttons {
-      @mixin flex-center-space-between;
+      @mixin flex-center-all;
 
-      justify-content: space-around;
+      gap: 1.5rem;
       margin-top: 1rem;
+
+      & button {
+        font-size: var(--font-size-lg);
+      }
     }
   }
 
-  & .right {
+  & .dynamic {
     border: 0;
   }
-}
-
-& .leftBackground {
-  position: absolute;
-  top: 164px;
-  right: 86.04%;
-  left: 0%;
-  height: 523px;
-  pointer-events: none;
-
-  /* background: radial-gradient(109.17% 51.66% at -1.6% 52.2%, rgb(106 120 255 / 41.3%) 0%, rgba(109, 123, 255, 0.32578) 20.79%, rgba(119, 132, 255, 0.25844) 36.83%, rgba(135, 147, 255, 0.19782) 51.27%, rgba(158, 168, 255, 0.14119) 64.78%, rgba(188, 195, 255, 0.08722) 77.64%, rgba(225, 228, 255, 0.03598) 89.84%, rgba(255, 255, 255, 0) 98.42%); */
-}
-
-& .rightBackground {
-  position: absolute;
-  top: 62px;
-  right: 0%;
-  left: 79.31%;
-  height: 774px;
-
-  /* background: radial-gradient(109.17% 51.66% at 101.61% 47.8%, rgba(251, 134, 255, 0.287) 0%, rgba(251, 137, 255, 0.22113) 22.6%, rgba(251, 147, 255, 0.17031) 40.03%, rgba(252, 163, 255, 0.12453) 55.73%, rgba(253, 186, 255, 0.08169) 70.41%, rgba(254, 216, 255, 0.04095) 84.38%, rgba(255, 253, 255, 0.00223205) 97.65%, rgba(255, 255, 255, 0) 98.42%); */
 }

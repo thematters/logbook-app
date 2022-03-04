@@ -1,4 +1,14 @@
 .header {
   /* display: flex; */
   @mixin flex-center-space-between;
+
+  width: 100%;
+  padding: 2rem 4rem 0;
+}
+
+.fixed {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: var(--z-index-header);
 }

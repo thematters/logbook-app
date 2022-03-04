@@ -25,5 +25,7 @@ export const Layout: React.FC<PageProps> = ({ children, footer }) => {
   );
 };
 
-// Layout.Header = Header;
+// Layout.Header =
+export { Header };
+
 // Layout.Footer = Footer;

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import styles from "./styles.module.css";
 
 const Footer = () => (
-  <footer className={classNames([styles.footer, "l-col-full"])}>
+  <footer className={classNames([styles.footer])}>
     <div>
       <div>2022, Designed by Matters.</div>
     </div>
