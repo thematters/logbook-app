@@ -1,0 +1,18 @@
+.header {
+  @mixin flex-center-space-between;
+}
+
+.title {
+  font-size: var(--font-size-section-title);
+  line-height: var(--line-height-section-title);
+}
+
+.button {
+  width: 100%;
+  font-size: var(--font-size-article-title);
+  line-height: var(--line-height-article-title);
+
+  @media (--sm-up) {
+    width: 15rem;
+  }
+}

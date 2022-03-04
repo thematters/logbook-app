@@ -1,0 +1,32 @@
+.container {
+  overflow: hidden;
+  cursor: grab;
+}
+
+.cardList {
+  @mixin hide-scrollbar;
+
+  display: flex;
+  margin: 1.25rem 0;
+  cursor: inherit;
+
+  & > li {
+    position: relative;
+    flex: 0 0 290px;
+    margin-right: var(--spacing-base);
+    cursor: inherit;
+  }
+
+  & > li:last-child {
+    margin-right: 0;
+  }
+
+  @media (--sm-up) {
+    margin: 0;
+    margin-top: var(--spacing-xx-loose);
+
+    & > li {
+      flex: 0 0 420px;
+    }
+  }
+}

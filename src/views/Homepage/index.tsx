@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { Head, Layout } from "~/components";
+import { RecentlyWritten } from "./RecentlyWritten";
 
 type Page<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactNode) => ReactNode;
@@ -20,6 +21,7 @@ const Homepage: Page = () => {
       <h1 className={styles.title}>Homepage</h1>
 
       <Hero />
+      <RecentlyWritten />
     </>
   );
 };
