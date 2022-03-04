@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { Button, Head } from "~/components";
 
+import { Stranger } from "./Stranger";
+
 const Bookcase: React.FC = () => {
   return (
     <>
       <Head title="Bookcase" />
-
+{/*
       <h1>Bookcase</h1>
 
       <ul>
@@ -18,7 +20,9 @@ const Bookcase: React.FC = () => {
         <li>
           <Link href="library">Library</Link>
         </li>
-      </ul>
+      </ul> */}
+
+      <Stranger />
     </>
   );
 };
