@@ -196,6 +196,9 @@ export const Button: React.FC<ButtonProps> = forwardRef(
       onClick,
       ref: buttonRef as React.RefObject<any>,
       className: containerClasses,
+      style: {
+        borderRadius,
+      }
     };
 
     // content
