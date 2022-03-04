@@ -3,6 +3,8 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { Head, Layout } from "~/components";
 
+import { About } from "./About";
+
 type Page<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactNode) => ReactNode;
 };
@@ -20,6 +22,7 @@ const Homepage: Page = () => {
       <h1 className={styles.title}>Homepage</h1>
 
       <Hero />
+      <About />
     </>
   );
 };

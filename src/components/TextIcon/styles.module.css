@@ -61,6 +61,12 @@
       font-size: var(--font-size-lg);
     }
   }
+
+  &.xl {
+    & .text {
+      font-size: var(--font-size-xl);
+    }
+  }
 }
 
 /* Colors */

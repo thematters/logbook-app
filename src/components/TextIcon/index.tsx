@@ -24,7 +24,7 @@ export interface TextIconProps {
   icon?: React.ReactNode;
 
   color?: TextIconColor;
-  size?: "xs" | "sm" | "smS" | "mdS" | "md" | "xm" | "lg";
+  size?: "xs" | "sm" | "smS" | "mdS" | "md" | "xm" | "lg" | "xl";
   spacing?: 0 | "xxxTight" | "xxTight" | "xTight" | "tight" | "base" | "loose";
   weight?: "light" | "normal" | "medium" | "semibold" | "bold";
 
