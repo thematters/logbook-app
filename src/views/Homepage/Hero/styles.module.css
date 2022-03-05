@@ -1,80 +1,98 @@
 .hero {
-  display: grid;
-  grid-template-areas:
-    "intro"
-    "dynamic"
-    "buttons";
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  min-height: 100vh;
-  margin: 1rem;
-  margin-top: 5rem;
+  margin-bottom: var(--spacing-x-loose);
 
-  @media (--sm-up) {
+  & .content {
+    display: grid;
     grid-template-areas:
-      "intro dynamic"
-      "buttons dynamic";
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    margin-right: 60px;
-    margin-left: 180px;
-  }
+      "intro"
+      "dynamic"
+      "buttons";
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    margin: var(--spacing-base);
+    margin-top: 5rem;
 
-  & .intro {
-    grid-area: intro;
-    place-self: center;
+    @media (--md-up) {
+      grid-template-areas:
+        "intro dynamic"
+        "buttons dynamic";
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
 
-    & h2 {
-      font-size: 36px;
-      font-weight: bold;
-      line-height: 48px;
-      color: #333;
+    & .intro {
+      grid-area: intro;
+      place-self: center;
+
+      & h2 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        line-height: 3rem;
+        color: #333;
+      }
+
+      & .subtitle {
+        /* @mixin text-fill-gradient-color; */
+
+        margin-top: var(--spacing-tight);
+        font-size: 1.5rem;
+        font-weight: var(--font-weight-bold);
+        line-height: 2rem;
+        background-image: var(--color-heavy-metal);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-text-fill-color: transparent;
+        background-size: 100%;
+      }
 
       @media (--sm-up) {
-        font-size: 64px;
-        line-height: 80px;
+        margin-top: 3rem;
+
+        & h2 {
+          font-size: 4rem;
+          line-height: 5rem;
+        }
+
+        & .subtitle {
+          font-size: 2.25rem;
+          line-height: 3rem;
+        }
       }
     }
 
-    & .subtitle {
-      /* @mixin text-fill-gradient-color; */
+    & .dynamic {
+      position: relative;
+      grid-area: dynamic;
+      width: 100%;
+      overflow: hidden;
 
-      margin-top: var(--spacing-tight);
-      font-size: 24px;
-      font-weight: var(--font-weight-bold);
-      line-height: 32px;
-      background-image: var(--color-heavy-metal);
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -moz-text-fill-color: transparent;
-      background-size: 100%;
+      &::before {
+        display: block;
+        padding-top: 90%; /* ratio 640px/704px */
+        content: "";
+      }
 
-      @media (--sm-up) {
-        font-size: 36px;
-        line-height: 48px;
+      & img {
+        @mixin expand-to-container;
+      }
+
+      @media (--md-up) {
+        margin-right: var(--spacing-xxx-loose);
       }
     }
-  }
 
-  & .dynamic {
-    grid-area: dynamic;
-    border: 0;
-  }
+    & .buttons {
+      display: flex;
+      flex-direction: column;
+      grid-area: buttons;
+      gap: var(--spacing-loose);
+      width: 100%;
+      margin-top: 1rem;
+      text-align: center;
 
-  & .buttons {
-    display: flex;
-    flex-direction: column;
-    grid-area: buttons;
-    gap: 1.5rem;
-    width: 100%;
-    text-align: center;
-
-    @media (--sm-up) {
-      flex-direction: row;
-      align-self: flex-start;
-    }
-
-    & button {
-      font-size: var(--font-size-lg);
+      @media (--md-up) {
+        flex-direction: row;
+        align-self: flex-start;
+      }
     }
   }
 
@@ -83,8 +101,8 @@
     top: 164px;
     left: 0;
     z-index: -1;
-    width: 201px;
-    height: 523px;
+    width: 149px;
+    height: 387px;
     background-image: radial-gradient(
       109.17% 51.66% at -1.6% 52.2%,
       rgb(106 120 255 / 41.3%) 0%,
@@ -97,15 +115,20 @@
       rgb(255 255 255 / 0%) 100%
     );
     background-position: left;
+
+    @media (--md-up) {
+      width: 201px;
+      height: 523px;
+    }
   }
 
   & .rightRadial {
     position: absolute;
-    top: 62px;
+    top: 0;
     right: 0;
     z-index: -1;
-    width: 298px;
-    height: 774px;
+    width: 144px;
+    height: 375px;
     background-image: radial-gradient(
       109.17% 51.66% at 101.61% 47.8%,
       rgb(251 134 255 / 28.7%) 0%,
@@ -118,5 +141,11 @@
       rgb(255 255 255 / 0%) 100%
     );
     background-position: right;
+
+    @media (--md-up) {
+      top: 62px;
+      width: 298px;
+      height: 774px;
+    }
   }
 }
