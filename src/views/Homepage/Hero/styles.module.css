@@ -24,38 +24,24 @@
       place-self: center;
 
       & h2 {
-        font-size: 2.25rem;
-        font-weight: bold;
-        line-height: 3rem;
-        color: #333;
+        font-size: var(--font-size-banner-title);
+        font-weight: var(--font-weight-banner-title);
+        line-height: var(--line-height-banner-title);
+        color: var(--color-black);
       }
 
       & .subtitle {
-        /* @mixin text-fill-gradient-color; */
+        @mixin text-fill-gradient-color;
 
         margin-top: var(--spacing-tight);
-        font-size: 1.5rem;
+        font-size: var(--font-size-section-title);
         font-weight: var(--font-weight-bold);
-        line-height: 2rem;
+        line-height: var(--line-height-section-title);
         background-image: var(--color-heavy-metal);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -moz-text-fill-color: transparent;
-        background-size: 100%;
       }
 
       @media (--sm-up) {
         margin-top: 3rem;
-
-        & h2 {
-          font-size: 4rem;
-          line-height: 5rem;
-        }
-
-        & .subtitle {
-          font-size: 2.25rem;
-          line-height: 3rem;
-        }
       }
     }
 
@@ -86,7 +72,7 @@
       grid-area: buttons;
       gap: var(--spacing-loose);
       width: 100%;
-      margin-top: 1rem;
+      margin-top: var(--spacing-base);
       text-align: center;
 
       @media (--md-up) {
@@ -100,7 +86,7 @@
     position: absolute;
     top: 164px;
     left: 0;
-    z-index: -1;
+    z-index: var(--z-index-behind);
     width: 149px;
     height: 387px;
     background-image: radial-gradient(
@@ -126,7 +112,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    z-index: -1;
+    z-index: var(--z-index-behind);
     width: 144px;
     height: 375px;
     background-image: radial-gradient(
