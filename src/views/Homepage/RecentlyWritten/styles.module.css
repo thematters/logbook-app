@@ -1,3 +1,7 @@
+.recentlyWritten {
+  position: relative;
+}
+
 .header {
   @mixin flex-center-space-between;
 }

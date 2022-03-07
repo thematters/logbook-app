@@ -1,6 +1,6 @@
 .container {
+  position: relative;
   overflow: hidden;
-  cursor: grab;
 }
 
 .cardList {

@@ -37,7 +37,7 @@ export const RecentlyWritten = () => {
 
   if (isSmallUP) {
     return (
-      <section>
+      <section className={styles.recentlyWritten}>
         <div className={styles.header}>
           <h1 className={styles.title}>Recently written</h1>
           {buttonElement}
@@ -48,7 +48,7 @@ export const RecentlyWritten = () => {
   }
 
   return (
-    <section>
+    <section className={styles.recentlyWritten}>
       <h1 className={styles.title}>Recently written</h1>
       <CardList />
       {buttonElement}
