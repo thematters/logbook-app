@@ -1,15 +1,23 @@
 {
   "plugins": [
+    "postcss-nested",
+    "postcss-flexbugs-fixes",
     [
       "postcss-mixins",
       {
         "mixinsFiles": "./src/styles/mixins.css"
       }
     ],
-    "postcss-flexbugs-fixes",
     [
       "postcss-preset-env",
       {
+        "importFrom": [
+         "./src/styles/variables/breakpoints.css",
+         "./src/styles/variables/colors.css",
+         "./src/styles/variables/typography.css",
+         "./src/styles/variables/spacing.css",
+         "./src/styles/variables/z-index.css"
+        ],
         "autoprefixer": {
           "flexbox": "no-2009"
         },

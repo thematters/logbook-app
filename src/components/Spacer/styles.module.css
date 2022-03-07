@@ -1,0 +1,19 @@
+.xTight {
+  padding-bottom: var(--spacing-x-tight);
+}
+
+.loose {
+  padding-bottom: var(--spacing-loose);
+}
+
+.xLoose {
+  padding-bottom: var(--spacing-x-loose);
+}
+
+.xxLoose {
+  padding-bottom: var(--spacing-xx-loose);
+}
+
+.xxxLoose {
+  padding-bottom: var(--spacing-xxx-loose);
+}

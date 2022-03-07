@@ -1,7 +1,7 @@
 // import Image from "next/image";
 import classNames from "classnames";
 
-import { Button } from "~/components";
+import { Button, ClaimLogbookDialog } from "~/components";
 import { useResponsive } from "~/hooks";
 // import { BannerVideo } from "~/components/BannerVideo";
 
@@ -29,20 +29,25 @@ export const Hero = () => {
       </section>
 
       <section className={styles.buttons}>
-        <Button
-          // width="15rem"
-          width={isSmallUp ? "15rem" : "100%"}
-          // spacing={["tight", "loose"]}
-          spacing={["tight", 0]}
-          textColor="blueGreen"
-          bgColor="lightMetal"
-          bgActiveColor="lightMetalHover"
-          // shadow={true}
-          borderRadius="1.5rem"
-          onClick={() => {}}
-        >
-          Claim
-        </Button>
+        <ClaimLogbookDialog>
+          {({ openDialog }) => (
+            <Button
+              // width="15rem"
+              width={isSmallUp ? "15rem" : "100%"}
+              // spacing={["tight", "loose"]}
+              spacing={["tight", 0]}
+              textColor="blueGreen"
+              bgColor="lightMetal"
+              bgActiveColor="lightMetalHover"
+              // shadow={true}
+              borderRadius="1.5rem"
+              onClick={openDialog}
+            >
+              Claim
+            </Button>
+          )}
+        </ClaimLogbookDialog>
+
         <Button
           width={isSmallUp ? "15rem" : "100%"}
           // spacing={["tight", "loose"]}
