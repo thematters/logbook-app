@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import { Polygon, Mumbai, DAppProvider, Config } from "@usedapp/core";
 import type { AppLayoutProps } from "next/app";
 
@@ -28,23 +30,13 @@ const config: Config = {
 };
 
 function LogbookApp({ Component, pageProps }: AppLayoutProps) {
-  const getLayout = Component.getLayout;
-
-  if (getLayout) {
-    return (
-      <DAppProvider config={config}>
-        {getLayout(<Component {...pageProps} />)}
-        <GlobalStyles />
-      </DAppProvider>
-    );
-  }
+  const defaultLayout = (page: ReactNode) => <Layout>{page}</Layout>;
+  const getLayout = Component.getLayout ?? defaultLayout;
 
   return (
     <DAppProvider config={config}>
-      <Layout>
-        <Component {...pageProps} />
-        <GlobalStyles />
-      </Layout>
+      {getLayout(<Component {...pageProps} />)}
+      <GlobalStyles />
     </DAppProvider>
   );
 }

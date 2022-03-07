@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useWindowResize } from "~/hooks";
 
 export const GlobalStyles = () => {
-  const size = useWindowResize();
-  const height = size[1];
+  const [, height] = useWindowResize();
+  // const height = size[1];
 
   useEffect(() => {
     if (height) {
