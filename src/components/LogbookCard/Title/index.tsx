@@ -1,31 +1,43 @@
-import React from 'react'
+import React from "react";
 
-import { TextIcon, IconGiftSign } from '~/components'
+import { TextIcon, IconGiftSign } from "~/components";
 
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
 export interface TitleProps {
-  title: string
-  date?: string
+  title: string;
+  date?: Date;
+  giftSign?: boolean;
 }
 
-export const Title: React.FC<TitleProps> = ({ title, date }) => {
-  // TODO: 禮物符號存在於用戶剛拿到書籍的前三天，之後即消失
-  let hasGiftSign = false
-  if (date) {
-    hasGiftSign = true
+const betweenDays = function (date1: Date, date2: Date) {
+  const ONE_DAY = 1000 * 60 * 60 * 24;
+  const differenceMs = Math.abs(date1.getTime() - date2.getTime());
+  return Math.round(differenceMs / ONE_DAY);
+};
+
+const lessThan3Days = function (date: Date) {
+  let nowDate = new Date(Date.now());
+  let bd = betweenDays(nowDate, date);
+  return bd < 3;
+};
+
+export const Title: React.FC<TitleProps> = ({ title, date, giftSign }) => {
+  let hasGiftSign = false;
+  if (giftSign && !!date && lessThan3Days(date)) {
+    hasGiftSign = true;
   }
   if (hasGiftSign) {
     return (
       <section className={styles.titleContainer}>
-        <IconGiftSign size="xxs" className={styles.giftSign}/>
+        <IconGiftSign size="xxs" className={styles.giftSign} />
         <p className={styles.content}>{title}</p>
       </section>
-    )
+    );
   }
   return (
     <section className={styles.titleContainer}>
       <p className={styles.content}>{title}</p>
     </section>
-  )
-}
+  );
+};

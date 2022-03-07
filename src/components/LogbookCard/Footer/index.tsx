@@ -1,4 +1,7 @@
 import React from 'react'
+import { ethers } from "ethers";
+import { formatHash } from "~/utils";
+
 
 import {
   Button,
@@ -13,10 +16,10 @@ import styles from './styles.module.css'
 import { useResponsive } from '~/hooks'
 
 export interface FooterProps {
-  exchange?: Number
-  history?: Number
-  txHash?: string
-  [key: string]: any
+  exchange?: ethers.BigNumber;
+  history?: ethers.BigNumber;
+  txHash?: string;
+  [key: string]: any;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -25,10 +28,9 @@ export const Footer: React.FC<FooterProps> = ({
   txHash,
 }) => {
   const isSmallUp = useResponsive('sm-up')
-  // TODO: 格式化 txHash
-  let formattedHash = '9r...2vT'
-  if (isSmallUp) {
-    formattedHash = '9r53...22vT'
+  let formattedHash;
+  if (!!txHash) {
+    formattedHash = formatHash(txHash, isSmallUp);
   }
 
   let borderRadius = '1rem'
@@ -57,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({
           color="greyDark"
           icon={<IconExchange></IconExchange>}
         >
-          {exchange}
+          {exchange?.toString()}
         </TextIcon>
       </Button>
       <Button
@@ -73,7 +75,7 @@ export const Footer: React.FC<FooterProps> = ({
           color="greyDark"
           icon={<IconFile></IconFile>}
         >
-          {history}
+          {history?.toString()}
         </TextIcon>
       </Button>
       <Button
@@ -90,7 +92,7 @@ export const Footer: React.FC<FooterProps> = ({
           icon={<IconShare></IconShare>}
         ></TextIcon>
       </Button>
-      {txHash ? (
+      {!!txHash ? (
         <Button
           width={hashWidth}
           height={height}
@@ -107,5 +109,5 @@ export const Footer: React.FC<FooterProps> = ({
         <></>
       )}
     </section>
-  )
+  );
 }
