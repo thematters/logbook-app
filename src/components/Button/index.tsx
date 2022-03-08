@@ -40,11 +40,6 @@ type ButtonColor =
   | "heavyMetalHover"
   | "navBtn";
 
-type ButtonTextColor = Extract<
-  ButtonColor,
-  "white" | "black" | "blueGreen" | "blueGreenDarker" | "gold" | "red" | "grey"
->;
-
 export type ButtonBgColor = Extract<
   ButtonColor,
   | "greyDarker"
@@ -68,8 +63,6 @@ export type ButtonProps = {
   width?: ButtonSize;
   height?: ButtonSize;
   spacing?: [ButtonSpacingY, ButtonSpacingX];
-
-  textColor?: ButtonTextColor;
 
   bgColor?: ButtonBgColor;
   bgActiveColor?: ButtonBgColor;
@@ -108,18 +101,29 @@ export type ButtonProps = {
  *    <IconBookmarked16 />
  *  </Button>
  *
- *  // with custom size, border, hover text & background
+ *  // with custom size, border, hover background
  *  <Button
  *    width='4rem'
  *    height='1.5rem'
- *    textColor="green"
- *    textActiveColor="white"
  *    bgActiveColor="green"
  *    borderColor="green"
  *    onClick={onClick}
  *  >
  *    <TextIcon weight="md" size="xs">
  *      <Translate id="follow" />
+ *    </TextIcon>
+ *  </Button>
+ *
+ *  // with custom text
+ *  <Button
+ *    width='4rem'
+ *    height='1.5rem'
+ *    bgActiveColor="green"
+ *    borderColor="green"
+ *    onClick={onClick}
+ *  >
+ *    <TextIcon color="blueGreen">
+ *        text
  *    </TextIcon>
  *  </Button>
  * ```
@@ -131,7 +135,6 @@ export const Button: React.FC<ButtonProps> = forwardRef(
       spacing = [0, 0],
       width,
       height,
-      textColor = "black",
 
       bgColor = "",
       bgActiveColor = "",
@@ -173,7 +176,6 @@ export const Button: React.FC<ButtonProps> = forwardRef(
         [styles[`bg${capitalizeFirstLetter(bgColor)}`]]: bgColor !== "",
         [styles[`bgActive${capitalizeFirstLetter(bgActiveColor)}`]]:
           bgActiveColor !== "",
-        [styles[`text${capitalizeFirstLetter(textColor)}`]]: !!textColor,
         [styles.shadow]: !!shadow,
       },
       className
