@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 import styles from "./styles.module.css";
 
 interface HandleProps {
@@ -15,7 +13,7 @@ const Handle: React.FC<HandleProps> = ({ closeDialog, ...props }) => {
       onClick={closeDialog}
       {...props}
     >
-      <span className="icon" />
+      <span className={styles.icon} />
     </button>
   );
 };

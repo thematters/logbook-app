@@ -12,4 +12,8 @@
     background: var(--color-grey-lighter);
     border-radius: var(--spacing-x-tight);
   }
+
+  @media (--sm-up) {
+    display: none;
+  }
 }

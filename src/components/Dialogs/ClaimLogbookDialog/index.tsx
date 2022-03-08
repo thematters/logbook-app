@@ -14,18 +14,19 @@ const BaseClaimLogbookDialog: React.FC<ClaimLogbookDialogProps> = ({
     <>
       {children({ openDialog })}
 
-      <Dialog size="sm" isOpen={show} onDismiss={closeDialog}>
+      <Dialog isOpen={show} onDismiss={closeDialog}>
         <Dialog.Header title="Claim Logbook" closeDialog={closeDialog} />
 
-        <p>
-          Logbook 2.0 has just launched. If you own Travloggers, get started to
-          claim Logbook 2.0 by connecting wallet. Have no Traveloggers? Collect
-          one from OpenSea and be part of the community.
-        </p>
+        <Dialog.Content>
+          <p>
+            Logbook 2.0 has just launched. If you own Travloggers, get started
+            to claim Logbook 2.0 by connecting wallet. Have no Traveloggers?
+            Collect one from OpenSea and be part of the community.
+          </p>
+        </Dialog.Content>
 
         <Dialog.Footer>
-          <Button>MetaMask</Button>
-          <Button>WalletConnect</Button>
+          <Dialog.Footer.Button>MetaMask</Dialog.Footer.Button>
         </Dialog.Footer>
       </Dialog>
     </>

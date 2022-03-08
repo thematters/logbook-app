@@ -45,5 +45,6 @@ export * from "./IconWallet";
 export * from "./IconWalletGradient";
 export * from "./IconCross";
 export * from "./IconWalletConnect";
+export * from "./IconSpinner";
 
 export * from "./withIcon";

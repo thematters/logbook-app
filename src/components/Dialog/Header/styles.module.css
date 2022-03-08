@@ -4,7 +4,6 @@
   position: relative;
   flex-shrink: 0;
   padding: var(--spacing-x-loose) var(--spacing-base) var(--spacing-tight);
-  box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
 
   & h1 {
     @mixin flex-center-all;
@@ -14,8 +13,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    padding: var(--spacing-x-loose) 0 var(--spacing-tight);
-    font-size: var(--font-size-xm);
+    padding: var(--spacing-x-loose) 0 var(--spacing-base);
+    font-size: var(--font-size-md-s);
     font-weight: var(--font-weight-medium);
     line-height: 1.5rem;
   }
@@ -41,14 +40,6 @@
     & .right {
       min-height: 2rem;
     }
-  }
-}
-
-.inner {
-  box-shadow: none;
-
-  & :global(> :not(h1)) {
-    visibility: hidden;
   }
 }
 

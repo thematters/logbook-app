@@ -1,5 +1,4 @@
 import { DialogContent, DialogOverlay } from "@reach/dialog";
-import classNames from "classnames";
 import _get from "lodash/get";
 import { useEffect, useRef, useState } from "react";
 import { animated, useSpring } from "react-spring";
@@ -20,26 +19,15 @@ export interface DialogOverlayProps {
   onRest?: () => void;
 }
 
-export type DialogProps = {
-  size?: "sm" | "lg";
-  fixedHeight?: boolean;
-  slideIn?: boolean;
-} & DialogOverlayProps;
+export type DialogProps = DialogOverlayProps;
 
 const Container: React.FC<
   {
     style?: React.CSSProperties;
     setDragGoal: (val: any) => void;
   } & DialogProps
-> = ({ size = "lg", fixedHeight, onDismiss, children, style, setDragGoal }) => {
-  const isSmallUp = useResponsive("sm-up");
+> = ({ onDismiss, children, style, setDragGoal }) => {
   const node: React.RefObject<any> | null = useRef(null);
-
-  const containerClasses = classNames({
-    [styles.container]: true,
-    [styles.fixedHeight]: !!fixedHeight,
-    [styles[size]]: true,
-  });
 
   const closeTopDialog = () => {
     const dialogs = Array.prototype.slice.call(
@@ -70,7 +58,7 @@ const Container: React.FC<
     <div className="l-row">
       <div
         ref={node}
-        className={containerClasses}
+        className={styles.container}
         style={style}
         onKeyDown={(event) => {
           if (event.keyCode === KEYCODES.escape) {
@@ -80,14 +68,14 @@ const Container: React.FC<
       >
         {children}
 
-        {!isSmallUp && <Handle closeDialog={onDismiss} {...bind()} />}
+        <Handle closeDialog={onDismiss} {...bind()} />
       </div>
     </div>
   );
 };
 
 const Dialog: React.FC<DialogProps> = (props) => {
-  const { isOpen, onRest, slideIn } = props;
+  const { isOpen, onRest } = props;
   const [mounted, setMounted] = useState(isOpen);
   const isSmallUp = useResponsive("sm-up");
 
@@ -135,18 +123,11 @@ const Dialog: React.FC<DialogProps> = (props) => {
 
   return (
     <AnimatedDialogOverlay className="dialog">
-      <AnimatedOverlay style={{ opacity: opacity as any }} />
+      <AnimatedOverlay style={{ opacity }} />
 
-      <DialogContent
-        className="l-container full"
-        aria-labelledby="dialog-title"
-      >
+      <DialogContent className="l-container" aria-labelledby="dialog-title">
         <AnimatedContainer
-          style={{
-            transform: !isSmallUp && slideIn ? transform : undefined,
-            opacity: isSmallUp || !slideIn ? (opacity as any) : undefined,
-            top: !isSmallUp ? top : undefined,
-          }}
+          style={{ opacity, top }}
           setDragGoal={setDragGoal}
           {...props}
         />
