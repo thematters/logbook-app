@@ -26,7 +26,7 @@ export interface TextIconProps {
   color?: TextIconColor;
   size?: "xs" | "sm" | "smS" | "mdS" | "md" | "xm" | "lg" | "xl";
   spacing?: 0 | "xxxTight" | "xxTight" | "xTight" | "tight" | "base" | "loose";
-  weight?: "light" | "normal" | "medium" | "semibold" | "bold";
+  weight?: "light" | "normal" | "medium" | "bold";
 
   textPlacement?: "bottom" | "left" | "right";
   underline?: boolean;

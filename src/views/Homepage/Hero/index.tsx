@@ -1,12 +1,9 @@
 import { Button, Container, TextIcon, ClaimLogbookDialog } from "~/components";
-import { useResponsive } from "~/hooks";
 // import { BannerVideo } from "~/components/BannerVideo";
 
 import styles from "./styles.module.css";
 
 export const Hero = () => {
-  const isMediumUp = useResponsive("md-up");
-
   return (
     <section className={styles.hero}>
       <Container className={styles.content}>
@@ -24,40 +21,75 @@ export const Hero = () => {
         <section className={styles.buttons}>
           <ClaimLogbookDialog>
             {({ openDialog }) => (
-              <Button
-                // width="15rem"
-                width={isMediumUp ? "15rem" : "100%"}
-                // spacing={["tight", "loose"]}
-                spacing={["tight", 0]}
-                // textColor="blueGreen"
-                bgColor="lightMetal"
-                bgActiveColor="lightMetalHover"
-                // shadow={true}
-                borderRadius="1.5rem"
-                onClick={() => {
-                  // TODO: analytics
-                  openDialog();
-                }}
-              >
-                <TextIcon color="blueGreen">Claim</TextIcon>
-              </Button>
+              <>
+                <Button
+                  className="u-sm-down-hide"
+                  width="15rem"
+                  height="3.5rem"
+                  bgColor="lightMetal"
+                  bgActiveColor="lightMetalHover"
+                  borderRadius="1.75rem"
+                  onClick={() => {
+                    // TODO: analytics
+                    openDialog();
+                  }}
+                >
+                  <TextIcon size="md" weight="bold" color="blueGreen">
+                    Claim
+                  </TextIcon>
+                </Button>
+
+                <Button
+                  className="u-sm-up-hide"
+                  width="100%"
+                  height="3rem"
+                  bgColor="lightMetal"
+                  bgActiveColor="lightMetalHover"
+                  borderRadius="1.75rem"
+                  onClick={() => {
+                    // TODO: analytics
+                    openDialog();
+                  }}
+                >
+                  <TextIcon size="mdS" weight="bold" color="blueGreen">
+                    Claim
+                  </TextIcon>
+                </Button>
+              </>
             )}
           </ClaimLogbookDialog>
+
           <Button
-            width={isMediumUp ? "15rem" : "100%"}
-            // spacing={["tight", "loose"]}
-            spacing={["tight", 0]}
-            // textColor="white"
+            className="u-sm-down-hide"
+            width="15rem"
+            height="3.5rem"
             bgColor="heavyMetal"
             bgActiveColor="heavyMetalHover"
-            // shadow={true}
-            borderRadius="1.5rem"
+            borderRadius="1.75rem"
             href="/bookcase"
             onClick={() => {
               // TODO: analytics
             }}
           >
-            <TextIcon color="white">My Bookcase</TextIcon>
+            <TextIcon size="md" weight="bold" color="white">
+              My Bookcase
+            </TextIcon>
+          </Button>
+          <Button
+            className="u-sm-up-hide"
+            width="100%"
+            height="3rem"
+            bgColor="heavyMetal"
+            bgActiveColor="heavyMetalHover"
+            borderRadius="1.75rem"
+            href="/bookcase"
+            onClick={() => {
+              // TODO: analytics
+            }}
+          >
+            <TextIcon size="mdS" weight="bold" color="white">
+              My Bookcase
+            </TextIcon>
           </Button>
         </section>
       </Container>

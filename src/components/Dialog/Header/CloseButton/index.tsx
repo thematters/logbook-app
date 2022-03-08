@@ -1,7 +1,5 @@
 import { Button, IconCross } from "~/components";
 
-import styles from "./styles.module.css";
-
 interface CloseButtonProps {
   closeDialog: () => void;
 }
@@ -9,7 +7,7 @@ interface CloseButtonProps {
 const CloseButton = ({ closeDialog }: CloseButtonProps) => {
   return (
     <Button
-      className={styles.closeButton}
+      className="u-sm-down-hide"
       onClick={closeDialog}
       aria-label="cancel"
       bgColor="greenLighter"

@@ -8,6 +8,7 @@ import "../styles/variables/spacing.css";
 import "../styles/variables/z-index.css";
 import "../styles/reset.css";
 import "../styles/base.css";
+import "../styles/display.css";
 import "../styles/layout.css";
 import "../styles/vendors/tippy.css";
 import "../styles/vendors/reach.css";
