@@ -1,0 +1,11 @@
+.intro {
+  color: var(--color-grey-darker);
+}
+
+.buttons {
+  margin-bottom: var(--spacing-xx-loose);
+
+  & > * {
+    margin-top: var(--spacing-loose);
+  }
+}

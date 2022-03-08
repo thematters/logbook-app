@@ -1,3 +1,4 @@
+export * from "./contract";
 export * from "./dom";
 
 export const capitalizeFirstLetter = (string: string) => {

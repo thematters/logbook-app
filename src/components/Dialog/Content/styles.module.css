@@ -5,9 +5,20 @@
   flex-shrink: 1;
   padding: var(--spacing-base);
   overflow-y: auto;
+  font-size: var(--font-size-md-s);
+  line-height: 1.5rem;
   -webkit-overflow-scrolling: touch;
 
   @media (--sm-up) {
     padding: var(--spacing-base) var(--spacing-xxx-loose);
+  }
+
+  & a {
+    @mixin all-transition;
+
+    &:link,
+    &:visited {
+      color: var(--color-gradient-green-start);
+    }
   }
 }

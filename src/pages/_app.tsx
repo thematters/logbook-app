@@ -1,3 +1,4 @@
+import { Polygon, Mumbai, DAppProvider, Config } from "@usedapp/core";
 import type { AppLayoutProps } from "next/app";
 
 import "../styles/variables/breakpoints.css";
@@ -14,23 +15,36 @@ import "../styles/vendors/reach.css";
 import { Layout } from "~/components";
 import { GlobalStyles } from "~/components/GlobalStyles";
 
+const isProd = process.env.NEXT_PUBLIC_RUNTIME_ENV === "production";
+
+const config: Config = {
+  readOnlyChainId: isProd ? Polygon.chainId : Mumbai.chainId,
+  readOnlyUrls: {
+    [Polygon.chainId]: process.env.NEXT_PUBLIC_ALCHEMY_POLYGON_URL || "",
+    [Mumbai.chainId]: process.env.NEXT_PUBLIC_ALCHEMY_MUMBAI_URL || "",
+  },
+  networks: [isProd ? Polygon : Mumbai],
+};
+
 function LogbookApp({ Component, pageProps }: AppLayoutProps) {
   const getLayout = Component.getLayout;
 
   if (getLayout) {
     return (
-      <>
+      <DAppProvider config={config}>
         {getLayout(<Component {...pageProps} />)}
         <GlobalStyles />
-      </>
+      </DAppProvider>
     );
   }
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-      <GlobalStyles />
-    </Layout>
+    <DAppProvider config={config}>
+      <Layout>
+        <Component {...pageProps} />
+        <GlobalStyles />
+      </Layout>
+    </DAppProvider>
   );
 }
 

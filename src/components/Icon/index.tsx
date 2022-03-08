@@ -36,7 +36,7 @@ export * from "./IconLogo";
 export * from "./IconMatters";
 export * from "./IconMenu";
 export * from "./IconMenuHover";
-export * from "./IconMetamask";
+export * from "./IconMetaMask";
 export * from "./IconOpenSea";
 export * from "./IconSearch";
 export * from "./IconShare";

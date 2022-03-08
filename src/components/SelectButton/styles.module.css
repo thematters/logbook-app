@@ -1,0 +1,51 @@
+.selectButton {
+  @mixin all-transition;
+
+  display: block;
+  width: 100%;
+  padding: var(--spacing-base);
+  line-height: 1;
+  background: var(--color-grey-lighter);
+  border-radius: 1.25rem;
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      background: var(--color-grey-light);
+    }
+  }
+}
+
+.content {
+  @mixin flex-center-space-between;
+}
+
+.left {
+  @mixin inline-flex-center-all;
+
+  & .icon {
+    margin-right: var(--spacing-base);
+  }
+
+  & .title {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & h5 {
+      font-size: var(--font-size-md-s);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5rem;
+    }
+  }
+
+  & .subtitle {
+    font-size: var(--font-size-sm-s);
+    line-height: 1rem;
+    color: var(--color-grey);
+  }
+}
+
+.right {
+  display: inline-flex;
+}

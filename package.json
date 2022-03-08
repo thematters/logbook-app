@@ -30,10 +30,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@ethersproject/contracts": "^5.5.0",
+    "@ethersproject/units": "^5.5.0",
     "@reach/dialog": "^0.16.2",
     "@reach/visually-hidden": "^0.16.0",
     "@svgr/webpack": "^6.2.1",
     "@tippyjs/react": "^4.2.6",
+    "@usedapp/core": "^0.11.0",
+    "@web3-react/walletconnect-connector": "^6.2.13",
     "classnames": "^2.3.1",
     "formik": "^2.2.9",
     "lodash": "^4.17.21",
