@@ -1,4 +1,4 @@
-footer {
+.footer {
   @mixin flex-center-space-between;
   @mixin safe-area-botttom;
 

@@ -1,0 +1,7 @@
+.overlay {
+  @mixin expand-to-container;
+
+  content: "";
+  background: rgb(0 0 0 / 25%);
+  will-change: opacity;
+}

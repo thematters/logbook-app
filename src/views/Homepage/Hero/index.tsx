@@ -1,6 +1,4 @@
-import classNames from "classnames";
-
-import { Button, Container, TextIcon } from "~/components";
+import { Button, Container, TextIcon, ClaimLogbookDialog } from "~/components";
 import { useResponsive } from "~/hooks";
 // import { BannerVideo } from "~/components/BannerVideo";
 
@@ -24,22 +22,27 @@ export const Hero = () => {
         </section>
 
         <section className={styles.buttons}>
-          <Button
-            // width="15rem"
-            width={isMediumUp ? "15rem" : "100%"}
-            // spacing={["tight", "loose"]}
-            spacing={["tight", 0]}
-            // textColor="blueGreen"
-            bgColor="lightMetal"
-            bgActiveColor="lightMetalHover"
-            // shadow={true}
-            borderRadius="1.5rem"
-            onClick={() => {
-              // TODO: analytics
-            }}
-          >
-            <TextIcon color="blueGreen">Claim</TextIcon>
-          </Button>
+          <ClaimLogbookDialog>
+            {({ openDialog }) => (
+              <Button
+                // width="15rem"
+                width={isMediumUp ? "15rem" : "100%"}
+                // spacing={["tight", "loose"]}
+                spacing={["tight", 0]}
+                // textColor="blueGreen"
+                bgColor="lightMetal"
+                bgActiveColor="lightMetalHover"
+                // shadow={true}
+                borderRadius="1.5rem"
+                onClick={() => {
+                  // TODO: analytics
+                  openDialog();
+                }}
+              >
+                <TextIcon color="blueGreen">Claim</TextIcon>
+              </Button>
+            )}
+          </ClaimLogbookDialog>
           <Button
             width={isMediumUp ? "15rem" : "100%"}
             // spacing={["tight", "loose"]}

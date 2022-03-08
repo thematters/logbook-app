@@ -8,9 +8,11 @@ export * from "./Dropdown";
 export * from "./Head";
 export * from "./Form";
 export * from "./SearchBar";
+export * from "./Spacer";
 
 // Composed
 export * from "./DropdownDialog";
 export * from "./Layout";
 export * from "./Nav";
 export * from "./LogbookCard";
+export * from "./Dialogs";

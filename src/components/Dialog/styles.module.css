@@ -1,0 +1,36 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / -1;
+  max-height: 80vh;
+  max-height: calc(var(--vh) * 90);
+  background: var(--color-white);
+  border-radius: var(--spacing-x-tight) var(--spacing-x-tight) 0 0;
+  will-change: transform, top;
+
+  &::before {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    height: 300vh;
+    content: "";
+    background: var(--color-white);
+  }
+
+  @media (--sm-up) {
+    grid-column: col-start 0 / span 3;
+    height: auto;
+    border-radius: var(--spacing-x-tight);
+    will-change: opacity;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  @media (--lg-up) {
+    grid-column: col-start 2 / span 3;
+  }
+}

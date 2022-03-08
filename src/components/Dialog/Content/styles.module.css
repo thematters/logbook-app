@@ -1,0 +1,13 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: var(--spacing-base);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (--sm-up) {
+    padding: var(--spacing-base) var(--spacing-xxx-loose);
+  }
+}

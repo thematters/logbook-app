@@ -1,0 +1,7 @@
+.closeButton {
+  display: none;
+
+  @media (--sm-up) {
+    display: initial;
+  }
+}

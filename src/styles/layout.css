@@ -30,7 +30,7 @@
   display: grid;
   grid-template-columns: repeat(2, [col-start] minmax(0, 1fr));
   grid-column: content;
-  grid-column-gap: var(--gutter-width);
+  grid-column-gap: var(--gutter);
 
   @media (--sm-up) {
     grid-template-columns: repeat(3, [col-start] minmax(0, 1fr));

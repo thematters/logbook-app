@@ -30,6 +30,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@reach/dialog": "^0.16.2",
     "@reach/visually-hidden": "^0.16.0",
     "@svgr/webpack": "^6.2.1",
     "@tippyjs/react": "^4.2.6",
@@ -45,6 +46,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-focus-lock": "^2.8.1",
+    "react-spring": "^9.4.3",
+    "react-use-gesture": "^9.1.3",
     "use-debounce": "^7.0.1",
     "yup": "^0.32.11"
   },
