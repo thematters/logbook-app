@@ -16,17 +16,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Use Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 14.x
-
-      - name: Cache Dependencies
-        id: cache
-        uses: actions/cache@v2.1.5
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
+          cache: 'npm'
 
       - name: Prepare Env (Develop)
         if: github.base_ref == 'develop'
@@ -41,11 +34,15 @@ jobs:
       - name: Deploy (Develop)
         if: github.base_ref == 'develop'
         uses: aquiladev/ipfs-action@v0.2.0
-        id: ipfs
+        id: upload
         with:
           path: ./build
-          host: ipfs.komputing.org
-          port: 443
-          protocol: https
-          timeout: 180000
+          service: pinata
+          pinataKey: ${{ secrets.PINATA_KEY }}
+          pinataSecret: ${{ secrets.PINATA_SECRET }}
+          pinataPinName: {pin_name}
           verbose: true
+
+      - name: Update Eth domain
+        run: |
+          echo ipfs://${{ steps.upload.outputs.hash }}
