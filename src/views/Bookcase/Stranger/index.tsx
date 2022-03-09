@@ -6,11 +6,11 @@ import { useResponsive } from "~/hooks";
 import styles from "./styles.module.css";
 
 export const Stranger = () => {
-  let iconStyle = { width: '157px', height: '159px' };
-  const isSmallUp = useResponsive('sm-up');
+  let iconStyle = { width: "157px", height: "159px" };
+  const isSmallUp = useResponsive("sm-up");
   let buttonWidth = "19.43rem";
   if (isSmallUp) {
-    buttonWidth = "12.5rem"
+    buttonWidth = "12.5rem";
   }
   return (
     <div className={styles.container}>
@@ -29,7 +29,9 @@ export const Stranger = () => {
         borderRadius="6.25rem"
         shadow
       >
-        <TextIcon color="white" weight="medium">Connect Wallet</TextIcon>
+        <TextIcon color="white" weight="medium">
+          Connect Wallet
+        </TextIcon>
       </Button>
     </div>
   );

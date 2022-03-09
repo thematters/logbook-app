@@ -6,14 +6,9 @@ import * as Yup from "yup";
 
 import styles from "./styles.module.css";
 
-import {
-  Head,
-  Form,
-  SearchBar,
-} from "~/components";
+import { Head, Form, SearchBar } from "~/components";
 
 import { BookList } from "./BookList";
-
 
 interface FormValues {
   title: string;
@@ -49,9 +44,7 @@ const Library: React.FC = () => {
         </div>
       </section>
 
-
-        <BookList />
-
+      <BookList />
     </>
   );
 };

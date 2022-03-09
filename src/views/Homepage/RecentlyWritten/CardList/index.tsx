@@ -1,4 +1,4 @@
-import React , { useState }from "react";
+import React, { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import classNames from "classnames";
 import { ethers } from "ethers";
@@ -16,18 +16,18 @@ import {
 import styles from "./styles.module.css";
 
 interface Account {
-  __typename: 'Account'
-  id: string
+  __typename: "Account";
+  id: string;
 }
 
 interface Log {
   __typename: "Log";
-  content: string
+  content: string;
 }
 
 interface Publication {
-  __typename: "Publication"
-  log: Log
+  __typename: "Publication";
+  log: Log;
 }
 interface Logbook {
   __typename: "Logbook";
@@ -47,7 +47,7 @@ export const CardList = () => {
     loop: false,
     containScroll: "trimSnaps",
   });
-  const first = 10
+  const first = 10;
   const [lastLoggedAt] = useState(Date.now().toString());
   const { loading, error, data } = useQuery(LIBRARY_LOGBOOKS, {
     variables: {
@@ -81,7 +81,13 @@ export const CardList = () => {
       return (
         // TODO: use Link href
         <li key={id}>
-          <LogbookCard padding="loose" borderHover shadow fixedHeight {...cardProps} />
+          <LogbookCard
+            padding="loose"
+            borderHover
+            shadow
+            fixedHeight
+            {...cardProps}
+          />
         </li>
       );
     }
