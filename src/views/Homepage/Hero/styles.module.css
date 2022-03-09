@@ -51,12 +51,6 @@
       width: 100%;
       overflow: hidden;
 
-      &::before {
-        display: block;
-        padding-top: 90%; /* ratio 640px/704px */
-        content: "";
-      }
-
       & img {
         @mixin expand-to-container;
       }
