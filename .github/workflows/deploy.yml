@@ -40,7 +40,7 @@ jobs:
           service: pinata
           pinataKey: ${{ secrets.PINATA_KEY }}
           pinataSecret: ${{ secrets.PINATA_SECRET }}
-          pinataPinName: {pin_name}
+          pinataPinName: logbook
           verbose: true
 
       - name: Update Eth domain
