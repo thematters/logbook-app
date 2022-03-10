@@ -31,7 +31,6 @@ export const Title: React.FC<TitleProps> = ({
   fixedHeight,
 }) => {
   let hasGiftSign = false;
-  console.log({ fixedHeight });
   const containerClasses = classNames({
     [styles.titleContainer]: true,
     [styles.fixedHeight]: !!fixedHeight,

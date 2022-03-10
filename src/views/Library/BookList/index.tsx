@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { useQuery } from "@apollo/client";
 
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
 import {
   LogbookCard,
@@ -12,7 +12,7 @@ import {
 } from "~/components";
 
 export const BookList = () => {
-  const first = 5;
+  const first = 10;
   const [lastLoggedAt] = useState(Date.now().toString());
   const [hasNextPage, updateHasNextPage] = useState(true);
   const { loading, error, data, fetchMore } = useQuery(LIBRARY_LOGBOOKS, {
@@ -71,7 +71,7 @@ export const BookList = () => {
                 content={content}
                 publicationCount={publicationCount}
                 transferCount={transferCount}
-                createdAt={new Date(parseInt(loggedAt))}
+                createdAt={new Date(Number(loggedAt) * 1000)}
                 tokenID={id}
                 txHash={(owner as any).id}
                 className={styles.item}
