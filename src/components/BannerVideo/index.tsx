@@ -17,14 +17,15 @@ const BannerVideo: React.FC<Props> = ({ url, posterImg }) => {
   return (
     <video
       ref={videoRef}
-      // controls
       width="100%"
       loop
       muted
-      // style={{...}}
+      disablePictureInPicture
+      style={{border: '0'}}
       poster={posterImg}
     >
-      <source src="/video/Banner-book_cover.webm" type="video/webm" />
+      <source src="/video/intro-book-cover.webm" type="video/webm" />
+      <source src="/video/intro-book-cover.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   );
