@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button, TextIcon, ButtonProps } from "~/components";
+import { Button, TextIcon, ButtonProps, Container } from "~/components";
 import { CardList } from "./CardList";
 
 import { useResponsive } from "~/hooks";
@@ -35,21 +35,25 @@ export const RecentlyWritten = () => {
 
   if (isSmallUP) {
     return (
-      <section className={styles.recentlyWritten}>
-        <div className={styles.header}>
-          <h1 className={styles.title}>Recently written</h1>
-          {buttonElement}
-        </div>
-        <CardList />
-      </section>
+      <Container>
+        <section className={styles.recentlyWritten}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>Recently written</h1>
+            {buttonElement}
+          </div>
+          <CardList />
+        </section>
+      </Container>
     );
   }
 
   return (
-    <section className={styles.recentlyWritten}>
-      <h1 className={styles.title}>Recently written</h1>
-      <CardList />
-      {buttonElement}
-    </section>
+    <Container>
+      <section className={styles.recentlyWritten}>
+        <h1 className={styles.title}>Recently written</h1>
+        <CardList />
+        {buttonElement}
+      </section>
+    </Container>
   );
 };

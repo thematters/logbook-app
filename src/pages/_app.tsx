@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 import { Polygon, Mumbai, DAppProvider, Config } from "@usedapp/core";
 import type { AppLayoutProps } from "next/app";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import "../styles/variables/breakpoints.css";
 import "../styles/variables/colors.css";
@@ -29,14 +30,21 @@ const config: Config = {
   networks: [isProd ? Polygon : Mumbai],
 };
 
+const client = new ApolloClient({
+  uri: process.env.NEXT_PUBLIC_THE_GRAPH_API_URL,
+  cache: new InMemoryCache(),
+});
+
 function LogbookApp({ Component, pageProps }: AppLayoutProps) {
   const defaultLayout = (page: ReactNode) => <Layout>{page}</Layout>;
   const getLayout = Component.getLayout ?? defaultLayout;
 
   return (
     <DAppProvider config={config}>
-      {getLayout(<Component {...pageProps} />)}
-      <GlobalStyles />
+      <ApolloProvider client={client}>
+        {getLayout(<Component {...pageProps} />)}
+        <GlobalStyles />
+      </ApolloProvider>
     </DAppProvider>
   );
 }
