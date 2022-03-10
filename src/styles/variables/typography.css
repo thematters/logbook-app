@@ -105,7 +105,7 @@
 
     /* Article Title */
     --font-size-article-title: var(--font-size-md);
-    --line-height-article-title: 1.5; /* 32/24 */
+    --line-height-article-title: 1.333; /* 32/24 */
     --font-weight-article-title: var(--font-weight-bold);
 
     /* Article Body */
