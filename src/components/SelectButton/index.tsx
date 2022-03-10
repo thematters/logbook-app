@@ -1,7 +1,7 @@
 import Link from "next/link";
-import React, { forwardRef, RefObject, useRef } from "react";
+import { forwardRef, RefObject, useRef } from "react";
 
-import * as styles from "./styles.module.css";
+import styles from "./styles.module.css";
 
 type SelectButtonProps = {
   title: string | React.ReactNode;

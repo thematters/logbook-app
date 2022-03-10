@@ -1,2 +1,1 @@
-export * from "./MetaMaskButton";
-export * from "./WalletConnectButton";
+export * from "./ConnectedAccountButton";

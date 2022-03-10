@@ -1,4 +1,3 @@
-import React from "react";
 import { IconDiscord, IconTwitter } from "~/components";
 
 import styles from "./styles.module.css";

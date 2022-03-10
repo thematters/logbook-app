@@ -1,0 +1,23 @@
+.msg {
+  @mixin flex-start-start;
+
+  margin-top: var(--spacing-x-tight);
+  font-size: var(--font-size-sm-s);
+  line-height: 1.5rem;
+}
+
+.info {
+  color: var(--color-grey);
+}
+
+.success {
+  color: var(--color-matters-green);
+}
+
+.warning {
+  color: var(--color-matters-gold);
+}
+
+.error {
+  color: var(--color-error);
+}
