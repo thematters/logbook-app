@@ -46,17 +46,14 @@
     }
 
     & .dynamic {
-      position: relative;
+      z-index: var(--z-index-behind);
       grid-area: dynamic;
       width: 100%;
       overflow: hidden;
 
-      & img {
-        @mixin expand-to-container;
-      }
-
       @media (--md-up) {
         margin-right: var(--spacing-xxx-loose);
+        margin-left: var(--spacing-base);
       }
     }
 

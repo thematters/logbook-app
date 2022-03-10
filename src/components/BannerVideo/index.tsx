@@ -21,7 +21,7 @@ const BannerVideo: React.FC<Props> = ({ url, posterImg }) => {
       loop
       muted
       disablePictureInPicture
-      style={{border: '0'}}
+      style={{ border: "0" }}
       poster={posterImg}
     >
       <source src="/video/intro-book-cover.webm" type="video/webm" />
