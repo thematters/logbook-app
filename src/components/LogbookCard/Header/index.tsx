@@ -45,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <section className={styles.header}>
-      <div>
+      <div className={styles.leftInfo}>
         {!!tokenID ? (
           <TextIcon color="blueGreen" weight="medium">
             {formattedID}
@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
         {!!createdAt ? (
           <TextIcon color="grey" weight="normal">
             <span className={styles.interpunct}>·</span>
-            {formattedDate}
+            <span>{formattedDate}</span>
           </TextIcon>
         ) : (
           <></>

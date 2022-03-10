@@ -1,13 +1,44 @@
-import React from "react";
+import React , { useState }from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import classNames from "classnames";
 import { ethers } from "ethers";
+import { useQuery } from "@apollo/client";
 
 import SLIDE_CURSOR from "/public/images/recently-written-cursor.svg";
 
-import { LogbookCard, LogbookCardProps } from "~/components";
+import {
+  LogbookCard,
+  LogbookCardProps,
+  LIBRARY_LOGBOOKS,
+  Spinner,
+} from "~/components";
 
 import styles from "./styles.module.css";
+
+interface Account {
+  __typename: 'Account'
+  id: string
+}
+
+interface Log {
+  __typename: "Log";
+  content: string
+}
+
+interface Publication {
+  __typename: "Publication"
+  log: Log
+}
+interface Logbook {
+  __typename: "Logbook";
+  id: string;
+  loggedAt: string;
+  owner: Account;
+  publicationCount: ethers.BigNumber;
+  publications: Array<Publication>;
+  title: string;
+  transferCount: ethers.BigNumber;
+}
 
 export const CardList = () => {
   const [emblaRef] = useEmblaCarousel({
@@ -16,32 +47,45 @@ export const CardList = () => {
     loop: false,
     containScroll: "trimSnaps",
   });
-  const cardProps: LogbookCardProps = {
-    title:
-      "Purus facilisis netus velit pellentesque facilisis os josmlfks Purus facilisis netus velit pellentesque facilisis os josmlfks Purus facilisis netus velit pellentesque facilisis os josmlfks",
-    content: `
-      Diam dolor iaculis proin in etiam leo varius. Adipiscing lacus pretium a
-      in cras nisl. Lectus rhoncus non sagittis nibh arcu pretium dictum lectus.
-      Nunc interdum sit Diam dolor iaculis proin in etiam leo varius. Adipiscing lacus pretium a
-      in cras nisl. Lectus rhoncus non sagittis nibh arcu pretium dictum lectus.
-      Nunc interdum sit`,
-    forkCount: ethers.BigNumber.from("5"),
-    transferCount: ethers.BigNumber.from("10"),
-    // tokenID: "0x12",
-    txHash: "0xb4034922182a9111aa114aacc2975a4c0b570925",
-    footerHash: true,
-  };
+  const first = 10
+  const [lastLoggedAt] = useState(Date.now().toString());
+  const { loading, error, data } = useQuery(LIBRARY_LOGBOOKS, {
+    variables: {
+      first,
+      lastLoggedAt,
+    },
+  });
+  if (loading) return <Spinner />;
+  if (error) return <></>;
 
-  let data = new Array(10);
-  data.fill({});
-  const listItems = data.map((d, index) => (
-    // TODO: use token id for key ?
-    <li key={index}>
-      <LogbookCard padding="loose" borderHover shadow {...cardProps}/>
-    </li>
-  ));
+  // console.log(data.logbooks);
+  const listItems = data.logbooks.map(
+    ({
+      id,
+      title,
+      publications,
+      transferCount,
+      publicationCount,
+      owner,
+    }: Logbook) => {
+      const cardProps: LogbookCardProps = {
+        title,
+        content: publications[0].log.content,
+        publicationCount,
+        transferCount,
+        // tokenID: id,
+        txHash: owner.id,
+        footerHash: true,
+      };
 
-
+      return (
+        // TODO: use Link href
+        <li key={id}>
+          <LogbookCard padding="loose" borderHover shadow fixedHeight {...cardProps} />
+        </li>
+      );
+    }
+  );
 
   const cls = classNames([styles.container, "cardListContainer"]);
 

@@ -13,6 +13,12 @@
   @media (--sm-up) {
     -webkit-line-clamp: 3;
   }
+
+  &.fixedHeight {
+    height: calc(
+      var(--font-size-article-body) * var(--line-height-article-body) * 4
+    );
+  }
 }
 
 .logbookCard {
@@ -24,11 +30,15 @@
   );
 
   & > * {
-    padding-bottom: var(--spacing-base);
+    margin-bottom: var(--spacing-base);
   }
 
   & > *:last-child {
-    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  &.fixedHeight > *:last-child {
+    margin-top: var(--spacing-loose);
   }
 
   /* padding */

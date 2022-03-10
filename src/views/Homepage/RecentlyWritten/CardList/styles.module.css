@@ -14,6 +14,7 @@
     position: relative;
     flex: 0 0 290px;
     margin-right: var(--spacing-base);
+    margin-bottom: var(--spacing-base);
     cursor: inherit;
   }
 

@@ -2,9 +2,13 @@
   @mixin flex-center-space-between;
 
   font-size: var(--font-size-information-text);
+  line-height: var(--line-height-information-text);
+}
 
-  @media (--sm-up) {
-    line-height: 1.5rem;
+.leftInfo {
+  & > *:last-child {
+    position: relative;
+    top: 1px;
   }
 }
 

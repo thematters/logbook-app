@@ -8,8 +8,6 @@ import { useResponsive } from "~/hooks";
 import styles from "./styles.module.css";
 
 export const RecentlyWritten = () => {
-  // TODO: fetch data
-
   const isSmallUP = useResponsive("sm-up");
 
   let buttonProps: ButtonProps = {
@@ -24,7 +22,7 @@ export const RecentlyWritten = () => {
   };
 
   if (isSmallUP) {
-    buttonProps.height = "3.5rem"
+    buttonProps.height = "3.5rem";
   }
 
   const buttonChild = (

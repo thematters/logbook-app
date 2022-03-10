@@ -15,10 +15,9 @@ type paddingType = 'base' | 'loose'
 type backgroundType = 'white' | 'transparent'
 
 export interface LogbookCardProps {
-  // TODO: 确定tokenid date txhash类型，然后判断是否需要渲染 Header
   title: string;
   content: string;
-  forkCount: ethers.BigNumber;
+  publicationCount: ethers.BigNumber;
   transferCount: ethers.BigNumber;
   tokenID?: string;
   createdAt?: Date;
@@ -30,14 +29,14 @@ export interface LogbookCardProps {
   shadow?: boolean;
   border?: boolean;
   borderHover?: boolean;
-
+  fixedHeight?: boolean;
   [key: string]: any;
 }
 
 export const LogbookCard: React.FC<LogbookCardProps> = ({
   title,
   content,
-  forkCount,
+  publicationCount,
   transferCount,
   tokenID,
   createdAt,
@@ -49,6 +48,8 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
   shadow,
   border,
   borderHover,
+  fixedHeight,
+  className,
 }) => {
   const containerClass = classNames({
     [styles.logbookCard]: true,
@@ -57,16 +58,16 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
     [styles.shadow]: !!shadow,
     [styles.border]: !!border,
     [styles.borderHover]: !!borderHover,
+    [styles.fixedHeight]: !!fixedHeight,
+  }, className);
+
+  const contentClasses = classNames({
+    [styles.content]: true,
+    // TODO: use !!fixedHeight
+    [styles.fixedHeight]: !!fixedHeight,
   });
 
   // TODO: deal with token id, date, txHash
-
-  // let content = `
-  //     Diam dolor iaculis proin in etiam leo varius. Adipiscing lacus pretium a
-  //     in cras nisl. Lectus rhoncus non sagittis nibh arcu pretium dictum lectus.
-  //     Nunc interdum sit Diam dolor iaculis proin in etiam leo varius. Adipiscing lacus pretium a
-  //     in cras nisl. Lectus rhoncus non sagittis nibh arcu pretium dictum lectus.
-  //     Nunc interdum sit`;
 
   return (
     <div className={containerClass}>
@@ -75,13 +76,18 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
       ) : (
         ""
       )}
-      <Title title={title} date={createdAt} giftSign={giftSign} />
+      <Title
+        title={title}
+        date={createdAt}
+        giftSign={giftSign}
+        fixedHeight={fixedHeight}
+      />
       <section>
-        <p className={styles.content}>{content}</p>
+        <p className={contentClasses}>{content}</p>
       </section>
       <Footer
         exchange={transferCount}
-        history={forkCount}
+        history={publicationCount}
         txHash={!!footerHash && !!txHash ? txHash : ""}
       ></Footer>
     </div>
