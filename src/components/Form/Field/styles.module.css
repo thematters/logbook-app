@@ -36,5 +36,8 @@
 }
 
 .error {
+  @mixin inline-flex-center-start;
+
+  column-gap: var(--spacing-x-tight);
   color: var(--color-error);
 }

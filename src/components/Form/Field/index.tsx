@@ -1,13 +1,16 @@
 import { FieldHookConfig, useField } from "formik";
 import styles from "./styles.module.css";
 
+import { IconExclaim, TextIcon } from "~/components";
+
 type FieldProps = {
   label?: string | React.ReactNode;
   as: "input" | "textarea";
   hint?: string | React.ReactNode;
+  error?: string | React.ReactNode;
 } & FieldHookConfig<string>;
 
-const Field: React.FC<FieldProps> = ({ label, as, hint, ...props }) => {
+const Field: React.FC<FieldProps> = ({ label, as, hint, error, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
@@ -30,8 +33,11 @@ const Field: React.FC<FieldProps> = ({ label, as, hint, ...props }) => {
       ) : null}
 
       {hint && !meta.error && <div className={styles.hint}>{hint}</div>}
-      {meta.touched && meta.error && (
-        <div className={styles.error}>{meta.error}</div>
+      {error && (
+        <div className={styles.error}>
+          <IconExclaim />
+          <TextIcon>{error}</TextIcon>
+        </div>
       )}
     </section>
   );

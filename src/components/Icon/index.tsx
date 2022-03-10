@@ -28,6 +28,7 @@ export * from "./IconClear";
 export * from "./IconDiscord";
 export * from "./IconEdit";
 export * from "./IconExchange";
+export * from "./IconExclaim";
 export * from "./IconFacebook";
 export * from "./IconFile";
 export * from "./IconGift";
