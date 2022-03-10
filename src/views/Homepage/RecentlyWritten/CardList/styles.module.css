@@ -1,6 +1,9 @@
 .container {
   position: relative;
   overflow: hidden;
+  @media (--sm-up) {
+    padding-bottom: 260px;
+  }
 }
 
 .cardList {
