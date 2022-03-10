@@ -2,6 +2,8 @@ import { forwardRef } from "react";
 
 import { Button, ButtonProps, IconSpinner, TextIcon } from "~/components";
 
+import styles from "./styles.module.css";
+
 type DialogFooterButtonProps = {
   icon?: React.ReactNode;
   loading?: boolean;
@@ -24,6 +26,7 @@ const DialogFooterButton: React.FC<DialogFooterButtonProps> = forwardRef(
     ref
   ) => (
     <Button
+      className={styles.button}
       bgColor={bgColor}
       width="100%"
       height="3rem"

@@ -1,5 +1,4 @@
 import Tippy, { TippyProps } from "@tippyjs/react";
-import React from "react";
 
 /**
  * Lazy mounting `content`

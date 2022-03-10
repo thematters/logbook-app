@@ -1,65 +1,64 @@
-import { useEthers, useContractFunction } from "@usedapp/core";
+import { useEthers } from "@usedapp/core";
+import { useState } from "react";
 
-import { Dialog, MetaMaskButton } from "~/components";
-import { useDialogSwitch } from "~/hooks";
-import { contract } from "~/utils";
-
-import styles from "./styles.module.css";
+import { Dialog } from "~/components";
+import { useDialogSwitch, useStep } from "~/hooks";
+import ConnectWalletContent from "../ConnectWalletContent";
+import ClaimLogbookContent from "./ClaimLogbookContent";
+import CompletedContent from "./CompletedContent";
 
 type ClaimLogbookDialogProps = {
   children: ({ openDialog }: { openDialog: () => void }) => React.ReactNode;
 };
 
+type Step = "connect-wallet" | "claim" | "completed";
+
 const BaseClaimLogbookDialog: React.FC<ClaimLogbookDialogProps> = ({
   children,
 }) => {
   const { show, openDialog, closeDialog } = useDialogSwitch(true);
-  const { activateBrowserWallet, account, chainId, library, error } =
-    useEthers();
+  const { account } = useEthers();
 
-  console.log({ library, error, account, chainId });
+  const defaultStep = account ? "claim" : "connect-wallet";
+  const { currStep, forward } = useStep<Step>(defaultStep);
 
-  const getLogbook = async () => {
-    if (!library) return;
-
-    const result = await contract.connect(library.getSigner()).getLogbook("22");
-
-    console.log(result);
+  const [tokenIds, setTokenIds] = useState<string[]>([]);
+  const onClaim = (tokenIds: string[]) => {
+    setTokenIds(tokenIds);
   };
 
-  const { state: publishState, send: publish } = useContractFunction(
-    contract,
-    "publish"
-  );
-  const publishContent = async () => {
-    const result = await publish("22", "hello world");
-    console.log(result);
-  };
-  console.log({ publishState });
+  const isClaim = currStep === "claim";
+  const isConnectWallet = currStep === "connect-wallet";
+  const isCompleted = currStep === "completed";
 
   return (
     <>
       {children({ openDialog })}
 
       <Dialog isOpen={show} onDismiss={closeDialog}>
-        <Dialog.Header title="Claim Logbook" closeDialog={closeDialog} />
+        <Dialog.Header
+          title={
+            isClaim
+              ? "Claim Logbook"
+              : isConnectWallet
+              ? "Connect Wallet"
+              : "Claim successfully 🎉"
+          }
+          closeDialog={closeDialog}
+        />
 
-        <Dialog.Content>
-          <p className={styles.intro}>
-            Logbook 2.0 has just launched. If you own Travloggers, get started
-            to claim Logbook 2.0 by connecting wallet. Have no Traveloggers?
-            Collect one from <a href="https://opensea.com">OpenSea</a> and be
-            part of the community.
-          </p>
+        {isConnectWallet && (
+          <ConnectWalletContent next={() => forward("claim")} />
+        )}
 
-          <button onClick={() => getLogbook()}>Get Logbook #1</button>
-          <button onClick={() => publishContent()}>Publish</button>
+        {isClaim && (
+          <ClaimLogbookContent
+            onClaim={onClaim}
+            gotoConnectWallet={() => forward("connect-wallet")}
+          />
+        )}
 
-          <section className={styles.buttons}>
-            <MetaMaskButton onClick={activateBrowserWallet} />
-            {/* <WalletConnectButton onClick={activateBrowserWallet} /> */}
-          </section>
-        </Dialog.Content>
+        {isCompleted && <CompletedContent tokenIds={tokenIds} />}
       </Dialog>
     </>
   );

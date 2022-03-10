@@ -1,0 +1,4 @@
+.button {
+  padding: 0 var(--spacing-base);
+  margin: var(--spacing-xx-loose) 0;
+}

@@ -23,7 +23,7 @@
 
   &:hover {
     & path {
-      stroke: var(--color-gradient-green-start);
+      stroke: var(--color-matters-green);
     }
   }
 }

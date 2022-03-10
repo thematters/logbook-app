@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 
 interface SpacerProps {
-  size?: "xTight" | "loose" | "xLoose" | "xxLoose" | "xxxLoose";
+  size?: "xTight" | "base" | "loose" | "xLoose" | "xxLoose" | "xxxLoose";
 }
 
 export const Spacer: React.FC<SpacerProps> = ({ size = "loose" }) => (
