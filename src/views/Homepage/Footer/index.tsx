@@ -22,14 +22,24 @@ const Footer = () => {
     <footer className={styles.footer}>
       {!isSmallUp && (
         <div className={styles.iconlinks}>
-          <a href="https://matters.news">
+          <a href={process.env.NEXT_PUBLIC_MATTERS_LINK} target="_blank">
             <TextIcon icon={<IconMatters size="mdS" />} />
           </a>
-          <TextIcon icon={<IconOpenSea size="mdS" />} />
-          <TextIcon icon={<IconInstagram size="mdS" />} />
-          <TextIcon icon={<IconFacebook size="mdS" />} />
-          <TextIcon icon={<IconTwitter size="mdS" />} />
-          <TextIcon icon={<IconDiscord size="mdS" />} />
+          <a href={process.env.NEXT_PUBLIC_OPENSEA_LINK} target="_blank">
+            <TextIcon icon={<IconOpenSea size="mdS" />} />
+          </a>
+          <a href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK} target="_blank">
+            <TextIcon icon={<IconInstagram size="mdS" />} />
+          </a>
+          <a href={process.env.NEXT_PUBLIC_FACEBOOK_LINK} target="_blank">
+            <TextIcon icon={<IconFacebook size="mdS" />} />
+          </a>
+          <a href={process.env.NEXT_PUBLIC_TWITTER_LINK} target="_blank">
+            <TextIcon icon={<IconTwitter size="mdS" />} />
+          </a>
+          <a href={process.env.NEXT_PUBLIC_DISCORD_LINK} target="_blank">
+            <TextIcon icon={<IconDiscord size="mdS" />} />
+          </a>
         </div>
       )}
 
@@ -39,15 +49,27 @@ const Footer = () => {
 
       {isSmallUp && (
         <div className={styles.links}>
-          <div>
-            <a href="https://matters.news">Matters</a>
-          </div>
-          <div>Opensea</div>
-          <div>Instagram</div>
-          <div>Facebook</div>
-          <div>Twitter</div>
-          <div>Discord</div>
-          <div>Telegram</div>
+          <a href={process.env.NEXT_PUBLIC_MATTERS_LINK} target="_blank">
+            <div>Matters</div>
+          </a>
+          <a href={process.env.NEXT_PUBLIC_OPENSEA_LINK} target="_blank">
+            <div>Opensea</div>
+          </a>
+          <a href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK} target="_blank">
+            <div>Instagram</div>
+          </a>
+          <a href={process.env.NEXT_PUBLIC_FACEBOOK_LINK} target="_blank">
+            <div>Facebook</div>
+          </a>
+          <a href={process.env.NEXT_PUBLIC_TWITTER_LINK} target="_blank">
+            <div>Twitter</div>
+          </a>
+          <a href={process.env.NEXT_PUBLIC_DISCORD_LINK} target="_blank">
+            <div>Discord</div>
+          </a>
+          <a href={process.env.NEXT_PUBLIC_TELEGRAM_LINK} target="_blank">
+            <div>Telegram</div>
+          </a>
         </div>
       )}
     </footer>
