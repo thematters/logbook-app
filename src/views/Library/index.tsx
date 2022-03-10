@@ -1,10 +1,19 @@
+import React, { useState } from "react";
+
 import { Formik } from "formik";
 import Link from "next/link";
 import * as Yup from "yup";
 
-import { Head, Form, LogbookCard, SearchBar } from "~/components";
-
 import styles from "./styles.module.css";
+
+import {
+  Head,
+  Form,
+  SearchBar,
+} from "~/components";
+
+import { BookList } from "./BookList";
+
 
 interface FormValues {
   title: string;
@@ -40,53 +49,9 @@ const Library: React.FC = () => {
         </div>
       </section>
 
-      <ul>
-        <li>
-          <Link href="/">Homepage</Link>
-        </li>
-        <li>
-          <Link href="logbook">Logbook Detail</Link>
-        </li>
-        <li>
-          <Link href="bookcase">Bookcase</Link>
-        </li>
-      </ul>
 
-      <Formik
-        onSubmit={handleSubmit}
-        initialValues={initialValues}
-        validationSchema={EditLogbookSchema}
-      >
-        {({ values }) => (
-          <Form>
-            <Form.Field
-              as="input"
-              name="title"
-              hint={`Max length: ${values.title.length}/45}`}
-              label="Title"
-            />
-            <Form.Field
-              as="textarea"
-              name="description"
-              hint={`Max length: ${values.description.length}/240}`}
-              label="Summary"
-            />
+        <BookList />
 
-            <button type="submit">Submit</button>
-          </Form>
-        )}
-      </Formik>
-
-      <div className="l-col-full">
-        <LogbookCard padding="base"></LogbookCard>
-        <hr></hr>
-        <LogbookCard padding="base"></LogbookCard>
-        <br></br>
-        <LogbookCard padding="loose" shadow border></LogbookCard>
-        <br></br>
-        <LogbookCard padding="loose" shadow borderHover></LogbookCard>
-        <br></br>
-      </div>
     </>
   );
 };

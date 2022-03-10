@@ -1,13 +1,20 @@
 .titleContainer {
   @mixin flex-center-start;
 
-  max-height: 3rem;
+  /* max-height: 3rem; */
   font-size: var(--font-size-article-title);
   font-weight: var(--font-weight-article-title);
+  line-height: var(--line-height-article-title);
   text-overflow: ellipsis;
   @media (--sm-up) {
-    max-height: 2rem;
+    /* max-height: 2rem; */
   }
+}
+
+.fixedHeight {
+  height: calc(
+    var(--font-size-article-title) * var(--line-height-article-title) * 2
+  );
 }
 
 .giftSign {
@@ -22,5 +29,12 @@
   @media (--sm-up) {
     /* stylelint-disable-next-line value-no-vendor-prefix */
     -webkit-line-clamp: 1;
+  }
+
+  &.fixedHeight {
+    @media (--sm-up) {
+      /* stylelint-disable-next-line value-no-vendor-prefix */
+      -webkit-line-clamp: 2;
+    }
   }
 }
