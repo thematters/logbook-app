@@ -1,5 +1,3 @@
-import React from "react";
-
 import { SelectButton, IconWalletConnect, IconSpinner } from "~/components";
 
 type WalletConnectButtonProps = {
@@ -8,7 +6,7 @@ type WalletConnectButtonProps = {
   onClick: () => void;
 };
 
-export const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
+const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
   loading,
   disabled,
   onClick,
@@ -21,3 +19,5 @@ export const WalletConnectButton: React.FC<WalletConnectButtonProps> = ({
     disabled={disabled || loading}
   />
 );
+
+export default WalletConnectButton;

@@ -6,7 +6,7 @@
     height: 3rem;
     padding: 1rem 2.25rem;
     color: var(--color-black);
-    caret-color: var(--color-gradient-green-start);
+    caret-color: var(--color-matters-green);
     background: var(--color-grey-lighter);
     border-radius: 1.5rem;
     transition: all 0.2s ease-in-out 0s;

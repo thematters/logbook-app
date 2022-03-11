@@ -1,0 +1,18 @@
+.title {
+  padding-bottom: var(--spacing-x-tight);
+  font-size: var(--font-size-article-title);
+  font-style: italic;
+  line-height: var(--line-height-article-title);
+  color: var(--color-grey-darker);
+  border-bottom: 3px solid var(--color-grey-darker);
+}
+
+.item {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid var(--color-grey-light);
+
+  &:first-child {
+    border-top: 0;
+  }
+}

@@ -32,14 +32,19 @@
   "dependencies": {
     "@ethersproject/contracts": "^5.5.0",
     "@ethersproject/units": "^5.5.0",
+    "@reach/alert": "^0.16.0",
     "@reach/dialog": "^0.16.2",
+    "@apollo/client": "^3.5.10",
     "@reach/visually-hidden": "^0.16.0",
     "@svgr/webpack": "^6.2.1",
     "@tippyjs/react": "^4.2.6",
     "@usedapp/core": "^0.11.0",
     "@web3-react/walletconnect-connector": "^6.2.13",
     "classnames": "^2.3.1",
+    "embla-carousel-react": "^6.2.0",
+    "ethers": "^5.5.4",
     "formik": "^2.2.9",
+    "graphql": "^16.3.0",
     "lodash": "^4.17.21",
     "next": "12.1.0",
     "postcss-calc": "^8.2.3",
@@ -53,6 +58,7 @@
     "react-spring": "^9.4.3",
     "react-use-gesture": "^9.1.3",
     "use-debounce": "^7.0.1",
+    "react-waypoint": "^10.1.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

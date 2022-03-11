@@ -1,5 +1,3 @@
-import React from "react";
-
 import { SelectButton, IconMetaMask, IconSpinner } from "~/components";
 
 type MetaMaskButtonProps = {
@@ -8,7 +6,7 @@ type MetaMaskButtonProps = {
   onClick: () => void;
 };
 
-export const MetaMaskButton: React.FC<MetaMaskButtonProps> = ({
+const MetaMaskButton: React.FC<MetaMaskButtonProps> = ({
   loading,
   disabled,
   onClick,
@@ -21,3 +19,5 @@ export const MetaMaskButton: React.FC<MetaMaskButtonProps> = ({
     disabled={disabled || loading}
   />
 );
+
+export default MetaMaskButton;

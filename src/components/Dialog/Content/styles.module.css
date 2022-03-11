@@ -13,12 +13,20 @@
     padding: var(--spacing-base) var(--spacing-xxx-loose);
   }
 
+  & > p {
+    color: var(--color-grey-darker);
+  }
+
+  & > * + * {
+    margin-top: var(--spacing-loose);
+  }
+
   & a {
     @mixin all-transition;
 
     &:link,
     &:visited {
-      color: var(--color-gradient-green-start);
+      color: var(--color-matters-green);
     }
   }
 }

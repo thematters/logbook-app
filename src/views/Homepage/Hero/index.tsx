@@ -1,7 +1,12 @@
+import dynamic from "next/dynamic";
+
 import { Button, Container, TextIcon, ClaimLogbookDialog } from "~/components";
-// import { BannerVideo } from "~/components/BannerVideo";
 
 import styles from "./styles.module.css";
+
+const DynamicIntro = dynamic(() => import("~/components/BannerVideo"), {
+  loading: () => <img src="/images/logbook-intro.png" width="100%" />,
+});
 
 export const Hero = () => {
   return (
@@ -13,9 +18,10 @@ export const Hero = () => {
         </section>
 
         <section className={styles.dynamic}>
-          {/* <div className={styles.image}></div> */}
-          <img src="/images/logbook-intro.png" width="100%" />
-          {/* <BannerVideo /> */}
+          <DynamicIntro
+            url="/video/Banner-book_cover.webm"
+            posterImg="/images/logbook-intro.png"
+          />
         </section>
 
         <section className={styles.buttons}>

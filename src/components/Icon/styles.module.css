@@ -59,6 +59,10 @@
     color: var(--color-matters-gold);
   }
 
+  &.green {
+    color: var(--color-matters-green);
+  }
+
   &.red {
     color: var(--color-error);
   }

@@ -1,0 +1,27 @@
+.container {
+  @mixin flex-center-start;
+
+  flex-direction: column;
+
+  & > :last-child {
+    margin-top: 2.875rem;
+  }
+}
+
+.title {
+  margin-bottom: var(--spacing-x-tight);
+  font-size: var(--font-size-header-title);
+  line-height: var(--line-height-header-title);
+}
+
+.information {
+  margin-bottom: 2.75rem;
+  font-size: var(--font-size-information-text);
+  line-height: var(--line-height-information-text);
+  color: var(--color-grey-darker);
+  text-align: center;
+
+  @media (--sm-up) {
+    max-width: 40rem;
+  }
+}
