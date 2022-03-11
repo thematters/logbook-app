@@ -1,4 +1,5 @@
-import { useEthers } from "@usedapp/core";
+import { useAccount } from "wagmi";
+
 import Link from "next/link";
 import { Dialog } from "~/components";
 
@@ -7,7 +8,8 @@ type CompletedContentProps = {
 };
 
 const CompletedContent: React.FC<CompletedContentProps> = ({ tokenIds }) => {
-  const { account } = useEthers();
+  const [{ data: accountData }] = useAccount();
+  const account = accountData?.address;
 
   return (
     <>
@@ -16,8 +18,7 @@ const CompletedContent: React.FC<CompletedContentProps> = ({ tokenIds }) => {
           The token ID of your logbooks:
           {tokenIds.map((tokenId) => (
             <Link key={tokenId} href={`/logbook?id=${tokenId}`}>
-              {" "}
-              {tokenId}
+              <a>&nbsp;#{tokenId}</a>
             </Link>
           ))}
         </p>

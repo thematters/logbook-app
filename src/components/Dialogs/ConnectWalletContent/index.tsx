@@ -1,10 +1,12 @@
-import { useEthers } from "@usedapp/core";
-import React, { useEffect, useState } from "react";
+import { useConnect, useAccount, useNetwork, Connector } from "wagmi";
+import React, { useEffect } from "react";
 
 import { Dialog, Spacer } from "~/components";
 import MetaMaskButton from "./MetaMaskButton";
+import WalletConnectButton from "./WalletConnectButton";
 
 import styles from "./styles.module.css";
+import { injectedConnector, walletConnectConnector } from "~/utils";
 
 type ConnectWalletContentProps = {
   next: () => void;
@@ -13,35 +15,55 @@ type ConnectWalletContentProps = {
 const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
   next,
 }) => {
-  const [activateError, setActivateError] = useState("");
-  const { activateBrowserWallet, account, error } = useEthers();
+  const [{ error: connectError }, connect] = useConnect();
+  const [{ data: networkData, error: networkError }, switchNetwork] =
+    useNetwork();
+  const [{ data: accountData }] = useAccount();
+
+  const account = accountData?.address;
+  const isUnsupportedNetwork = networkData.chain?.unsupported;
+  const currentChainName = networkData.chain?.name;
+  const targetChainName = networkData?.chains[0]?.name;
+  const targetChainId = networkData?.chains[0]?.id;
+  const errorMessage = connectError?.message || networkError?.message;
+
+  const switchToTargetNetwork = () => {
+    if (!switchNetwork) return;
+
+    switchNetwork(targetChainId);
+  };
 
   // go forward if wallet is connected
   useEffect(() => {
-    if (!account) {
+    if (!account || isUnsupportedNetwork) {
       return;
     }
 
     next();
   }, [account]);
 
-  useEffect(() => {
-    if (error) {
-      setActivateError(error.message);
-    }
-  }, [error]);
-
   return (
     <Dialog.Content>
       <p>Select a wallet, or register a new wallet</p>
 
       <section className={styles.buttons}>
-        <MetaMaskButton onClick={activateBrowserWallet} />
+        <MetaMaskButton onClick={() => connect(injectedConnector)} />
+        <WalletConnectButton onClick={() => connect(walletConnectConnector)} />
       </section>
 
-      {error && (
+      {isUnsupportedNetwork && (
         <Dialog.Message type="error">
-          <p>{activateError}</p>
+          <p className={styles.unsupportedNetwork}>
+            Unsupported network: {currentChainName}.&nbsp;
+            <button type="button" onClick={switchToTargetNetwork}>
+              Switch to {targetChainName}.
+            </button>
+          </p>
+        </Dialog.Message>
+      )}
+      {errorMessage && (
+        <Dialog.Message type="error">
+          <p>{errorMessage ?? "Failed to connect"}</p>
         </Dialog.Message>
       )}
 
