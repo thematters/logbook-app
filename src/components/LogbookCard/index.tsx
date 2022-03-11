@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 
 import { capitalizeFirstLetter } from "~/utils";
 
@@ -17,8 +17,8 @@ type backgroundType = "white" | "transparent";
 export interface LogbookCardProps {
   title: string;
   content: string;
-  publicationCount: ethers.BigNumber;
-  transferCount: ethers.BigNumber;
+  publicationCount: string;
+  transferCount: string;
   tokenID?: string;
   createdAt?: Date;
   giftSign?: boolean;

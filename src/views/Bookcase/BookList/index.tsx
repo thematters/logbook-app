@@ -57,7 +57,6 @@ export const BookList = () => {
   const router = useRouter();
   const {
     address = "0x479029844f8bdd76b8b9271f577a8f8919bf16cc", // the default to be removed later
-    id = "",
   } = router.query;
 
   const { loading, error, data, fetchMore } = useQuery(OWN_LOGBOOKS, {
@@ -118,15 +117,17 @@ export const BookList = () => {
           id,
           title,
           content,
-          publicationCount,
-          transferCount,
+          publicationCount, // : ethers.BigNumber.from(publicationCount),
+          transferCount, // : ethers.BigNumber.from(transferCount),
           createdAt: new Date(Number(loggedAt) * 1000),
         },
       ]
     )
   );
 
-  if (logbookMap.has(id)) return <BookcaseDetail {...logbookMap.get(id)} />;
+  const id = router.query.id as string;
+  if (logbookMap.has(id))
+    return <BookcaseDetail {...(logbookMap.get(id) as Logbook)} />;
 
   return (
     <section>
@@ -135,21 +136,18 @@ export const BookList = () => {
           <Title />
         </section>
         <InfiniteScroll hasNextPage={hasNextPage} loadMore={loadMore}>
-          {Array.from(logbookMap.values()).map(({ id, ...rest }) => {
-            return (
-              <LogbookCard
-                key={id}
-                {...rest}
-                // tokenID={id}
-                className={styles.item}
-                giftSign
-                borderRadius
-                shadow
-                padding={isSmallUp ? "loose" : "base"}
-                background="white"
-              />
-            );
-          })}
+          {Array.from(logbookMap.values()).map(({ id, ...rest }) => (
+            <LogbookCard
+              key={id}
+              className={styles.item}
+              giftSign
+              borderRadius
+              shadow
+              padding={isSmallUp ? "loose" : "base"}
+              background="white"
+              {...rest}
+            />
+          ))}
         </InfiniteScroll>
       </section>
     </section>

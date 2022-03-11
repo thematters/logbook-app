@@ -71,9 +71,8 @@ export const CardList = () => {
       const cardProps: LogbookCardProps = {
         title,
         content: publications[0].log.content,
-        publicationCount,
-        transferCount,
-        // tokenID: id,
+        publicationCount: publicationCount.toString(),
+        transferCount: transferCount.toString(),
         txHash: owner.id,
         footerHash: true,
       };

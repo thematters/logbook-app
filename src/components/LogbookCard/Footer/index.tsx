@@ -1,5 +1,5 @@
 import React from "react";
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 import { formatHash } from "~/utils";
 
 import {
@@ -15,8 +15,8 @@ import styles from "./styles.module.css";
 import { useResponsive } from "~/hooks";
 
 export interface FooterProps {
-  exchange?: ethers.BigNumber;
-  history?: ethers.BigNumber;
+  exchange?: string; // ethers.BigNumber;
+  history?: string; // ethers.BigNumber;
   txHash?: string;
   [key: string]: any;
 }
