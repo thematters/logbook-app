@@ -1,4 +1,6 @@
-import React from "react";
+import _debounce from "lodash/debounce";
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
 
 import {
   Button,
@@ -12,15 +14,20 @@ import {
   IconShoppingCart,
   IconSettings,
   SettingsDialog,
+  // RichMarkdownEditor,
+  Spinner,
   TextIcon,
 } from "~/components";
 
-import styles from "./styles.module.css";
+const RichMarkdownEditor = dynamic(
+  () => import("~/components/RichMarkdownEditor"),
+  {
+    ssr: false,
+    loading: () => <Spinner />,
+  }
+);
 
-interface Props {
-  id: string;
-  transferCount: string;
-}
+import styles from "./styles.module.css";
 
 const DropdownMenu: React.FC<{ id: string; openSettingsDialog: () => any }> = ({
   id,
@@ -48,7 +55,19 @@ const DropdownMenu: React.FC<{ id: string; openSettingsDialog: () => any }> = ({
   </ul>
 );
 
-const BookcaseDetail: React.FC<Props> = ({ id, transferCount }) => {
+interface Props {
+  id: string;
+  transferCount: string;
+  content: string;
+}
+
+const BookcaseDetail: React.FC<Props> = ({ id, transferCount, content }) => {
+  const [isEditing, enableEditing] = useState(false);
+
+  const editorUpdate = _debounce(({ text }: { text: string }) => {
+    console.log("got update:", text);
+  }, 300);
+
   return (
     <section className={styles.container}>
       <h2>Book {id}</h2>
@@ -60,6 +79,7 @@ const BookcaseDetail: React.FC<Props> = ({ id, transferCount }) => {
             onClick={() => {
               // TODO: analytics
               console.log("Edit");
+              enableEditing(true);
             }}
           >
             <IconEdit
@@ -120,6 +140,13 @@ const BookcaseDetail: React.FC<Props> = ({ id, transferCount }) => {
           </SettingsDialog>
         </div>
       </div>
+      {isEditing && (
+        <RichMarkdownEditor
+          placeholder="Write *something*..."
+          initialContent={content}
+          editorUpdate={editorUpdate}
+        />
+      )}
     </section>
   );
 };

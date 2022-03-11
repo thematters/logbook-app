@@ -16,6 +16,9 @@ import "../styles/layout.css";
 import "../styles/vendors/tippy.css";
 import "../styles/vendors/reach.css";
 
+// import "../components/RichMarkdownEditor/all.css";
+import "remirror/styles/all.css";
+
 import { Layout } from "~/components";
 import { GlobalStyles } from "~/components/GlobalStyles";
 import { injectedConnector, walletConnectConnector } from "~/utils";
