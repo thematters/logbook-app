@@ -1,5 +1,5 @@
 .field {
-  margin: var(--spacing-loose) var(--spacing-base);
+  margin: var(--spacing-tight) var(--spacing-base);
 
   & label {
     font-size: var(--font-size-md-s);

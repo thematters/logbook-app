@@ -11,6 +11,8 @@ import { Title } from "../Title";
 
 import { useResponsive } from "~/hooks";
 
+import BookcaseDetail from "./BookcaseDetail";
+
 const OWN_LOGBOOKS = gql`
   query OwnLogBooks($first: Int, $ownID: String, $lastLoggedAt: String) {
     account(id: $ownID) {
@@ -35,6 +37,15 @@ const OWN_LOGBOOKS = gql`
     }
   }
 `;
+
+export type Logbook = {
+  id: string;
+  title: string;
+  content: string;
+  publicationCount: string;
+  transferCount: string;
+  createdAt: Date;
+};
 
 export const BookList = () => {
   const first = 10;
@@ -84,8 +95,38 @@ export const BookList = () => {
       account: { logbooks },
     } = data;
     updateLogbookList(logbookList.concat(logbooks));
+    console.log({ logbookList });
     updateHasNextPage(logbooks.length >= first);
   };
+
+  const logbookMap = new Map<string, Logbook>(
+    logbookList?.map(
+      ({
+        id,
+        title,
+        loggedAt,
+        publications: [
+          {
+            log: { content },
+          },
+        ],
+        transferCount,
+        publicationCount,
+      }) => [
+        id,
+        {
+          id,
+          title,
+          content,
+          publicationCount,
+          transferCount,
+          createdAt: new Date(Number(loggedAt) * 1000),
+        },
+      ]
+    )
+  );
+
+  if (logbookMap.has(id)) return <BookcaseDetail {...logbookMap.get(id)} />;
 
   return (
     <section>
@@ -94,38 +135,21 @@ export const BookList = () => {
           <Title />
         </section>
         <InfiniteScroll hasNextPage={hasNextPage} loadMore={loadMore}>
-          {logbookList?.map(
-            ({
-              id,
-              title,
-              loggedAt,
-              publications: [
-                {
-                  log: { content },
-                },
-              ],
-              transferCount,
-              publicationCount,
-            }) => {
-              return (
-                <LogbookCard
-                  key={id}
-                  title={title}
-                  content={content}
-                  publicationCount={publicationCount}
-                  transferCount={transferCount}
-                  createdAt={new Date(Number(loggedAt) * 1000)}
-                  // tokenID={id}
-                  className={styles.item}
-                  giftSign
-                  borderRadius
-                  shadow
-                  padding={isSmallUp ? "loose" : "base"}
-                  background="white"
-                ></LogbookCard>
-              );
-            }
-          )}
+          {Array.from(logbookMap.values()).map(({ id, ...rest }) => {
+            return (
+              <LogbookCard
+                key={id}
+                {...rest}
+                // tokenID={id}
+                className={styles.item}
+                giftSign
+                borderRadius
+                shadow
+                padding={isSmallUp ? "loose" : "base"}
+                background="white"
+              />
+            );
+          })}
         </InfiniteScroll>
       </section>
     </section>

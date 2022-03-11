@@ -7,12 +7,13 @@ import ConnectWalletContent from "../ConnectWalletContent";
 import { InputAddressContent } from "./InputAddressContent";
 
 type DialogProps = {
+  tokenId: string;
   children: ({ openDialog }: { openDialog: () => void }) => React.ReactNode;
 };
 
 type Step = "connect-wallet" | "input-address" | "completed";
 
-const BaseDialog: React.FC<DialogProps> = ({ children }) => {
+const BaseDialog: React.FC<DialogProps> = ({ tokenId, children }) => {
   const { show, openDialog, closeDialog } = useDialogSwitch(true);
   const [{ data: accountData }] = useAccount();
   const account = accountData?.address;
@@ -40,7 +41,8 @@ const BaseDialog: React.FC<DialogProps> = ({ children }) => {
 
         {isInputAddress && (
           <InputAddressContent
-            tokenId="123"
+            // account={account as string}
+            tokenId={tokenId}
             next={() => forward("completed")}
           />
         )}

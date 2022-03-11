@@ -36,6 +36,8 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
   ) => {
     // TODO: analytics
 
+    console.log("transfering to:", address);
+
     const { error } = await transfer({
       args: [account, address, tokenId],
     });
@@ -72,7 +74,7 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
       onSubmit={onSubmit}
       validate={onValidate}
     >
-      {({ values, isSubmitting, isValid }) => (
+      {({ values, isSubmitting, isValid, submitForm }) => (
         <>
           <Dialog.Content>
             <p>Wallet address or ENS name</p>
@@ -94,6 +96,7 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
             color="green"
             type="submit"
             disabled={ensLoading || isSubmitting || !isValid}
+            onClick={submitForm}
           >
             Send
           </Dialog.Footer.Button>

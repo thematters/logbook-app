@@ -1,0 +1,30 @@
+.card {
+  @mixin flex-center-start;
+
+  column-gap: var(--spacing-base);
+
+  &:not(.disabled) {
+    cursor: pointer;
+  }
+}
+
+.spacing-y-tight {
+  padding-top: var(--spacing-tight);
+  padding-bottom: var(--spacing-tight);
+}
+
+.spacing-x-tight {
+  padding-right: var(--spacing-tight);
+  padding-left: var(--spacing-tight);
+}
+
+.bgWhite {
+  background-color: var(--color-white);
+
+  &:not(.disabled) {
+    &:hover,
+    &:focus {
+      background-color: var(--color-grey-lighter);
+    }
+  }
+}

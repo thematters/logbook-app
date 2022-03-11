@@ -13,3 +13,12 @@
     }
   }
 }
+
+.menu {
+  width: 100%;
+  text-align: left;
+}
+
+.scaleUp {
+  transform: scale(1.5);
+}
