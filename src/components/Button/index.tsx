@@ -200,7 +200,7 @@ export const Button: React.FC<ButtonProps> = forwardRef(
       className: containerClasses,
       style: {
         borderRadius,
-      }
+      },
     };
 
     // content

@@ -1,0 +1,15 @@
+.container {
+  margin-top: 10rem;
+
+  & .subtitle {
+    @mixin flex-center-space-between;
+
+    & .actions {
+      @mixin inline-flex-center-all;
+
+      & > button + button {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+}

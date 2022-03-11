@@ -2,7 +2,7 @@ import { FieldHookConfig, useField } from "formik";
 import styles from "./styles.module.css";
 
 type FieldProps = {
-  label: string | React.ReactNode;
+  label?: string | React.ReactNode;
   as: "input" | "textarea";
   hint?: string | React.ReactNode;
 } & FieldHookConfig<string>;
@@ -13,9 +13,11 @@ const Field: React.FC<FieldProps> = ({ label, as, hint, ...props }) => {
   return (
     <section className={styles.field}>
       <header>
-        <label htmlFor={props.id || props.name} className={styles.label}>
-          {label}
-        </label>
+        {label && (
+          <label htmlFor={props.id || props.name} className={styles.label}>
+            {label}
+          </label>
+        )}
       </header>
 
       {as === "input" ? (

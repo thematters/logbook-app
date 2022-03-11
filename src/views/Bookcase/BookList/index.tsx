@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { ethers } from "ethers";
 
 import styles from "./styles.module.css";
@@ -6,9 +7,11 @@ import { gql, useQuery } from "@apollo/client";
 
 import { LogbookCard, InfiniteScroll, Spinner } from "~/components";
 
+import BookcaseDetail from "./BookcaseDetail";
+
 const OWN_LOGBOOKS = gql`
-  {
-    account(id: "0x479029844f8bdd76b8b9271f577a8f8919bf16cc") {
+  query QueryLogbooks($address: String!) {
+    account(id: $address) {
       id
       logbooks(
         first: 10
@@ -36,7 +39,15 @@ export const BookList = () => {
   const [lastLoggedAt] = useState(Date.now().toString());
   const [hasNextPage, updateHasNextPage] = useState(true);
 
-  const { loading, error, data, fetchMore } = useQuery(OWN_LOGBOOKS);
+  const router = useRouter();
+  const {
+    address = "0x479029844f8bdd76b8b9271f577a8f8919bf16cc", // the default to be removed later
+    id = "",
+  } = router.query;
+
+  const { loading, error, data, fetchMore } = useQuery(OWN_LOGBOOKS, {
+    variables: { address },
+  });
   const [logbookList, updateLogbookList] = useState([]);
   useEffect(() => {
     console.log("useEffect ", data);
@@ -49,6 +60,9 @@ export const BookList = () => {
     return <Spinner />;
   }
   console.log({ logbookList });
+
+  if (id) return <BookcaseDetail id={id as string} />;
+
   return (
     <div>
       {logbookList?.map(
