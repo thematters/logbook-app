@@ -103,18 +103,18 @@
     & circle {
       transform: translate(50%, 0);
     }
+
+    & path {
+      stroke-dasharray: 426;
+      stroke-dashoffset: 426;
+      transition: all 0.5s ease-out 0s;
+    }
   }
 
   @media (--md-up) {
     .wave {
       & circle {
         transform: translate(0, 0);
-      }
-
-      & path {
-        stroke-dasharray: 426;
-        stroke-dashoffset: 426;
-        transition: all 0.5s ease-out 0s;
       }
     }
 
