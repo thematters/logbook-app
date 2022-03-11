@@ -5,7 +5,7 @@ html {
   font-weight: var(--font-weight-base);
   line-height: var(--line-height-base);
   word-break: break-word;
-  background-color: var(--color-white);
+  background-color: var(--color-grey-lighter);
   text-size-adjust: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   -webkit-tap-highlight-color: transparent;

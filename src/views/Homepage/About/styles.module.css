@@ -81,11 +81,49 @@
     font-size: var(--font-size-md);
 
     & ul {
-      width: 65%;
+      width: 75%;
       text-align: left;
 
       & li {
         padding-bottom: 6rem;
+      }
+    }
+  }
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+
+  .wave {
+    width: 100%;
+    height: auto;
+    margin-top: var(--spacing-tight);
+
+    & circle {
+      transform: translate(50%, 0);
+    }
+
+    & path {
+      stroke-dasharray: 426;
+      stroke-dashoffset: 426;
+      transition: all 0.5s ease-out 0s;
+    }
+  }
+
+  @media (--md-up) {
+    .wave {
+      & circle {
+        transform: translate(0, 0);
+      }
+    }
+
+    &:hover {
+      & .wave {
+        & path {
+          stroke-dasharray: 426;
+          stroke-dashoffset: 0;
+        }
       }
     }
   }
