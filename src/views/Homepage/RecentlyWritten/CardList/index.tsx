@@ -84,8 +84,10 @@ export const CardList = () => {
           <LogbookCard
             padding="loose"
             borderHover
+            borderRadius
             shadow
             fixedHeight
+            background="white"
             {...cardProps}
           />
         </li>

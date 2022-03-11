@@ -11,7 +11,6 @@ export interface HeaderProps {
   [key: string]: any;
 }
 
-
 export const Header: React.FC<HeaderProps> = ({
   tokenID,
   createdAt,
@@ -31,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   let formattedHash;
   if (!!txHash) {
-    formattedHash = formatHash(txHash,);
+    formattedHash = formatHash(txHash);
   }
 
   let borderRadius = "1rem";

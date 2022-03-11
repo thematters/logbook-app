@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
 import { ethers } from "ethers";
 import { formatHash } from "~/utils";
-
 
 import {
   Button,
@@ -9,11 +8,11 @@ import {
   IconExchange,
   IconFile,
   IconShare,
-} from '~/components'
+} from "~/components";
 
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
-import { useResponsive } from '~/hooks'
+import { useResponsive } from "~/hooks";
 
 export interface FooterProps {
   exchange?: ethers.BigNumber;
@@ -27,21 +26,21 @@ export const Footer: React.FC<FooterProps> = ({
   history,
   txHash,
 }) => {
-  const isSmallUp = useResponsive('sm-up')
+  const isSmallUp = useResponsive("sm-up");
   let formattedHash;
   if (!!txHash) {
     formattedHash = formatHash(txHash, isSmallUp);
   }
 
-  let borderRadius = '1rem'
-  let width = '3.25rem'
-  let height = '1.75rem'
-  let hashWidth = '5.1875rem'
+  let borderRadius = "1rem";
+  let width = "3.25rem";
+  let height = "1.75rem";
+  let hashWidth = "5.1875rem";
 
   if (isSmallUp) {
-    width = '3.6875rem'
-    height = '2rem'
-    hashWidth = '7.1875rem'
+    width = "3.6875rem";
+    height = "2rem";
+    hashWidth = "7.1875rem";
   }
 
   return (
@@ -110,4 +109,4 @@ export const Footer: React.FC<FooterProps> = ({
       )}
     </section>
   );
-}
+};

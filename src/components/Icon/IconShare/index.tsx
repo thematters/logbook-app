@@ -1,4 +1,4 @@
-import { withIcon } from '../withIcon'
-import { ReactComponent as Icon } from './share.svg'
+import { withIcon } from "../withIcon";
+import { ReactComponent as Icon } from "./share.svg";
 
-export const IconShare = withIcon(Icon)
+export const IconShare = withIcon(Icon);

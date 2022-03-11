@@ -64,12 +64,14 @@
 
   &.border {
     border: 3px solid transparent;
+  }
+
+  &.borderRadius {
     border-radius: 1.25rem;
   }
 
   &.borderHover {
     border: 3px solid transparent;
-    border-radius: 1.25rem;
 
     &:hover,
     &:focus {

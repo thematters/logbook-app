@@ -1,18 +1,18 @@
-import React from 'react'
-import classNames from 'classnames'
-import { ethers } from "ethers"
+import React from "react";
+import classNames from "classnames";
+import { ethers } from "ethers";
 
-import { capitalizeFirstLetter } from '~/utils'
+import { capitalizeFirstLetter } from "~/utils";
 
-import { Header } from './Header'
-import { Title } from './Title'
-import { Footer } from './Footer'
+import { Header } from "./Header";
+import { Title } from "./Title";
+import { Footer } from "./Footer";
 
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
-type paddingType = 'base' | 'loose'
+type paddingType = "base" | "loose";
 
-type backgroundType = 'white' | 'transparent'
+type backgroundType = "white" | "transparent";
 
 export interface LogbookCardProps {
   title: string;
@@ -28,6 +28,7 @@ export interface LogbookCardProps {
   background?: backgroundType;
   shadow?: boolean;
   border?: boolean;
+  borderRadius?: boolean;
   borderHover?: boolean;
   fixedHeight?: boolean;
   [key: string]: any;
@@ -47,27 +48,29 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
   background = "transparent",
   shadow,
   border,
+  borderRadius,
   borderHover,
   fixedHeight,
   className,
 }) => {
-  const containerClass = classNames({
-    [styles.logbookCard]: true,
-    [styles[`padding${capitalizeFirstLetter(padding)}`]]: padding !== "",
-    [styles[`bg${capitalizeFirstLetter(background)}`]]: true,
-    [styles.shadow]: !!shadow,
-    [styles.border]: !!border,
-    [styles.borderHover]: !!borderHover,
-    [styles.fixedHeight]: !!fixedHeight,
-  }, className);
+  const containerClass = classNames(
+    {
+      [styles.logbookCard]: true,
+      [styles[`padding${capitalizeFirstLetter(padding)}`]]: padding !== "",
+      [styles[`bg${capitalizeFirstLetter(background)}`]]: true,
+      [styles.shadow]: !!shadow,
+      [styles.border]: !!border,
+      [styles.borderRadius]: !!borderRadius,
+      [styles.borderHover]: !!borderHover,
+      [styles.fixedHeight]: !!fixedHeight,
+    },
+    className
+  );
 
   const contentClasses = classNames({
     [styles.content]: true,
-    // TODO: use !!fixedHeight
     [styles.fixedHeight]: !!fixedHeight,
   });
-
-  // TODO: deal with token id, date, txHash
 
   return (
     <div className={containerClass}>

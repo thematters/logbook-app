@@ -1,6 +1,6 @@
-import { Waypoint } from 'react-waypoint'
+import { Waypoint } from "react-waypoint";
 
-import { Spinner } from '~/components'
+import { Spinner } from "~/components";
 
 /**
  *  Usage:
@@ -33,7 +33,7 @@ interface Props {
   /**
    * Callback to load more entities
    */
-  loadMore: () => Promise<any>
+  loadMore: () => Promise<any>;
   // loadMore: () => any;
 
   /**
@@ -54,5 +54,5 @@ export const InfiniteScroll: React.FC<Props> = ({
       {hasNextPage && <Waypoint onEnter={loadMore} />}
       {hasNextPage && loader}
     </>
-  )
-}
+  );
+};

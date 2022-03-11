@@ -1,4 +1,4 @@
-import { withIcon } from '../withIcon'
-import { ReactComponent as Icon } from './gift-sign.svg'
+import { withIcon } from "../withIcon";
+import { ReactComponent as Icon } from "./gift-sign.svg";
 
-export const IconGiftSign = withIcon(Icon)
+export const IconGiftSign = withIcon(Icon);

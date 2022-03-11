@@ -1,0 +1,9 @@
+.title {
+  margin-bottom: var(--spacing-x-tight);
+}
+
+.bio {
+  font-size: var(--font-size-article-body);
+  line-height: var(--line-height-article-body);
+  color: var(--color-grey-darker);
+}

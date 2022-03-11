@@ -13,13 +13,13 @@ const Layout: React.FC<PageProps> = ({ children, footer }) => {
   return (
     <>
       <Head />
-        <div className="l-container">
-          <Header />
-          <main className="l-row">
-            <article className="l-col-full">{children}</article>
-          </main>
-          {footer ?? <Footer />}
-        </div>
+      <div className="l-container">
+        <Header />
+        <main className="l-row">
+          <article className="l-col-full">{children}</article>
+        </main>
+        {footer ?? <Footer />}
+      </div>
     </>
   );
 };

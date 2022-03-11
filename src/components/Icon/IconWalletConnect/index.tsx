@@ -1,4 +1,4 @@
-import { withIcon } from '../withIcon'
-import { ReactComponent as Icon } from './wallet-connect.svg'
+import { withIcon } from "../withIcon";
+import { ReactComponent as Icon } from "./wallet-connect.svg";
 
-export const IconWalletConnect = withIcon(Icon)
+export const IconWalletConnect = withIcon(Icon);
