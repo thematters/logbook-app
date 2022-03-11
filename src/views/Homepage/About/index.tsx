@@ -1,4 +1,4 @@
-import { Container, IconArrowRight, TextIcon } from "~/components";
+import { Container, IconArrowRight, IconWave, TextIcon } from "~/components";
 import { useResponsive } from "~/hooks";
 
 import styles from "./styles.module.css";
@@ -32,8 +32,14 @@ export const About = () => {
         <section className={styles.links}>
           <ul>
             <li>
-              <a href="https://matters.news/" rel="noreferrer" target="_blank">
+              <a
+                href="https://matters.news/"
+                rel="noreferrer"
+                target="_blank"
+                className={styles.link}
+              >
                 Matters.News
+                <IconWave className={styles.wave} />
               </a>
             </li>
             <li>
@@ -41,8 +47,10 @@ export const About = () => {
                 href="https://traveloggers.matters.news/"
                 rel="noreferrer"
                 target="_blank"
+                className={styles.link}
               >
                 Traveloggers
+                <IconWave className={styles.wave} />
               </a>
             </li>
             <li>
@@ -50,8 +58,10 @@ export const About = () => {
                 href="https://matters-lab.io/"
                 rel="noreferrer"
                 target="_blank"
+                className={styles.link}
               >
                 About Us
+                <IconWave className={styles.wave} />
               </a>
             </li>
           </ul>
