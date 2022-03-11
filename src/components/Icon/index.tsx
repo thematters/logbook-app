@@ -62,6 +62,7 @@ export * from "./IconExchange";
 export * from "./IconFacebook";
 export * from "./IconFile";
 export * from "./IconGiftSign";
+export * from "./IconIndicator";
 export * from "./IconInstagram";
 export * from "./IconLibrary";
 export * from "./IconLogbook";
@@ -79,6 +80,6 @@ export * from "./IconWalletGradient";
 export * from "./IconCross";
 export * from "./IconWalletConnect";
 export * from "./IconSpinner";
-export * from "./IconIndicator";
+export * from "./IconWave";
 
 export * from "./withIcon";
