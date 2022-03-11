@@ -6,6 +6,7 @@ export * from "./InfiniteScroll";
 export * from "./TextIcon";
 export * from "./Dialog";
 export * from "./Dropdown";
+export * from "./Expandable";
 export * from "./Head";
 export * from "./Form";
 export * from "./SearchBar";

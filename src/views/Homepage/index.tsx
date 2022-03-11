@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Head, Layout, Header } from "~/components";
 
 import { About } from "./About";
+import { FAQ } from "./FAQ";
 import { RecentlyWritten } from "./RecentlyWritten";
 
 type Page<P = {}> = NextPage<P> & {
@@ -22,6 +23,7 @@ const Homepage: Page = () => {
 
       <Hero />
       <RecentlyWritten />
+      <FAQ />
       <About />
     </>
   );
