@@ -1,4 +1,4 @@
-import { useEthers, getChainName, shortenAddress } from "@usedapp/core";
+import { useAccount, chain, useNetwork } from "wagmi";
 import { useEffect } from "react";
 import {
   SelectButton,
@@ -6,6 +6,7 @@ import {
   IconIndicator,
   IconWallet,
 } from "~/components";
+import { shortenAddress } from "~/utils";
 
 type ConnectedAccountButtonProps = {
   gotoConnectWallet: () => void;
@@ -14,7 +15,14 @@ type ConnectedAccountButtonProps = {
 export const ConnectedAccountButton: React.FC<ConnectedAccountButtonProps> = ({
   gotoConnectWallet,
 }) => {
-  const { account, chainId } = useEthers();
+  const [{ data: networkData }] = useNetwork();
+  const [{ data: accountData }] = useAccount({
+    fetchEns: true,
+  });
+
+  const ensName = accountData?.ens?.name;
+  const account = accountData?.address;
+  const chainName = networkData.chain?.name;
 
   useEffect(() => {
     if (!account) {
@@ -24,14 +32,16 @@ export const ConnectedAccountButton: React.FC<ConnectedAccountButtonProps> = ({
 
   return (
     <SelectButton
-      title={account ? shortenAddress(account) : ""}
+      title={ensName ? ensName : account ? shortenAddress(account) : ""}
       subtitle={
-        <TextIcon
-          icon={<IconIndicator color="green" size="xxs" />}
-          spacing="xxTight"
-        >
-          {chainId ? getChainName(chainId) : ""}
-        </TextIcon>
+        chainName ? (
+          <TextIcon
+            icon={<IconIndicator color="green" size="xxs" />}
+            spacing="xxTight"
+          >
+            {chainName}
+          </TextIcon>
+        ) : null
       }
       leftIcon={<IconWallet size="xlM" />}
       disabled

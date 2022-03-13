@@ -1,54 +1,45 @@
-import { useEthers } from "@usedapp/core";
+import { useAccount } from "wagmi";
 
 import { Dialog } from "~/components";
 import { useDialogSwitch, useStep } from "~/hooks";
 
-import { ChooseNetworkContent } from "./ChooseNetworkContent";
+import ConnectWalletContent from "../ConnectWalletContent";
 import { InputAddressContent } from "./InputAddressContent";
 
 type DialogProps = {
   children: ({ openDialog }: { openDialog: () => void }) => React.ReactNode;
 };
 
-type Step = "choose-network" | "input-address" | "completed";
+type Step = "connect-wallet" | "input-address" | "completed";
 
 const BaseDialog: React.FC<DialogProps> = ({ children }) => {
   const { show, openDialog, closeDialog } = useDialogSwitch(true);
-  const { account } = useEthers();
+  const [{ data: accountData }] = useAccount();
+  const account = accountData?.address;
 
-  const { currStep, forward, back, reset } = useStep<Step>("input-address");
+  const defaultStep = account ? "input-address" : "connect-wallet";
+  const { currStep, forward } = useStep<Step>(defaultStep);
 
-  const isChooseNetwork = currStep === "choose-network";
+  const isConnectWallet = currStep === "connect-wallet";
   const isInputAddress = currStep === "input-address";
   const isCompleted = currStep === "completed";
 
-  const closeToReset = () => {
-    closeDialog();
-    // setTimeout(() => reset("input-address"), 0);
-  };
-
   return (
     <>
-      {children({
-        openDialog() {
-          reset("input-address");
-          openDialog();
-        },
-      })}
+      {children({ openDialog })}
 
-      <Dialog isOpen={show} onDismiss={closeToReset}>
+      <Dialog isOpen={show} onDismiss={closeDialog}>
         <Dialog.Header
           title={isCompleted ? "Transferred successfully" : "Transfer Logbook"}
-          closeDialog={closeToReset}
+          closeDialog={closeDialog}
         />
 
-        {isChooseNetwork && (
-          <ChooseNetworkContent next={() => forward("input-address")} />
+        {isConnectWallet && (
+          <ConnectWalletContent next={() => forward("input-address")} />
         )}
 
         {isInputAddress && (
           <InputAddressContent
-            account={account as string}
             tokenId="123"
             next={() => forward("completed")}
           />
@@ -62,11 +53,11 @@ const BaseDialog: React.FC<DialogProps> = ({ children }) => {
                 edit the Logbook.
               </p>
             </Dialog.Content>
+
             <Dialog.Footer.Button
               textColor="black"
               bgColor="greyLighter"
-              // bgActiveColor="greyLighter"
-              onClick={closeToReset}
+              onClick={closeDialog}
             >
               Got it
             </Dialog.Footer.Button>

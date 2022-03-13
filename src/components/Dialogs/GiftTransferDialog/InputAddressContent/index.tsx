@@ -1,82 +1,104 @@
+import { useEnsResolveName, useContractWrite, useAccount } from "wagmi";
 import _debounce from "lodash/debounce";
-import React, { useState } from "react";
-import { Formik } from "formik";
+import { utils } from "ethers";
+import { Formik, FormikHelpers } from "formik";
 
-import { isAddress } from "@ethersproject/address";
-
-import { Button, Dialog, Form, IconExclaim, TextIcon } from "~/components";
-
-import { alchemyProvider, contract } from "~/utils";
+import { Dialog, Form } from "~/components";
+import { logbookInterface } from "~/utils";
 
 type Props = {
-  account: string;
   tokenId: string;
   next: () => void;
 };
 
-export const InputAddressContent: React.FC<Props> = ({
-  account,
-  tokenId,
-  next,
-}) => {
-  const [address, setAddress] = useState("");
-  const [error, setError] = useState("");
+export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
+  const [{ data: accountData }] = useAccount();
+  const [{ loading: ensLoading }, resolveName] = useEnsResolveName();
+  const [{ loading: transferLoading }, transfer] = useContractWrite(
+    {
+      addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "",
+      contractInterface: logbookInterface,
+    },
+    "safeTransferFrom"
+  );
 
-  const getENSAddress = async (name: string) => {
-    try {
-      const address = await alchemyProvider.resolveName(name);
-      if (address && isAddress(address)) {
-        console.log(`resolved ${name} to:`, address);
-        setError("");
-      } else setError("Invalid address or ENS name");
-    } catch (err) {
-      console.error("catch error:", err);
+  const account = accountData?.address;
+
+  const onSubmit = async (
+    {
+      address,
+    }: {
+      address: string;
+    },
+    formik: FormikHelpers<{
+      address: string;
+    }>
+  ) => {
+    // TODO: analytics
+
+    const { error } = await transfer({
+      args: [account, address, tokenId],
+    });
+
+    if (error) {
+      formik.setErrors({ address: error?.message || "Failed to transfer" });
+      return;
     }
-    setError("Invalid address or ENS name");
+
+    next();
+  };
+
+  const onValidate = async ({ address }: { address: string }) => {
+    // validate address
+    if (utils.isAddress(address)) {
+      return;
+    }
+
+    // try resolve ENS name
+    if (address.indexOf(".eth") >= 0) {
+      const { data, error } = await resolveName({ name: address });
+      if (error) {
+        return { address: "Invalid address or ENS name" };
+      }
+    }
+
+    // neither address or ENS
+    return { address: "Invalid address or ENS name" };
   };
 
   return (
-    <>
-      <Dialog.Content>
-        <p>Wallet address or ENS name</p>
-        <Formik
-          initialValues={{}}
-          onSubmit={() => {
-            // TODO: analytics
-            console.log("submitting...");
-            next();
-          }}
-          validationSchema={null}
-        >
-          <Form>
-            <Form.Field
-              as="input"
-              name="address"
-              value={address}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                const address = e.target.value as string;
-                // console.log('changed:', e.target.value);
-                setAddress(address);
-                if (isAddress(address)) setError("");
-                else getENSAddress(address); // alchemyProvider.resolveName(address) .then(res => );
-              }}
-              type="text"
-              placeholder="e.g. 0xFb3... or matters.eth"
-              hint={`"Travelogger #${tokenId}" will be transferred to ${address}`}
-              error={error}
-            />
-          </Form>
-        </Formik>
-      </Dialog.Content>
-      <Dialog.Footer.Button
-        color="green"
-        onClick={() => {
-          contract.transferFrom(account, address, tokenId);
-          next();
-        }}
-      >
-        Send
-      </Dialog.Footer.Button>
-    </>
+    <Formik
+      initialValues={{ address: "" }}
+      onSubmit={onSubmit}
+      validate={onValidate}
+    >
+      {({ values, isSubmitting, isValid }) => (
+        <>
+          <Dialog.Content>
+            <p>Wallet address or ENS name</p>
+
+            <Form>
+              <Form.Field
+                as="input"
+                type="text"
+                name="address"
+                placeholder="e.g. 0xFb3... or matters.eth"
+                hint={`"Travelogger #${tokenId}" will be transferred to ${
+                  values.address || "..."
+                }`}
+              />
+            </Form>
+          </Dialog.Content>
+
+          <Dialog.Footer.Button
+            color="green"
+            type="submit"
+            disabled={ensLoading || isSubmitting || !isValid}
+          >
+            Send
+          </Dialog.Footer.Button>
+        </>
+      )}
+    </Formik>
   );
 };

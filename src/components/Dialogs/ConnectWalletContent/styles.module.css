@@ -5,3 +5,11 @@
     margin-top: var(--spacing-loose);
   }
 }
+
+.unsupportedNetwork {
+  @mixin inline-flex-center-start;
+
+  & button {
+    color: var(--color-matters-green);
+  }
+}
