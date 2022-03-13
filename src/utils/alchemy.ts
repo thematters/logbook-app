@@ -1,4 +1,4 @@
-import axios from "axios";
+import { fetchWrapper } from "./fetch";
 
 export enum AlchemyNetwork {
   Mainnet = "eth-mainnet",
@@ -9,9 +9,6 @@ export enum AlchemyNetwork {
 
 export const getAlchemyAPIURL = (network: AlchemyNetwork) =>
   `https://${network}.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`;
-
-export const getAlchemyRPCURL = (network: AlchemyNetwork) =>
-  `https://${network}.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`;
 
 export const getNFTs = async ({
   network,
@@ -26,10 +23,9 @@ export const getNFTs = async ({
 }) => {
   const baseURL = `${getAlchemyAPIURL(network)}/getNFTs/`;
 
-  const result = await axios({
-    method: "get",
-    url: `${baseURL}?owner=${owner}&contractAddresses[]=${contract}&withMetadata=${withMetadata}`,
-  });
+  const result = await fetchWrapper.get(
+    `${baseURL}?owner=${owner}&contractAddresses[]=${contract}&withMetadata=${withMetadata}`
+  );
 
-  return result.data;
+  return result;
 };

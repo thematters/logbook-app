@@ -2,7 +2,6 @@
   @mixin flex-center-start;
 
   flex-direction: column;
-  padding-top: var(--spacing-xxx-loose);
 
   & .intro,
   & .links {

@@ -1,6 +1,7 @@
 export * from "./wallet";
 export * from "./contract";
 export * from "./dom";
+export * from "./fetch";
 export * from "./alchemy";
 
 export const capitalizeFirstLetter = (string: string) => {

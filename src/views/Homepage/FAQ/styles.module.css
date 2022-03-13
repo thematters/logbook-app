@@ -1,0 +1,25 @@
+.faq {
+  padding-bottom: 100px;
+
+  @media (--md-up) {
+    padding-bottom: 300px;
+  }
+}
+
+.title {
+  font-size: var(--font-size-xm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-black);
+
+  @media (--md-up) {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.instruction {
+  background-image: var(--color-heavy-metal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}

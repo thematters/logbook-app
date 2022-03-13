@@ -1,0 +1,31 @@
+.item {
+  @mixin flex-center-space-between;
+
+  padding: var(--spacing-loose) 0;
+  cursor: pointer;
+
+  &.hasBorder {
+    border-top: 1px solid var(--color-grey-light);
+  }
+}
+
+.title {
+  padding-right: var(--spacing-base);
+  font-size: var(--font-size-md-s);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-black);
+
+  @media (--md-up) {
+    font-size: var(--font-size-md);
+  }
+}
+
+.content {
+  padding: 0 0 var(--spacing-loose);
+  font-size: var(--font-size-base);
+  color: var(--color-grey-darker);
+
+  @media (--md-up) {
+    font-size: var(--font-size-md-s);
+  }
+}

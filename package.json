@@ -36,7 +36,6 @@
     "@reach/visually-hidden": "^0.16.0",
     "@svgr/webpack": "^6.2.1",
     "@tippyjs/react": "^4.2.6",
-    "axios": "^0.26.1",
     "classnames": "^2.3.1",
     "embla-carousel-react": "^6.2.0",
     "ethers": "^5.6.0",
