@@ -91,6 +91,13 @@ src
         └── index.tsx
 ```
 
+## Routing
+
+- Homepage: `/`
+- Library: `/library`
+- Bookcase: `/bookcase?address=ADDRESS`
+- Logbook: `/logbook?id=TOKEN_ID`
+
 ## Design System
 
 The foundation of [Logbook Deisgn System](https://www.figma.com/file/Ffj9jWOJ8ag4wvApRD0HwZ/Logbook-2.0?node-id=1%3A30) is consisted of:

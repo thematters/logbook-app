@@ -1,5 +1,5 @@
-import { useEthers } from "@usedapp/core";
 import { useState } from "react";
+import { useAccount } from "wagmi";
 
 import { Dialog } from "~/components";
 import { useDialogSwitch, useStep } from "~/hooks";
@@ -17,14 +17,18 @@ const BaseClaimLogbookDialog: React.FC<ClaimLogbookDialogProps> = ({
   children,
 }) => {
   const { show, openDialog, closeDialog } = useDialogSwitch(true);
-  const { account } = useEthers();
+  const [{ data: accountData }] = useAccount({
+    fetchEns: true,
+  });
 
+  const account = accountData?.address;
   const defaultStep = account ? "claim" : "connect-wallet";
   const { currStep, forward } = useStep<Step>(defaultStep);
 
   const [tokenIds, setTokenIds] = useState<string[]>([]);
   const onClaim = (tokenIds: string[]) => {
     setTokenIds(tokenIds);
+    forward("completed");
   };
 
   const isClaim = currStep === "claim";

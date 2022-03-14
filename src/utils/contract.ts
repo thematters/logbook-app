@@ -1,7 +1,6 @@
 import { utils } from "ethers";
-import { Contract } from "@ethersproject/contracts";
 
-const abi = [
+export const logbookABI = [
   "constructor(string name_, string symbol_)",
   "event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)",
   "event ApprovalForAll(address indexed owner, address indexed operator, bool approved)",
@@ -54,9 +53,4 @@ const abi = [
   "function withdraw()",
 ];
 
-const logbookInterface = new utils.Interface(abi);
-
-export const contract = new Contract(
-  process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "",
-  logbookInterface
-);
+export const logbookInterface = new utils.Interface(logbookABI);

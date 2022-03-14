@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-
-import { Polygon, Mumbai, DAppProvider, Config } from "@usedapp/core";
+import { providers } from "ethers";
+import { Provider } from "wagmi";
 import type { AppLayoutProps } from "next/app";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
@@ -18,17 +18,23 @@ import "../styles/vendors/reach.css";
 
 import { Layout } from "~/components";
 import { GlobalStyles } from "~/components/GlobalStyles";
+import { injectedConnector, walletConnectConnector } from "~/utils";
 
-const isProd = process.env.NEXT_PUBLIC_RUNTIME_ENV === "production";
-
-const config: Config = {
-  readOnlyChainId: isProd ? Polygon.chainId : Mumbai.chainId,
-  readOnlyUrls: {
-    [Polygon.chainId]: process.env.NEXT_PUBLIC_ALCHEMY_POLYGON_URL || "",
-    [Mumbai.chainId]: process.env.NEXT_PUBLIC_ALCHEMY_MUMBAI_URL || "",
-  },
-  networks: [isProd ? Polygon : Mumbai],
+const connectors = ({ chainId }: { chainId?: any }) => {
+  return [injectedConnector, walletConnectConnector];
 };
+
+const provider = ({ chainId }: { chainId?: any }) =>
+  new providers.AlchemyProvider(
+    chainId,
+    process.env.NEXT_PUBLIC_ALCHEMY_API_KEY
+  );
+
+const webSocketProvider = ({ chainId }: { chainId?: any }) =>
+  new providers.AlchemyWebSocketProvider(
+    chainId,
+    process.env.NEXT_PUBLIC_ALCHEMY_API_KEY
+  );
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_THE_GRAPH_API_URL,
@@ -40,12 +46,17 @@ function LogbookApp({ Component, pageProps }: AppLayoutProps) {
   const getLayout = Component.getLayout ?? defaultLayout;
 
   return (
-    <DAppProvider config={config}>
+    <Provider
+      autoConnect
+      connectors={connectors}
+      provider={provider}
+      webSocketProvider={webSocketProvider}
+    >
       <ApolloProvider client={client}>
         {getLayout(<Component {...pageProps} />)}
         <GlobalStyles />
       </ApolloProvider>
-    </DAppProvider>
+    </Provider>
   );
 }
 

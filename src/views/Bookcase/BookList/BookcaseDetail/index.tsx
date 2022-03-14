@@ -44,6 +44,7 @@ const BookcaseDetail: React.FC<Props> = ({ id }) => {
               </Button>
             )}
           </GiftTransferDialog>
+
           <Button
             onClick={() => {
               // TODO: analytics

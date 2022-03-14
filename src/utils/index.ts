@@ -1,6 +1,8 @@
+export * from "./wallet";
 export * from "./contract";
 export * from "./dom";
-export * from "./provider";
+export * from "./fetch";
+export * from "./alchemy";
 
 export const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -35,3 +37,7 @@ export const formatHash = function (hash: string, isSmallUp = true) {
   }
   return `${hash.slice(2, 4)}...${hash.slice(-3)}`;
 };
+
+export function shortenAddress(str: string) {
+  return str.substring(0, 6) + "..." + str.substring(str.length - 4);
+}
