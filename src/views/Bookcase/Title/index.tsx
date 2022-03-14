@@ -12,6 +12,8 @@ import {
 
 import { useResponsive } from "~/hooks";
 
+import { toPolygonAddressUrl } from "~/utils";
+
 import styles from "./styles.module.css";
 
 export interface TitleProps {
@@ -38,6 +40,8 @@ export const Title: React.FC<TitleProps> = ({ address }) => {
     iconSize = "xl";
   }
 
+  const { url, maskedAddress } = toPolygonAddressUrl(address);
+
   return (
     <section>
       <section className={styles.title}>
@@ -49,8 +53,7 @@ export const Title: React.FC<TitleProps> = ({ address }) => {
           {...titleProps}
           icon={<IconEtherScan size={iconSize} />}
         >
-          {/* {data? data: address.slice(0, 6) + address.slice(-4)} */}
-          {`${address.slice(0, 6)}...${address.slice(-4)}`}
+          {maskedAddress}
         </TextIcon>
       </section>
       <section className={styles.bio}>

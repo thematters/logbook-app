@@ -23,7 +23,7 @@ jobs:
           cache: 'npm'
 
       - name: Prepare Env (Develop)
-        if: github.base_ref == 'develop'
+        if: github.base_ref != 'main'
         run: cp .env.devel .env
 
       - name: Prepare Env (Production)
