@@ -1,7 +1,7 @@
 .header {
   @mixin flex-center-space-between;
 
-  padding-top: 80px;
+  padding-top: 5rem;
 
   & .searchBarWrapper {
     width: 46%;
