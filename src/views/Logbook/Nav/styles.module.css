@@ -1,0 +1,16 @@
+.container {
+  padding-top: 5rem;
+  font-size: var(--font-size-logbook-number);
+  line-height: var(--line-height-logbook-number);
+
+  & > span:first-child {
+    cursor: pointer;
+  }
+}
+
+/* . */
+.interpunct {
+  @mixin inline-flex-center-all;
+
+  width: 1rem;
+}
