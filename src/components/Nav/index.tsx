@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import { useResponsive } from "~/hooks";
+import { useResponsive, useDialogSwitch } from "~/hooks";
 
 import { Header } from "./Header";
 import ItemList from "./ItemList";
@@ -9,7 +9,7 @@ import ItemList from "./ItemList";
 import styles from "./styles.module.css";
 
 export const Nav = () => {
-  const [show, setShow] = useState(false);
+  const {show, setShow, closeDialog} = useDialogSwitch(false);
   const isSmallUp = useResponsive("sm-up");
   const cls = classNames({
     [styles.navWrapper]: true,
@@ -21,7 +21,7 @@ export const Nav = () => {
       <div className={styles.nav}>
         <div className={styles.navWrapper}>
           <Header show={show} onClick={() => setShow(!show)} />
-          <ItemList show={show} />
+          <ItemList show={show} onClick={closeDialog} />
         </div>
       </div>
     );
@@ -31,7 +31,7 @@ export const Nav = () => {
     <div className={styles.nav}>
       <div className={cls}>
         <Header show={show} onClick={() => setShow(!show)} />
-        {show ? <ItemList show={show} /> : <></>}
+        {show ? <ItemList show={show} onClick={closeDialog} /> : <></>}
       </div>
     </div>
   );

@@ -33,10 +33,14 @@ export const Header: React.FC<HeaderProps> = forwardRef(
                   className={styles.close}
                 ></IconClear>
               ) : (
-                <IconMenu style={iconStyle} className={styles.menu} />
+                <IconMenu
+                  style={iconStyle}
+                  className={`${styles.menu} ${styles.activeMenu}`}
+                />
               )}
             </TextIcon>
           </Button>
+          {/* <Menu show={show}/> */}
         </span>
       </div>
     );
