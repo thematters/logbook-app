@@ -22,8 +22,13 @@ jobs:
           node-version: 14.x
           cache: 'npm'
 
-      - name: Prepare Env
-        run: cp .env.development .env
+      - name: Prepare Env (Develop)
+        if: github.base_ref == 'develop'
+        run: cp .env.devel .env
+
+      - name: Prepare Env (Production)
+        if: github.base_ref == 'main'
+        run: cp .env.prod .env
 
       - name: Build
         run: |

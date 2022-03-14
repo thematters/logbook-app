@@ -24,9 +24,12 @@ jobs:
       - name: Prepare Env (Develop)
         if: github.base_ref == 'develop'
         run: |
-          echo NODE_ENV=development >> $GITHUB_ENV && \
-          ls -lih $GITHUB_ENV && \
-          tail $GITHUB_ENV
+          cp -va .env.devel .env
+
+      - name: Prepare Env (Production)
+        if: github.base_ref == 'main'
+        run: |
+          cp -va .env.prod .env
 
       - name: Build
         run: |
@@ -34,8 +37,8 @@ jobs:
           npm run build && \
           npm run export
 
-      - name: Deploy (Develop)
-        if: github.base_ref == 'develop'
+      - name: Deploy
+        # if: github.base_ref == 'develop'
         uses: aquiladev/ipfs-action@v0.2.0
         id: upload
         with:
