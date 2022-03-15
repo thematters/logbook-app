@@ -1,8 +1,8 @@
 import _debounce from "lodash/debounce";
 import { ethers, utils } from "ethers";
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
-import { useContract, useContractWrite, useFeeData, useProvider } from "wagmi";
+import { useContract, useContractWrite, useFeeData, useProvider, useWaitForTransaction } from "wagmi";
 
 import {
   Button,
@@ -31,17 +31,23 @@ interface Props {
   id: string;
   transferCount: string;
   content: string;
+  setContent: (arg0: string) => void;
   onLeave: () => any;
 }
 
-const Editor: React.FC<Props> = ({ id, content, onLeave }) => {
-  const [{ loading: publishWaiting }, publish] = useContractWrite(
+const Editor: React.FC<Props> = ({ id, content, setContent, onLeave }) => {
+  const [{ data: dataPublishing, loading: publishWaiting }, publish] = useContractWrite(
     {
       addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!,
       contractInterface: logbookInterface,
     },
     "publish"
   );
+  const [{ loading: waitForTransaction }, wait] = useWaitForTransaction({
+    // '0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060',
+    // hash: dataPublishing?.hash,
+    skip: true,
+  })
 
   const [isEditing, enableEditing] = useState(false);
   const isSmallUp = useResponsive("sm-up");
@@ -62,8 +68,14 @@ const Editor: React.FC<Props> = ({ id, content, onLeave }) => {
     watch: true,
   });
 
+  useEffect(() => {
+    console.log('initial content:', content);
+  }, [content]);
+
   const editorUpdate = _debounce(async ({ content }: { content: string }) => {
     console.log("got update:", { content, errorFeeData });
+    setContent(content);
+
     // estimate
     if (errorFeeData) {
       console.error(`error getting fee:`, errorFeeData);
@@ -106,7 +118,7 @@ const Editor: React.FC<Props> = ({ id, content, onLeave }) => {
     console.log("publish:", { content });
     // editorRef.current!.setContent(`### title3`);
 
-    const { error } = await publish({
+    const { data, error } = await publish({
       args: [id, content],
     });
 
@@ -117,7 +129,18 @@ const Editor: React.FC<Props> = ({ id, content, onLeave }) => {
 
     if (!error) {
       // published
-      console.log("published:");
+      console.log("published:", data);
+
+      const { data: dataWait, error } = await wait({
+        hash: data.hash,
+        confirmations: 3,
+      });
+
+      console.log("waited:", dataWait, error);
+
+      // save and leave editor
+      setContent(editorRef.current?.getMarkdown());
+      onLeave();
     }
   };
 
@@ -128,11 +151,13 @@ const Editor: React.FC<Props> = ({ id, content, onLeave }) => {
         height="3rem"
         bgColor="white"
         borderRadius="1.75rem"
-        shadow={true}
+        shadow
         onClick={() => {
           console.log("leave");
           // enableEditing(false);
           onLeave();
+
+          setContent(editorRef.current?.getMarkdown());
         }}
       >
         <TextIcon>Leave</TextIcon>
@@ -143,7 +168,7 @@ const Editor: React.FC<Props> = ({ id, content, onLeave }) => {
         bgColor="blueGreen"
         // bgActiveColor="greenLighter"
         borderRadius="1.75rem"
-        shadow={true}
+        shadow
         disabled={publishWaiting}
         onClick={onPublish}
       >
@@ -157,6 +182,8 @@ const Editor: React.FC<Props> = ({ id, content, onLeave }) => {
       <div className={styles.editing}>
         <div className={styles.gasEstimate}>Gas: {estimate} MATIC</div>
         {isSmallUp && buttonGroup}
+        {publishWaiting && <>publishWaiting</>}
+        {waitForTransaction && <>waitForTransaction</>}
       </div>
       <RichMarkdownEditor
         placeholder="Write *something*..."

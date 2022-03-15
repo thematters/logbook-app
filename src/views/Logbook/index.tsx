@@ -33,6 +33,11 @@ const Logbook: React.FC = () => {
     console.log("logbookDetail:", { logbookDetail, accountData });
   }, [logbookDetail, accountData]);
 
+  const [initialContent, setContent] = useState<string>(
+    logbookDetail?.logbook?.publications?.[0]?.log?.content,
+    // logbookDetail?.logbook?.publications?.[0]?.log?.content
+  );
+
   if (loading) {
     return <Spinner />;
   }
@@ -55,7 +60,8 @@ const Logbook: React.FC = () => {
           <Editor
             id={tokenID}
             transferCount={transferCount}
-            content={publications?.[0]?.log?.content}
+            content={initialContent}
+            setContent={setContent}
             onLeave={() => enableEditing(false)}
           ></Editor>
         ) : (
