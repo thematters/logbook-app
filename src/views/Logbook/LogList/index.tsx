@@ -31,17 +31,14 @@ export const LogList: React.FC<LogListProps> = ({ publications }) => {
     <section className={styles.container}>
       {publications.map(({ log: { id, content, createdAt, author } }) => {
         return (
-          <>
-            <section className={styles.item}>
-              <Card
-                key={id}
-                id={id}
-                content={content}
-                createdAt={createdAt}
-                authorID={author?.id}
-              />
-            </section>
-          </>
+          <section key={id} className={styles.item}>
+            <Card
+              id={id}
+              content={content}
+              createdAt={createdAt}
+              authorID={author?.id}
+            />
+          </section>
         );
       })}
     </section>

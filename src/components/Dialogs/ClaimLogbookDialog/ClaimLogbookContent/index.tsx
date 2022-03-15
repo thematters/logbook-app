@@ -9,14 +9,14 @@ import {
   useMutation,
 } from "@apollo/client";
 import { ConnectedAccountButton, Spinner, Dialog, Spacer } from "~/components";
+
+import { toOpenseaUrl } from "~/utils";
+
 import { AlchemyNetwork, getNFTs, logbookInterface } from "~/utils";
 
 import styles from "./styles.module.css";
 
 const isProd = process.env.NEXT_PUBLIC_RUNTIME_ENV === "production";
-const OPENSEA_URL = isProd
-  ? "https://opensea.io"
-  : "https://testnets.opensea.io";
 
 type ClaimLogbookContentProps = {
   onClaim: (tokenIds: string[]) => void;
@@ -252,7 +252,7 @@ const ClaimLogbookContent: React.FC<ClaimLogbookContentProps> = ({
             {tokenIds.map((tokenId) => (
               <a
                 key={tokenId}
-                href={`${OPENSEA_URL}/assets/${process.env.NEXT_PUBLIC_TRAVELOGGERS_CONTRACT_ADDRESS}/${tokenId}`}
+                href={toOpenseaUrl(tokenId)}
                 target="_blank"
                 rel="noreferrer"
               >

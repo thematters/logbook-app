@@ -36,3 +36,11 @@ export const toPolygonAddressUrl = (address: string) => {
     maskedAddress,
   };
 };
+
+export const toOpenseaUrl = (id: string) => {
+  const OPENSEA_URL = isProd
+    ? "https://opensea.io"
+    : "https://testnets.opensea.io";
+
+  return `${OPENSEA_URL}/assets/${process.env.NEXT_PUBLIC_TRAVELOGGERS_CONTRACT_ADDRESS}/${id}`;
+};

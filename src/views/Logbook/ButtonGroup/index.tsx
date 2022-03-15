@@ -16,6 +16,7 @@ import {
   SettingsDialog,
   TextIcon,
 } from "~/components";
+import { toOpenseaUrl } from "~/utils";
 
 import styles from "./styles.module.css";
 
@@ -31,7 +32,7 @@ const DropdownMenu: React.FC<{ id: string; openSettingsDialog: () => any }> = ({
       </Card>
     </li>
     <li role="menu-item">
-      <Card htmlHref={`https://opensea.io/${id}`} htmlTarget="_blank">
+      <Card htmlHref={toOpenseaUrl(id)} htmlTarget="_blank">
         <IconShoppingCart size="md" />
         <TextIcon>OpenSea page</TextIcon>
       </Card>
@@ -134,7 +135,7 @@ export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => {
             bgColor="blueGreen"
             width="3rem"
             height="3rem"
-            htmlHref={`https://opensea.io/${id}`}
+            htmlHref={toOpenseaUrl(id)}
             htmlTarget="_blank"
             className={styles.shoppingCard}
             onClick={() => {
