@@ -30,8 +30,8 @@ const Logbook: React.FC = () => {
   });
 
   useEffect(() => {
-    console.log("logbookDetail:", logbookDetail);
-  }, [logbookDetail]);
+    console.log("logbookDetail:", { logbookDetail, accountData });
+  }, [logbookDetail, accountData]);
 
   if (loading) {
     return <Spinner />;

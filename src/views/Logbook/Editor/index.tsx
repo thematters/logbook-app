@@ -6,6 +6,7 @@ import { useContract, useContractWrite, useFeeData, useProvider } from "wagmi";
 
 import {
   Button,
+  IconInfo,
   // RichMarkdownEditor,
   Spinner,
   TextIcon,
@@ -162,8 +163,87 @@ const Editor: React.FC<Props> = ({ id, content, onLeave }) => {
         initialContent={content}
         editorUpdate={editorUpdate}
         editorRef={editorRef}
+        hint={
+          <TextIcon
+            size="smS"
+            color="grey"
+            spacing="xxTight"
+            icon={<IconInfo />}
+          >
+            <span className={styles.hint}>
+              Logbook 2.0 support Markdown editor
+            </span>
+          </TextIcon>
+        }
       />
       {!isSmallUp && <section className={styles.footer}>{buttonGroup}</section>}
+      <style jsx global>
+        {`
+          html {
+            background-color: var(--color-white);
+          }
+          @media (min-width: 768px) {
+            div.l-container > main.l-row {
+              z-index: var(--z-index-header);
+            }
+          }
+
+          .remirror-theme .remirror-toolbar {
+            background-color: transparent;
+          }
+
+          .remirror-theme .ProseMirror,
+          .remirror-theme .ProseMirror:active,
+          .remirror-theme .ProseMirror:focus {
+            min-height: var(--rmr-space-6);
+            box-shadow: unset;
+            padding: unset;
+            border-radius: unset;
+            outline: none;
+          }
+
+          .remirror-theme a:link,
+          .remirror-theme a:visited {
+            color: var(--color-gradient-green-start);
+            text-decoration: underline;
+          }
+
+          .remirror-editor.ProseMirror ul,
+          .remirror-editor.ProseMirror ol {
+            list-style: unset;
+          }
+
+          .remirror-editor.ProseMirror {
+            overflow-y: hidden;
+          }
+
+          .remirror-editor ol > li > .remirror-list-item-marker-container,
+          .remirror-editor ul > li.remirror-list-item-with-custom-mark,
+          .remirror-editor
+            .remirror-ul-list-content
+            > li.remirror-list-item-with-custom-mark {
+            list-style: inside;
+          }
+
+          .remirror-editor.ProseMirror li {
+            position: relative;
+            list-style: reset;
+          }
+
+          .remirror-button {
+            border: 0;
+          }
+
+          .remirror-a11y-dark :not(pre) > code[class*="language-"],
+          .remirror-a11y-dark pre[class*="language-"] {
+            background: #ededed;
+          }
+          .remirror-a11y-dark code[class*="language-"],
+          .remirror-a11y-dark pre[class*="language-"] {
+            color: var(--color-black);
+          }
+        `}
+      </style>
     </section>
   );
 };

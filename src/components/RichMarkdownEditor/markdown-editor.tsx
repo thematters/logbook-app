@@ -109,17 +109,28 @@ const Menubar = () => {
             attrs: { level: 2 },
           },
           {
-            type: ComponentItem.ToolbarCommandButton,
-            commandName: "toggleHeading",
-            display: "icon",
-            attrs: { level: 3 },
+            type: ComponentItem.ToolbarMenu,
+
+            items: [
+              {
+                type: ComponentItem.MenuGroup,
+                role: "radio",
+                items: [
+                  {
+                    type: ComponentItem.MenuCommandPane,
+                    commandName: "toggleHeading",
+                    attrs: { level: 3 },
+                  },
+                  {
+                    type: ComponentItem.MenuCommandPane,
+                    commandName: "toggleHeading",
+                    attrs: { level: 4 },
+                  },
+                ],
+              },
+            ],
           },
-          {
-            type: ComponentItem.ToolbarCommandButton,
-            commandName: "toggleHeading",
-            display: "icon",
-            attrs: { level: 4 },
-          },
+
           {
             type: ComponentItem.ToolbarCommandButton,
             commandName: "toggleBold",
@@ -158,7 +169,7 @@ const Menubar = () => {
           },
           {
             type: ComponentItem.ToolbarButton,
-            label: "--",
+            label: "---",
             onClick() {
               chain // Begin a chain
                 .insertHorizontalRule()
@@ -178,7 +189,7 @@ const Menubar = () => {
 
               if (linkUrl)
                 chain // Begin a chain
-                  .insertHtml(`<a href="${linkUrl}">link</a>`)
+                  .insertHtml(`<a href="${linkUrl}">${linkUrl}</a>`)
                   .focus()
                   .run(); // A chain must always be terminated with `.run()`
             },
@@ -222,6 +233,7 @@ export interface EditorProps {
 
   // editorUpload?: (params: Params) => Promise<ResultData>;
   enableToolbar?: boolean;
+  hint?: React.ReactNode;
 
   editable?: boolean;
   editorRef?: Ref<EditorRef>;
@@ -254,6 +266,9 @@ export const RichMarkdownEditor: React.FC<EditorProps> = ({
   editorUpdate,
   children,
 
+  enableToolbar = true,
+  hint,
+
   editorRef,
   editable = false,
 }) => {
@@ -277,7 +292,7 @@ export const RichMarkdownEditor: React.FC<EditorProps> = ({
 
       // new LinkExtension(),
       // linkExtension,
-      new MarkdownLinkExtension(),
+      new MarkdownLinkExtension({ autoLink: true }),
       // { openLinkOnClick: true }
 
       /* new EmojiExtension({
@@ -363,7 +378,8 @@ export const RichMarkdownEditor: React.FC<EditorProps> = ({
         onChange={changeHandler}
         classNames={[styles.remirror]}
       >
-        <Menubar />
+        {enableToolbar ? <Menubar /> : <></>}
+        {hint}
         <EditorComponent />
         <FloatingLinkToolbar />
         {/* <EmojiPopupComponent /> */}

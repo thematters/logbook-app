@@ -36,6 +36,7 @@ export * from "./IconFile";
 export * from "./IconGift";
 export * from "./IconGiftSign";
 export * from "./IconIndicator";
+export * from "./IconInfo";
 export * from "./IconInstagram";
 export * from "./IconLibrary";
 export * from "./IconLogbook";
