@@ -20,7 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   let formattedID;
   if (!!tokenID) {
-    formattedID = `#${tokenID.slice(2, 6)}`;
+    formattedID = `#${parseInt(tokenID, 16)}`;
   }
 
   let formattedDate;

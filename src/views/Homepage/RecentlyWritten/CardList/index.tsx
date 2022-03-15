@@ -69,6 +69,7 @@ export const CardList = () => {
       owner,
     }: Logbook) => {
       const cardProps: LogbookCardProps = {
+        tokenID: id,
         title,
         content: publications[0].log.content,
         publicationCount: publicationCount.toString(),

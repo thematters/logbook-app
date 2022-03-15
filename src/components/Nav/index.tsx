@@ -9,7 +9,7 @@ import ItemList from "./ItemList";
 import styles from "./styles.module.css";
 
 export const Nav = () => {
-  const {show, setShow, closeDialog} = useDialogSwitch(false);
+  const { show, setShow, closeDialog } = useDialogSwitch(false);
   const isSmallUp = useResponsive("sm-up");
   const cls = classNames({
     [styles.navWrapper]: true,
