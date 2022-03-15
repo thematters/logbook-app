@@ -23,7 +23,7 @@ export const Nav: React.FC<NavProps> = ({ tokenID }) => {
         </TextIcon>
       </Link>
       <TextIcon color="blueGreen" weight="bold">
-        <span>#</span>
+        <span>#&nbsp;</span>
         <span>{tokenID}</span>
       </TextIcon>
     </section>

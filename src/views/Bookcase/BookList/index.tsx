@@ -49,7 +49,7 @@ export type Logbook = {
 
 export const BookList = () => {
   const first = 10;
-  const ownID = "0x479029844f8bdd76b8b9271f577a8f8919bf16cc";
+  // const ownID = "0x479029844f8bdd76b8b9271f577a8f8919bf16cc";
   const [lastLoggedAt] = useState(Date.now().toString());
   const [hasNextPage, updateHasNextPage] = useState(true);
   const isSmallUp = useResponsive("sm-up");
@@ -71,6 +71,7 @@ export const BookList = () => {
     console.log("useEffect ", data);
     // const {account: {logbooks} } = data
     updateLogbookList(data?.account?.logbooks);
+    // TODO: when account == null
   }, [data]);
 
   if (error) return <></>;
@@ -86,7 +87,7 @@ export const BookList = () => {
       variables: {
         first,
         lastLoggedAt: loggedAt,
-        ownID,
+        ownID: address,
       },
     });
     console.log({ data });

@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-// import { ethers } from "ethers";
+import { ethers } from "ethers";
+import Link from "next/link";
 
 import { capitalizeFirstLetter } from "~/utils";
 
@@ -73,26 +74,29 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
   });
 
   return (
-    <div className={containerClass}>
-      {!!tokenID ? (
-        <Header tokenID={tokenID} createdAt={createdAt} txHash={txHash} />
-      ) : (
-        ""
-      )}
-      <Title
-        title={title}
-        date={createdAt}
-        giftSign={giftSign}
-        fixedHeight={fixedHeight}
-      />
-      <section>
-        <p className={contentClasses}>{content}</p>
-      </section>
-      <Footer
-        exchange={transferCount}
-        history={publicationCount}
-        txHash={!!footerHash && !!txHash ? txHash : ""}
-      ></Footer>
-    </div>
+    // TODO: link to log book inside page
+    <Link href="logbook" passHref>
+      <div className={containerClass}>
+        {!!tokenID ? (
+          <Header tokenID={tokenID} createdAt={createdAt} txHash={txHash} />
+        ) : (
+          ""
+        )}
+        <Title
+          title={title}
+          date={createdAt}
+          giftSign={giftSign}
+          fixedHeight={fixedHeight}
+        />
+        <section>
+          <p className={contentClasses}>{content}</p>
+        </section>
+        <Footer
+          exchange={transferCount}
+          history={publicationCount}
+          txHash={!!footerHash && !!txHash ? txHash : ""}
+        ></Footer>
+      </div>
+    </Link>
   );
 };

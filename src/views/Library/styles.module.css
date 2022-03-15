@@ -15,3 +15,10 @@
   font-size: var(--font-size-section-title);
   line-height: var(--line-height-section-title);
 }
+
+.maxWidth {
+  @media (--sm-up) {
+    width: var(--container-width-sm-up);
+    margin: auto;
+  }
+}
