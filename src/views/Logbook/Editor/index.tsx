@@ -208,26 +208,8 @@ const Editor: React.FC<Props> = ({ id, content, onLeave }) => {
             text-decoration: underline;
           }
 
-          .remirror-editor.ProseMirror ul,
-          .remirror-editor.ProseMirror ol {
-            list-style: unset;
-          }
-
           .remirror-editor.ProseMirror {
             overflow-y: hidden;
-          }
-
-          .remirror-editor ol > li > .remirror-list-item-marker-container,
-          .remirror-editor ul > li.remirror-list-item-with-custom-mark,
-          .remirror-editor
-            .remirror-ul-list-content
-            > li.remirror-list-item-with-custom-mark {
-            list-style: inside;
-          }
-
-          .remirror-editor.ProseMirror li {
-            position: relative;
-            list-style: reset;
           }
 
           .remirror-button {

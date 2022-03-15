@@ -30,14 +30,15 @@ main {
   display: block;
 }
 
-ol,
-ul {
+ol.reset,
+ul.reset {
   list-style: none;
 }
 
-ol,
-ul,
-li {
+ol.reset,
+ul.reset,
+ol.reset li,
+ul.reset li {
   padding: 0;
   margin: 0;
   border: 0;

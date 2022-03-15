@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import _debounce from "lodash/debounce";
 import React, { useState, useRef } from "react";
 
@@ -24,7 +25,7 @@ const DropdownMenu: React.FC<{ id: string; openSettingsDialog: () => any }> = ({
   id,
   openSettingsDialog,
 }) => (
-  <ul role="menu" className={styles.menu}>
+  <ul role="menu" className={classNames(["reset", styles.menu])}>
     <li role="menu-item">
       <Card>
         <IconShareFat size="md" />

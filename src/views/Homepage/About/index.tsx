@@ -30,7 +30,7 @@ export const About = () => {
           </p>
         </section>
         <section className={styles.links}>
-          <ul>
+          <ul className="reset">
             <li>
               <a
                 href="https://matters.news/"

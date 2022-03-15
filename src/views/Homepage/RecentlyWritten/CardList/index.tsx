@@ -102,7 +102,7 @@ export const CardList = () => {
 
   return (
     <div className={cls} ref={emblaRef}>
-      <ul className={styles.cardList}>{listItems}</ul>
+      <ul className={classNames(["reset", styles.cardList])}>{listItems}</ul>
       <style global jsx>
         {`
           .cardListContainer {

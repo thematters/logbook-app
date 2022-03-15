@@ -67,27 +67,25 @@ const ItemList: React.FC<ItemListProps> = ({ show, onClick }) => {
   }
   return (
     <>
-      <ul className={containerClasses}>
+      <ul className={classNames(["reset", containerClasses])}>
         <Item
           href="library"
           text="Library"
           onClick={onClick}
           icon={<IconLibrary size={iconSize} />}
-        ></Item>
+        />
         <ConnectWalletDialog>
           {({ openDialog }) => (
-            <>
-              <Item
-                text="Connect Wallet"
-                icon={<IconWalletGradient size={iconSize} />}
-                onClick={() => {
-                  if (isSmallUp) {
-                    onClick();
-                  }
-                  openDialog();
-                }}
-              ></Item>
-            </>
+            <Item
+              text="Connect Wallet"
+              icon={<IconWalletGradient size={iconSize} />}
+              onClick={() => {
+                if (isSmallUp) {
+                  onClick();
+                }
+                openDialog();
+              }}
+            />
           )}
         </ConnectWalletDialog>
       </ul>
