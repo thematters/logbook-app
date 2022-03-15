@@ -24,7 +24,9 @@ jobs:
       - name: Prepare Env (Develop)
         if: github.base_ref == 'develop'
         run:
-          echo "NODE_ENV=development" >> $GITHUB_ENV
+          echo NODE_ENV=development >> $GITHUB_ENV && \
+          ls -lih $GITHUB_ENV && \
+          tail $GITHUB_ENV
 
       - name: Build
         run: |
