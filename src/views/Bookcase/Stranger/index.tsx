@@ -1,6 +1,11 @@
 import React from "react";
 
-import { Button, IconBookEye, TextIcon } from "~/components";
+import {
+  Button,
+  IconBookEye,
+  TextIcon,
+  ConnectWalletDialog,
+} from "~/components";
 import { useResponsive } from "~/hooks";
 
 import styles from "./styles.module.css";
@@ -22,17 +27,26 @@ export const Stranger = () => {
       <section>
         <IconBookEye style={iconStyle} />
       </section>
-      <Button
-        width={buttonWidth}
-        height="3rem"
-        bgColor="blueGreen"
-        borderRadius="6.25rem"
-        shadow
-      >
-        <TextIcon color="white" weight="medium">
-          Connect Wallet
-        </TextIcon>
-      </Button>
+      <ConnectWalletDialog>
+        {({ openDialog }) => (
+          <>
+            <Button
+              width={buttonWidth}
+              height="3rem"
+              bgColor="blueGreen"
+              borderRadius="6.25rem"
+              shadow
+              onClick={() => {
+                openDialog();
+              }}
+            >
+              <TextIcon color="white" weight="medium">
+                Connect Wallet
+              </TextIcon>
+            </Button>
+          </>
+        )}
+      </ConnectWalletDialog>
     </div>
   );
 };

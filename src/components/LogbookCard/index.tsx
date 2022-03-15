@@ -20,7 +20,8 @@ export interface LogbookCardProps {
   content: string;
   publicationCount: string;
   transferCount: string;
-  tokenID?: string;
+  tokenID: string;
+  showHeader?: boolean;
   createdAt?: Date;
   giftSign?: boolean;
   txHash?: string;
@@ -41,6 +42,7 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
   publicationCount,
   transferCount,
   tokenID,
+  showHeader,
   createdAt,
   giftSign,
   txHash,
@@ -75,9 +77,9 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
 
   return (
     // TODO: link to log book inside page
-    <Link href="logbook" passHref>
+    <Link href={`logbook?id=${parseInt(tokenID, 16)}`} passHref>
       <div className={containerClass}>
-        {!!tokenID ? (
+        {!!tokenID && showHeader ? (
           <Header tokenID={tokenID} createdAt={createdAt} txHash={txHash} />
         ) : (
           ""

@@ -1,13 +1,32 @@
 import React from "react";
+import { useEnsLookup } from "wagmi";
+import Link from "next/link";
 
-import { IconEtherScan, TextIcon, TextIconProps, IconSize } from "~/components";
+import {
+  IconEtherScan,
+  TextIcon,
+  TextIconProps,
+  IconSize,
+  Spinner,
+} from "~/components";
 
 import { useResponsive } from "~/hooks";
 
 import styles from "./styles.module.css";
 
-export const Title = () => {
+export interface TitleProps {
+  address: string;
+}
+
+export const Title: React.FC<TitleProps> = ({ address }) => {
+  // TODO: lookup ens name in polygon?
+  // const [{ data, error, loading }] = useEnsLookup({
+  //   address: address.toLowerCase(),
+  // });
   const isSmallUp = useResponsive("sm-up");
+
+  // if (loading) return <Spinner />;
+  // if (error) return <div>Error fetching name</div>;
 
   let titleProps: TextIconProps = {
     size: "md",
@@ -22,6 +41,7 @@ export const Title = () => {
   return (
     <section>
       <section className={styles.title}>
+        {/* TODO: link to etherscan */}
         <TextIcon
           weight="bold"
           color="black"
@@ -29,7 +49,8 @@ export const Title = () => {
           {...titleProps}
           icon={<IconEtherScan size={iconSize} />}
         >
-          ugomozie.eth
+          {/* {data? data: address.slice(0, 6) + address.slice(-4)} */}
+          {`${address.slice(0, 6)}...${address.slice(-4)}`}
         </TextIcon>
       </section>
       <section className={styles.bio}>

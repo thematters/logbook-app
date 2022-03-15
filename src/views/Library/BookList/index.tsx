@@ -73,6 +73,7 @@ export const BookList = () => {
                 transferCount={transferCount}
                 createdAt={new Date(Number(loggedAt) * 1000)}
                 tokenID={id}
+                showHeader
                 txHash={(owner as any).id}
                 className={styles.item}
               ></LogbookCard>

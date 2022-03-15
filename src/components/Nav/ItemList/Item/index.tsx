@@ -1,6 +1,7 @@
 /* eslint-disable react/display-name */
 import React, { forwardRef, useState } from "react";
 import Link from "next/link";
+import classNames from "classnames";
 
 import { TextIcon, Button, TextIconProps } from "~/components";
 import { useResponsive } from "~/hooks";
@@ -13,6 +14,7 @@ type ItemProps = {
   href?: string;
   replace?: boolean;
   onClick?: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => any;
+  [key: string]: any
 };
 
 const Item: React.FC<ItemProps> = ({
@@ -20,6 +22,7 @@ const Item: React.FC<ItemProps> = ({
   icon,
   href,
   replace,
+  className,
   ...restProps
 }) => {
   const isSmallUp = useResponsive("sm-up");
@@ -44,10 +47,14 @@ const Item: React.FC<ItemProps> = ({
     }
   };
 
+  const containerClasses = classNames({
+    [styles.item]: true,
+  }, className)
+
   const containerProps = {
     ...restProps,
     onClick,
-    className: styles.item,
+    className: containerClasses,
   };
 
   let element = (
