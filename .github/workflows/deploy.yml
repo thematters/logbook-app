@@ -23,7 +23,8 @@ jobs:
 
       - name: Prepare Env (Develop)
         if: github.base_ref == 'develop'
-        run: cp .env.development .env
+        run:
+          echo "NODE_ENV=development" >> $GITHUB_ENV
 
       - name: Build
         run: |
