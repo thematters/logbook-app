@@ -5,13 +5,11 @@ import { Title } from "../Title";
 import { EmptyBookList } from "./EmptyBookList";
 import { LoggedBookList } from "./LoggedBookList";
 
-
 export interface BookListProps {
   address: string;
 }
 
 export const BookList: React.FC<BookListProps> = ({ address }) => {
-
   return (
     <section>
       <section className={styles.container}>

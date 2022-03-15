@@ -14,7 +14,7 @@ type ItemProps = {
   href?: string;
   replace?: boolean;
   onClick?: (event?: React.MouseEvent<HTMLElement, MouseEvent>) => any;
-  [key: string]: any
+  [key: string]: any;
 };
 
 const Item: React.FC<ItemProps> = ({
@@ -47,9 +47,12 @@ const Item: React.FC<ItemProps> = ({
     }
   };
 
-  const containerClasses = classNames({
-    [styles.item]: true,
-  }, className)
+  const containerClasses = classNames(
+    {
+      [styles.item]: true,
+    },
+    className
+  );
 
   const containerProps = {
     ...restProps,

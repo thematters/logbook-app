@@ -22,7 +22,9 @@ const BaseConnectWalletDialog: React.FC<ConnectWalletDialogProps> = ({
       {children({ openDialog })}
       <Dialog isOpen={show} onDismiss={closeDialog}>
         <Dialog.Header title="Connect Wallet" closeDialog={closeDialog} />
-        <ConnectWalletContent next={() => console.log('connect wallet successful')} />
+        <ConnectWalletContent
+          next={() => console.log("connect wallet successful")}
+        />
       </Dialog>
     </>
   );

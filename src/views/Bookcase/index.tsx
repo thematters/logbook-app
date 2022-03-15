@@ -13,7 +13,7 @@ const Bookcase: React.FC = () => {
     fetchEns: true,
   });
   const router = useRouter();
-  const { address } = router.query
+  const { address } = router.query;
   // console.log({address})
   if (!accountData && !address) {
     return (
@@ -27,7 +27,11 @@ const Bookcase: React.FC = () => {
   return (
     <section className={styles.container}>
       <Head title="Bookcase" />
-      <BookList address={address? (address as string): (accountData?.address as string)}/>
+      <BookList
+        address={
+          address ? (address as string) : (accountData?.address as string)
+        }
+      />
     </section>
   );
 };
