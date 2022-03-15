@@ -17,12 +17,6 @@
     flex-direction: row;
   }
 
-  & div {
-    & div {
-      margin: 0 var(--spacing-xx-tight) 0 var(--spacing-xx-tight);
-    }
-  }
-
   & .iconlinks {
     @mixin flex-center-space-between;
 
@@ -31,5 +25,9 @@
 
   & .links {
     @mixin flex-center-space-between;
+
+    & div {
+      margin: 0 var(--spacing-tight);
+    }
   }
 }

@@ -3,7 +3,7 @@
 
   margin: 1rem 2rem 2rem;
 
-  & div {
-    margin: 0 var(--spacing-xx-tight) 0 var(--spacing-xx-tight);
+  & > a {
+    margin: 0 var(--spacing-tight);
   }
 }
