@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import _debounce from "lodash/debounce";
-import React, { useState, useRef } from "react";
+import React from "react";
 
 import {
   Button,
@@ -18,6 +18,7 @@ import {
   TextIcon,
   ShareDialog,
 } from "~/components";
+import { LogbookContext } from "~/hooks";
 import { toOpenseaUrl } from "~/utils";
 
 import styles from "./styles.module.css";
@@ -25,18 +26,14 @@ import styles from "./styles.module.css";
 const DropdownMenu: React.FC<{
   id: string;
   openSettingsDialog: () => any;
-  // openShareDialog: () => any;
-}> = ({ id, openSettingsDialog }) => (
+  openShareDialog: () => any;
+}> = ({ id, openSettingsDialog, openShareDialog }) => (
   <ul role="menu" className={classNames(["reset", styles.menu])}>
     <li role="menu-item">
-      <ShareDialog>
-        {({ openDialog: openShareDialog }) => (
-          <Card onClick={openShareDialog}>
-            <IconShareFat size="md" />
-            <TextIcon>Share this Logbook</TextIcon>
-          </Card>
-        )}
-      </ShareDialog>
+      <Card onClick={openShareDialog}>
+        <IconShareFat size="md" />
+        <TextIcon>Share this Logbook</TextIcon>
+      </Card>
     </li>
     <li role="menu-item">
       <Card htmlHref={toOpenseaUrl(id)} htmlTarget="_blank">
@@ -56,129 +53,123 @@ const DropdownMenu: React.FC<{
 interface Props {
   // hex id
   id: string;
-  title?: string;
-  description?: string;
   isOwn: boolean;
   onEdit: () => any;
 }
 
-export const ButtonGroup: React.FC<Props> = ({
-  id,
-  title,
-  description,
-  isOwn,
-  onEdit,
-}) => {
-  // const [isEditing, enableEditing] = useState(false);
+export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => (
+  <section className={styles.container}>
+    {isOwn && (
+      <div className={styles.actions}>
+        <Button
+          borderRadius="50%"
+          onClick={() => {
+            // TODO: analytics
+            console.log("Edit");
+            // enableEditing(true);
+            onEdit();
+          }}
+        >
+          <IconEdit
+            size="xl"
+            weight="bold"
+            color="green"
+            className={styles.scaleUp}
+          />
+        </Button>
 
-  return (
-    <section className={styles.container}>
-      {isOwn && (
-        <div className={styles.actions}>
-          <Button
-            borderRadius="50%"
-            onClick={() => {
-              // TODO: analytics
-              console.log("Edit");
-              // enableEditing(true);
-              onEdit();
-            }}
-          >
-            <IconEdit
-              size="xl"
-              weight="bold"
-              color="green"
-              className={styles.scaleUp}
-            />
-          </Button>
+        <GiftTransferDialog tokenId={id}>
+          {({ openDialog }) => (
+            <Button
+              onClick={() => {
+                // TODO: analytics
+                openDialog();
+                console.log("Gift");
+              }}
+            >
+              <IconGift size="xl" className={styles.scaleUp} />
+            </Button>
+          )}
+        </GiftTransferDialog>
 
-          <GiftTransferDialog tokenId={id}>
-            {({ openDialog }) => (
-              <Button
-                onClick={() => {
-                  // TODO: analytics
-                  openDialog();
-                  console.log("Gift");
-                }}
-              >
-                <IconGift size="xl" className={styles.scaleUp} />
-              </Button>
-            )}
-          </GiftTransferDialog>
+        <ShareDialog>
+          {({ openDialog: openShareDialog }) => (
+            <SettingsDialog tokenId={id}>
+              {({ openDialog: openSettingsDialog }) => (
+                <DropdownDialog
+                  dropdown={{
+                    content: (
+                      <DropdownMenu
+                        id={id}
+                        openSettingsDialog={openSettingsDialog}
+                        openShareDialog={openShareDialog}
+                      />
+                    ),
+                    placement: "bottom-end",
+                  }}
+                  dialog={{
+                    title: "moreActions",
+                    content: (
+                      <DropdownMenu
+                        id={id}
+                        openSettingsDialog={openSettingsDialog}
+                        openShareDialog={openShareDialog}
+                      />
+                    ),
+                  }}
+                >
+                  {({ openDialog, ref }) => (
+                    <Button ref={ref} onClick={openDialog}>
+                      <IconMore
+                        size="xl"
+                        weight="bold"
+                        className={styles.scaleUp}
+                      />
+                    </Button>
+                  )}
+                </DropdownDialog>
+              )}
+            </SettingsDialog>
+          )}
+        </ShareDialog>
+      </div>
+    )}
 
-          <SettingsDialog tokenId={id} title={title} description={description}>
-            {({ openDialog: openSettingsDialog }) => (
-              <DropdownDialog
-                dropdown={{
-                  content: (
-                    <DropdownMenu
-                      id={id}
-                      openSettingsDialog={openSettingsDialog}
-                    />
-                  ),
-                  placement: "bottom-end",
-                }}
-                dialog={{
-                  title: "moreActions",
-                  content: (
-                    <DropdownMenu
-                      id={id}
-                      openSettingsDialog={openSettingsDialog}
-                    />
-                  ),
-                }}
-              >
-                {({ openDialog, ref }) => (
-                  <Button ref={ref} onClick={openDialog}>
-                    <IconMore
-                      size="xl"
-                      weight="bold"
-                      className={styles.scaleUp}
-                    />
-                  </Button>
-                )}
-              </DropdownDialog>
-            )}
-          </SettingsDialog>
-        </div>
-      )}
-
-      {!isOwn && (
-        <div className={styles.actions}>
-          <Button
-            borderRadius="50%"
-            bgColor="blueGreen"
-            width="3rem"
-            height="3rem"
-            htmlHref={toOpenseaUrl(id)}
-            htmlTarget="_blank"
-            className={styles.shoppingCard}
-            onClick={() => {
-              // TODO: analytics
-              // console.log("buy");
-            }}
-          >
-            <IconShoppingCart size="md" weight="bold" color="white" />
-          </Button>
-          <ShareDialog>
-            {({ openDialog: openShareDialog }) => (
-              <Button
-                borderRadius="50%"
-                bgColor="white"
-                width="3rem"
-                height="3rem"
-                onClick={() => {
-                  // TODO: analytics
-                  // TODO: share
-                  openShareDialog();
-                }}
-              >
-                <IconShareFat size="md" weight="bold" color="greyDarker" />
-              </Button>
-            )}
-          </ShareDialog>
-        </div>
-      )}
-    </section>
-  );
-};
+    {!isOwn && (
+      <div className={styles.actions}>
+        <Button
+          borderRadius="50%"
+          bgColor="blueGreen"
+          width="3rem"
+          height="3rem"
+          htmlHref={toOpenseaUrl(id)}
+          htmlTarget="_blank"
+          className={styles.shoppingCard}
+          onClick={() => {
+            // TODO: analytics
+            // console.log("buy");
+          }}
+        >
+          <IconShoppingCart size="md" weight="bold" color="white" />
+        </Button>
+        <ShareDialog>
+          {({ openDialog: openShareDialog }) => (
+            <Button
+              borderRadius="50%"
+              bgColor="white"
+              width="3rem"
+              height="3rem"
+              onClick={() => {
+                // TODO: analytics
+                // TODO: share
+                openShareDialog();
+              }}
+            >
+              <IconShareFat size="md" weight="bold" color="greyDarker" />
+            </Button>
+          )}
+        </ShareDialog>
+      </div>
+    )}
+  </section>
+);

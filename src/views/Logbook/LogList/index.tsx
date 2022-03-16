@@ -1,46 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
+import { LogbookContext } from "~/hooks";
+
 import { Card } from "./Card";
 
 import styles from "./styles.module.css";
 
-interface Account {
-  __typename: "Account";
-  id: string;
-}
+export const LogList = () => {
+  const logbook = useContext(LogbookContext);
 
-interface Log {
-  __typename: "Log";
-  id: string;
-  createdAt: string;
-  content: string;
-  author: Account;
-}
-
-export interface Publication {
-  __typename: "Publication";
-  log: Log;
-}
-
-export interface LogListProps {
-  publications: Array<Publication>;
-}
-
-export const LogList: React.FC<LogListProps> = ({ publications }) => {
-  console.log({ publications });
   return (
     <section className={styles.container}>
-      {publications.map(({ log: { id, content, createdAt, author } }) => {
-        return (
-          <section key={id} className={styles.item}>
-            <Card
-              id={id}
-              content={content}
-              createdAt={createdAt}
-              authorID={author?.id}
-            />
-          </section>
-        );
-      })}
+      {logbook.publications.map(
+        ({ log: { id, content, createdAt, author } }) => {
+          return (
+            <section key={id} className={styles.item}>
+              <Card
+                id={id}
+                content={content}
+                createdAt={createdAt}
+                authorID={author?.id}
+              />
+            </section>
+          );
+        }
+      )}
     </section>
   );
 };
