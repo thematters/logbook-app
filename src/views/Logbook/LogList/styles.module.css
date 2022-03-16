@@ -1,0 +1,11 @@
+.container {
+  align-self: stretch;
+
+  & > section:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.item {
+  margin-bottom: 1rem;
+}

@@ -52,6 +52,7 @@ export * from "./IconPlus";
 export * from "./IconSearch";
 export * from "./IconSettings";
 export * from "./IconShare";
+export * from "./IconShareFat";
 export * from "./IconShoppingCart";
 export * from "./IconTwitter";
 export * from "./IconWallet";

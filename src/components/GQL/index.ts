@@ -38,11 +38,16 @@ export const LOGBOOK_DETAIL = gql`
       title
       description
       forkPrice
+      transferCount
       publications {
         id
         log {
           id
           content
+          createdAt
+          author {
+            id
+          }
         }
       }
     }

@@ -32,3 +32,19 @@
     margin-left: 1.5rem;
   }
 }
+
+.gasEstimate {
+  color: var(--color-grey-dark);
+}
+
+.buttonGroup {
+  & > button + button {
+    margin-left: 1.5rem;
+  }
+}
+
+.footer {
+  @mixin flex-center-all;
+
+  margin-top: 1.875rem;
+}

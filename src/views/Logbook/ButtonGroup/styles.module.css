@@ -1,0 +1,39 @@
+.container {
+  margin-top: 2.1875rem;
+  @mixin inline-flex-center-all;
+
+  & .actions {
+    @mixin inline-flex-center-all;
+
+    & > button + button {
+      margin-left: 1.5rem;
+    }
+
+    & > .shoppingCard {
+      margin-right: 1.5rem;
+    }
+  }
+
+  @media (--sm-up) {
+    margin-top: 0;
+  }
+}
+
+/* .menu {
+  width: 100%;
+  text-align: left;
+} */
+
+.scaleUp {
+  transform: scale(1.5);
+}
+
+/* .editing {
+  @mixin flex-center-space-between;
+
+  margin: 0.5rem 0 1rem;
+
+  & button + button {
+    margin-left: 1.5rem;
+  }
+} */

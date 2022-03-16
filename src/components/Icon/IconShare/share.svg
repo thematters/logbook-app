@@ -17,7 +17,7 @@
 <stop offset="1" stop-color="#33A5C9"/>
 </linearGradient>
 </defs>
-<path d="M11.6178 6.95447H14.625V16.7196C14.625 17.0878 14.3265 17.3863 13.9583 17.3863H4.04167C3.67348 17.3863 3.375 17.0878 3.375 16.7196V6.95447H6.36202" stroke="#999C9D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.75 3.47724L9 1.15906L11.25 3.47724" stroke="#999C9D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9 1.15906V11.5909" stroke="#999C9D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.6178 6.95447H14.625V16.7196C14.625 17.0878 14.3265 17.3863 13.9583 17.3863H4.04167C3.67348 17.3863 3.375 17.0878 3.375 16.7196V6.95447H6.36202" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.75 3.47724L9 1.15906L11.25 3.47724" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9 1.15906V11.5909" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

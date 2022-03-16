@@ -54,13 +54,13 @@ export const EmptyBookList: React.FC<EmptyBookListProps> = ({ address }) => {
   }
   return (
     <>
-      {logbookList?.map(({ id }) => {
+      {logbookList?.map(({ id, title }) => {
         return (
           <LogbookCard
             key={id}
             tokenID={id}
             className={styles.item}
-            title="Empty book"
+            title={title ? title : "Empty book"}
             content="Leave some message..."
             publicationCount="0"
             transferCount="0"

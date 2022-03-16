@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.flexStart {
+  align-self: flex-start;
+}
+
 .nav {
   align-self: flex-start;
   margin-bottom: var(--spacing-x-tight);
@@ -15,6 +19,10 @@
   font-size: var(--font-size-header-title);
   font-weight: var(--font-weight-header-title);
   line-height: var(--line-height-header-title);
+  color: var(--color-black);
+}
+
+.placeholderTitle {
   color: var(--color-grey-light);
 }
 
@@ -59,6 +67,6 @@
 }
 
 .bottomButton {
-  position: absolute;
+  position: fixed;
   bottom: 1.5rem;
 }

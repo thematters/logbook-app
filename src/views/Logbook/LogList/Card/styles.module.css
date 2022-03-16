@@ -1,0 +1,32 @@
+.container {
+  padding: var(--spacing-base);
+  background: var(--color-white);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 18px rgb(0 0 0 / 4%);
+
+  @media (--sm-up) {
+    padding: var(--spacing-loose);
+  }
+}
+
+.footer {
+  @mixin flex-center-start;
+
+  margin-top: 1.5rem;
+  font-size: var(--font-size-article-body);
+  font-weight: var(--font-weight-article-body);
+  line-height: var(--line-height-article-body);
+  color: var(--color-grey-dark);
+
+  & > span {
+    margin-right: var(--spacing-base);
+  }
+
+  & > span:last-child {
+    margin-right: 0;
+  }
+
+  @media (--sm-up) {
+    margin-top: 2rem;
+  }
+}

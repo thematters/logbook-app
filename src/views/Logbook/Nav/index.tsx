@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { Button, IconAngleLeft, TextIcon } from "~/components";
+import { IconAngleLeft, TextIcon } from "~/components";
 
 import styles from "./styles.module.css";
 
@@ -10,7 +10,6 @@ export interface NavProps {
 }
 
 export const Nav: React.FC<NavProps> = ({ tokenID }) => {
-  // TODO: book id
   return (
     <section className={styles.container}>
       <Link href="/bookcase">
