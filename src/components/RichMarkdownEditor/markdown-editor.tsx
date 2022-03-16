@@ -4,6 +4,10 @@ import React, {
   useLayoutEffect,
   useMemo,
   useState,
+  forwardRef,
+  Ref,
+  useImperativeHandle,
+  useRef,
 } from "react";
 // import _debounce from 'lodash/debounce';
 // import React, { useMemo, useCallback } from "react";
@@ -60,6 +64,7 @@ import {
   useCurrentSelection,
   useHelpers,
   useRemirror,
+  useRemirrorContext,
 } from "@remirror/react";
 // import { AllStyledComponent } from '@remirror/styles/emotion';
 
@@ -75,15 +80,6 @@ import { MarkdownLinkExtension, useFloatingLinkState } from "./link-extension";
 import { FloatingLinkToolbar } from "./link-toolbar";
 
 // export default { title: 'Editors / Markdown' };
-
-export interface EditorProps {
-  placeholder?: string;
-  initialContent?: string;
-  editorUpdate?: ({ text }: { text: string }) => void;
-
-  // editorUpload?: (params: Params) => Promise<ResultData>;
-  enableToolbar?: boolean;
-}
 
 const Menubar = () => {
   const chain = useChainedCommands();
@@ -212,6 +208,43 @@ const Menubar = () => {
   return <Toolbar items={toolbarItems} refocusEditor label="Top Toolbar" />;
 };
 
+export interface EditorRef {
+  setContent: (content: any) => void;
+  // getContent: () => any;
+  getJSON: () => any;
+  getMarkdown: () => any;
+}
+
+export interface EditorProps {
+  placeholder?: string;
+  initialContent?: string;
+  editorUpdate?: ({ content }: { content: string }) => void;
+
+  // editorUpload?: (params: Params) => Promise<ResultData>;
+  enableToolbar?: boolean;
+
+  editable?: boolean;
+  editorRef?: Ref<EditorRef>;
+}
+
+const ImperativeHandle = forwardRef((_: unknown, ref: Ref<EditorRef>) => {
+  const { setContent } = useRemirrorContext({
+    autoUpdate: true,
+  });
+
+  const { getJSON, getMarkdown } = useHelpers();
+
+  // Expose content handling to outside
+  useImperativeHandle(ref, () => ({
+    setContent,
+    // getContent,
+    getJSON,
+    getMarkdown,
+  }));
+
+  return <></>;
+});
+
 /**
  * The editor which is used to create the annotation. Supports formatting.
  */
@@ -220,6 +253,9 @@ export const RichMarkdownEditor: React.FC<EditorProps> = ({
   initialContent,
   editorUpdate,
   children,
+
+  editorRef,
+  editable = false,
 }) => {
   /* const linkExtension = useMemo(() => {
     const extension = new LinkExtension({ autoLink: true });
@@ -309,7 +345,7 @@ export const RichMarkdownEditor: React.FC<EditorProps> = ({
   }) => {
     if (tr?.docChanged) {
       // console.log("before onChange:", parameter);
-      editorUpdate?.({ text: manager.store.helpers.getMarkdown() }); // markdownExtension.getMarkdown()
+      editorUpdate?.({ content: manager.store.helpers.getMarkdown() }); // markdownExtension.getMarkdown()
     }
 
     // Update the state to the latest value.
@@ -333,6 +369,7 @@ export const RichMarkdownEditor: React.FC<EditorProps> = ({
         {/* <EmojiPopupComponent /> */}
         {children}
         {/* <ProsemirrorDevTools /> */}
+        <ImperativeHandle ref={editorRef} />
       </Remirror>
     </ThemeProvider>
     // </AllStyledComponent>
