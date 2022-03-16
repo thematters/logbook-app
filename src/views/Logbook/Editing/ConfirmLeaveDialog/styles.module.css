@@ -1,0 +1,16 @@
+.text {
+  margin: 5rem 0 3rem;
+  text-align: center;
+}
+
+.buttons {
+  @mixin flex-center-all;
+
+  flex-direction: column-reverse;
+
+  @media (--sm-up) {
+    flex-flow: row;
+    column-gap: var(--spacing-base);
+    margin: var(--spacing-xx-loose) auto;
+  }
+}

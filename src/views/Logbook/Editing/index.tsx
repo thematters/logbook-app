@@ -2,7 +2,7 @@ import _debounce from "lodash/debounce";
 import { ethers, utils } from "ethers";
 import React, { useEffect, useState, useRef } from "react";
 import dynamic from "next/dynamic";
-import { useContract, useContractWrite, useFeeData, useProvider, useWaitForTransaction } from "wagmi";
+import { useContract, useContractWrite, useFeeData, useProvider } from "wagmi";
 
 import {
   Button,
@@ -17,6 +17,9 @@ import { useResponsive } from "~/hooks";
 
 import type { EditorRef } from "~/components/RichMarkdownEditor/markdown-editor";
 
+import { ConfirmLeaveDialog } from "./ConfirmLeaveDialog";
+import { WaitCompleteDialog } from "./WaitCompleteDialog";
+
 const RichMarkdownEditor = dynamic(
   () => import("~/components/RichMarkdownEditor"),
   {
@@ -29,25 +32,30 @@ import styles from "./styles.module.css";
 
 interface Props {
   id: string;
+  title?: string;
+  description?: string;
   transferCount: string;
   content: string;
   setContent: (arg0: string) => void;
   onLeave: () => any;
 }
 
-const Editor: React.FC<Props> = ({ id, content, setContent, onLeave }) => {
-  const [{ data: dataPublishing, loading: publishWaiting }, publish] = useContractWrite(
-    {
-      addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!,
-      contractInterface: logbookInterface,
-    },
-    "publish"
-  );
-  const [{ loading: waitForTransaction }, wait] = useWaitForTransaction({
-    // '0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060',
-    // hash: dataPublishing?.hash,
-    skip: true,
-  })
+export const Editing: React.FC<Props> = ({
+  id,
+  title,
+  description,
+  content,
+  setContent,
+  onLeave,
+}) => {
+  const [{ data: dataPublishing, loading: publishWaiting }, publish] =
+    useContractWrite(
+      {
+        addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!,
+        contractInterface: logbookInterface,
+      },
+      "publish"
+    );
 
   const [isEditing, enableEditing] = useState(false);
   const isSmallUp = useResponsive("sm-up");
@@ -69,7 +77,7 @@ const Editor: React.FC<Props> = ({ id, content, setContent, onLeave }) => {
   });
 
   useEffect(() => {
-    console.log('initial content:', content);
+    console.log("initial content:", content);
   }, [content]);
 
   const editorUpdate = _debounce(async ({ content }: { content: string }) => {
@@ -127,53 +135,68 @@ const Editor: React.FC<Props> = ({ id, content, setContent, onLeave }) => {
       return;
     }
 
-    if (!error) {
-      // published
-      console.log("published:", data);
+    // openDialog();
 
-      const { data: dataWait, error } = await wait({
-        hash: data.hash,
-        confirmations: 3,
-      });
+    // published
+    console.log("published:", data);
 
-      console.log("waited:", dataWait, error);
+    /*
+    const { data: dataWait, error } = await wait({
+      hash: data.hash,
+      confirmations: 3,
+    });
 
-      // save and leave editor
-      setContent(editorRef.current?.getMarkdown());
-      onLeave();
-    }
+    console.log("waited:", dataWait, error); */
+
+    // save and leave editor
+    setContent(editorRef.current?.getMarkdown());
+    // onLeave();
   };
 
   const buttonGroup = (
     <div className={styles.buttonGroup}>
-      <Button
-        width="7.5rem"
-        height="3rem"
-        bgColor="white"
-        borderRadius="1.75rem"
-        shadow
-        onClick={() => {
-          console.log("leave");
-          // enableEditing(false);
-          onLeave();
+      <ConfirmLeaveDialog onLeave={onLeave}>
+        {({ openDialog }) => (
+          <Button
+            width="7.5rem"
+            height="3rem"
+            bgColor="white"
+            borderRadius="1.75rem"
+            shadow
+            onClick={() => {
+              console.log("leave");
+              // enableEditing(false);
+              // onLeave();
+              openDialog();
 
-          setContent(editorRef.current?.getMarkdown());
-        }}
+              setContent(editorRef.current?.getMarkdown());
+            }}
+          >
+            <TextIcon>Leave</TextIcon>
+          </Button>
+        )}
+      </ConfirmLeaveDialog>
+      <WaitCompleteDialog
+        hash={publishWaiting ? (dataPublishing?.hash as string) : ""}
       >
-        <TextIcon>Leave</TextIcon>
-      </Button>
-      <Button
-        width="7.5rem"
-        height="3rem"
-        bgColor="blueGreen"
-        // bgActiveColor="greenLighter"
-        borderRadius="1.75rem"
-        shadow
-        disabled={publishWaiting}
-        onClick={onPublish}
-      >
-        <TextIcon color="white">Publish</TextIcon>
-      </Button>
+        {({ openDialog }) => (
+          <Button
+            width="7.5rem"
+            height="3rem"
+            bgColor="blueGreen"
+            // bgActiveColor="greenLighter"
+            borderRadius="1.75rem"
+            shadow
+            disabled={publishWaiting}
+            onClick={() => {
+              openDialog();
+              onPublish();
+            }}
+          >
+            <TextIcon color="white">Publish</TextIcon>
+          </Button>
+        )}
+      </WaitCompleteDialog>
     </div>
   );
 
@@ -183,7 +206,6 @@ const Editor: React.FC<Props> = ({ id, content, setContent, onLeave }) => {
         <div className={styles.gasEstimate}>Gas: {estimate} MATIC</div>
         {isSmallUp && buttonGroup}
         {publishWaiting && <>publishWaiting</>}
-        {waitForTransaction && <>waitForTransaction</>}
       </div>
       <RichMarkdownEditor
         placeholder="Write *something*..."
@@ -256,5 +278,3 @@ const Editor: React.FC<Props> = ({ id, content, setContent, onLeave }) => {
     </section>
   );
 };
-
-export default Editor;

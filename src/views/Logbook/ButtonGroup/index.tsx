@@ -50,11 +50,19 @@ const DropdownMenu: React.FC<{ id: string; openSettingsDialog: () => any }> = ({
 interface Props {
   // hex id
   id: string;
+  title?: string;
+  description?: string;
   isOwn: boolean;
   onEdit: () => any;
 }
 
-export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => {
+export const ButtonGroup: React.FC<Props> = ({
+  id,
+  title,
+  description,
+  isOwn,
+  onEdit,
+}) => {
   const [isEditing, enableEditing] = useState(false);
 
   return (
@@ -92,7 +100,7 @@ export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => {
             )}
           </GiftTransferDialog>
 
-          <SettingsDialog tokenId={id}>
+          <SettingsDialog tokenId={id} title={title} description={description}>
             {({ openDialog: openSettingsDialog }) => (
               <DropdownDialog
                 dropdown={{

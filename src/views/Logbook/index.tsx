@@ -7,7 +7,7 @@ import { Head, Spinner } from "~/components";
 import { LOGBOOK_DETAIL } from "~/components/GQL";
 
 import { Book } from "./Book";
-import Editor from "./Editor";
+import { Editing } from "./Editing";
 
 import styles from "./styles.module.css";
 
@@ -34,9 +34,14 @@ const Logbook: React.FC = () => {
   }, [logbookDetail, accountData]);
 
   const [initialContent, setContent] = useState<string>(
-    logbookDetail?.logbook?.publications?.[0]?.log?.content,
+    logbookDetail?.logbook?.publications?.[0]?.log?.content
     // logbookDetail?.logbook?.publications?.[0]?.log?.content
   );
+
+  useEffect(() => {
+    if (!logbookDetail?.logbook) return;
+    setContent(logbookDetail.logbook.publications?.[0]?.log?.content);
+  }, [logbookDetail]);
 
   if (loading) {
     return <Spinner />;
@@ -57,20 +62,20 @@ const Logbook: React.FC = () => {
         {accountData &&
         accountData?.address.toLowerCase() === owner?.id.toLowerCase() &&
         isEditing ? (
-          <Editor
+          <Editing
             id={tokenID}
             transferCount={transferCount}
             content={initialContent}
             setContent={setContent}
             onLeave={() => enableEditing(false)}
-          ></Editor>
+          />
         ) : (
           <Book
             tokenID={id}
-            title={title}
-            transferCount={transferCount}
-            description={description}
-            publications={publications}
+            title={logbookDetail.logbook.title}
+            transferCount={logbookDetail.logbook.transferCount}
+            description={logbookDetail.logbook.description}
+            publications={logbookDetail.logbook.publications}
             isOwn={
               accountData?.address.toLowerCase() === owner?.id.toLowerCase()
             }

@@ -118,7 +118,13 @@ export const Book: React.FC<BookProps> = ({
       )}
       {!isSmallUp ? (
         <section className={buttonGroupClasses}>
-          <ButtonGroup id={tokenID} onEdit={onEdit} isOwn={isOwn} />
+          <ButtonGroup
+            id={tokenID}
+            onEdit={onEdit}
+            isOwn={isOwn}
+            title={title}
+            description={description}
+          />
         </section>
       ) : (
         ""
