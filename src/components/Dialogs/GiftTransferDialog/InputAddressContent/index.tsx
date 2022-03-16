@@ -19,7 +19,7 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
       addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "",
       contractInterface: logbookInterface,
     },
-    "safeTransferFrom"
+    "transferFrom"
   );
 
   const account = accountData?.address;
@@ -36,16 +36,20 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
   ) => {
     // TODO: analytics
 
-    console.log("transfering to:", address);
+    console.log("transfering to:", [account, address, tokenId]);
 
-    const { error } = await transfer({
+    const { data, error } = await transfer({
       args: [account, address, tokenId],
     });
+
+    console.log("transfering to:", [account, address, tokenId], { data, error });
 
     if (error) {
       formik.setErrors({ address: error?.message || "Failed to transfer" });
       return;
     }
+
+    console.log('transfered:', data);
 
     next();
   };
@@ -95,7 +99,7 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
           <Dialog.Footer.Button
             color="green"
             type="submit"
-            disabled={ensLoading || isSubmitting || !isValid}
+            disabled={ensLoading || isSubmitting || transferLoading || !isValid}
             onClick={submitForm}
           >
             Send
