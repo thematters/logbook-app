@@ -13,17 +13,19 @@ export const Nav: React.FC<NavProps> = ({ tokenID }) => {
   // TODO: book id
   return (
     <section className={styles.container}>
-      <Link href="bookcase" passHref>
-        <TextIcon
-          icon={<IconAngleLeft size="smS" />}
-          color="grey"
-          weight="bold"
-        >
-          My Bookcase<span className={styles.interpunct}>·</span>
-        </TextIcon>
+      <Link href="/bookcase">
+        <a>
+          <TextIcon
+            icon={<IconAngleLeft size="smS" />}
+            color="grey"
+            weight="bold"
+          >
+            My Bookcase<span className={styles.interpunct}>・</span>
+          </TextIcon>
+        </a>
       </Link>
       <TextIcon color="blueGreen" weight="bold">
-        <span>#</span>
+        <span>#&nbsp;</span>
         <span>{tokenID}</span>
       </TextIcon>
     </section>

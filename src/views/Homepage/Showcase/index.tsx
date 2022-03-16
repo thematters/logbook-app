@@ -12,7 +12,7 @@ export const Showcase = () => {
   return (
     <Container>
       <section className={styles.showcase}>
-        <style global jsx>{`
+        <style jsx>{`
           .swiper{
             overflow: initial
           }
@@ -34,10 +34,10 @@ export const Showcase = () => {
             background-position: left top;
             background-size: contain;
             opacity: 0;
-            transition: opacity .3s ease
+            transition: opacity .5s ease
           }
           .swiper-slide .content{
-            transition: opacity .3s ease;
+            transition: opacity .5s ease;
             width: 396px;
             position: absolute;
             left: calc(100% + 160px);
@@ -55,10 +55,10 @@ export const Showcase = () => {
             opacity: 1
           }
           .swiper-slide-prev figure{
-            animation: changeShapes .3s ease forwards;
+            animation: changeShapes .5s ease forwards;
             width: 353px;
             height: 391px;
-            transition: transform .3s ease;
+            transition: transform .5s ease;
             transform: translate(86px, 78px)
           }
           .swiper-slide-prev figure img{

@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-// import { ethers } from "ethers";
+import { ethers } from "ethers";
+import Link from "next/link";
 
 import { capitalizeFirstLetter } from "~/utils";
 
@@ -19,7 +20,8 @@ export interface LogbookCardProps {
   content: string;
   publicationCount: string;
   transferCount: string;
-  tokenID?: string;
+  tokenID: string;
+  showHeader?: boolean;
   createdAt?: Date;
   giftSign?: boolean;
   txHash?: string;
@@ -40,6 +42,7 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
   publicationCount,
   transferCount,
   tokenID,
+  showHeader,
   createdAt,
   giftSign,
   txHash,
@@ -73,26 +76,29 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
   });
 
   return (
-    <div className={containerClass}>
-      {!!tokenID ? (
-        <Header tokenID={tokenID} createdAt={createdAt} txHash={txHash} />
-      ) : (
-        ""
-      )}
-      <Title
-        title={title}
-        date={createdAt}
-        giftSign={giftSign}
-        fixedHeight={fixedHeight}
-      />
-      <section>
-        <p className={contentClasses}>{content}</p>
-      </section>
-      <Footer
-        exchange={transferCount}
-        history={publicationCount}
-        txHash={!!footerHash && !!txHash ? txHash : ""}
-      ></Footer>
-    </div>
+    // TODO: link to log book inside page
+    <Link href={`logbook?id=${parseInt(tokenID, 16)}`} passHref>
+      <div className={containerClass}>
+        {!!tokenID && showHeader ? (
+          <Header tokenID={tokenID} createdAt={createdAt} txHash={txHash} />
+        ) : (
+          ""
+        )}
+        <Title
+          title={title}
+          date={createdAt}
+          giftSign={giftSign}
+          fixedHeight={fixedHeight}
+        />
+        <section>
+          <p className={contentClasses}>{content}</p>
+        </section>
+        <Footer
+          exchange={transferCount}
+          history={publicationCount}
+          txHash={!!footerHash && !!txHash ? txHash : ""}
+        ></Footer>
+      </div>
+    </Link>
   );
 };

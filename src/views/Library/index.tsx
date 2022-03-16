@@ -37,26 +37,28 @@ const Library: React.FC = () => {
     <>
       <Head title="Library" />
 
-      <section className={styles.header}>
-        <h1 className={styles.title}>Library</h1>
-        <div className={styles.searchBarWrapper}>
-          <SearchBar onSearch={(e) => console.log(e)} />
-        </div>
-      </section>
+      <section className={styles.maxWidth}>
+        <section className={styles.header}>
+          <h1 className={styles.title}>Library</h1>
+          <div className={styles.searchBarWrapper}>
+            <SearchBar onSearch={(e) => console.log(e)} />
+          </div>
+        </section>
 
-      <BookList />
-      <style jsx global>
-        {`
-          html {
-            background-color: var(--color-white);
-          }
-          @media (min-width: 768px) {
-            div.l-container > main.l-row {
-              z-index: var(--z-index-header);
+        <BookList />
+        <style jsx global>
+          {`
+            html {
+              background-color: var(--color-white);
             }
-          }
-        `}
-      </style>
+            @media (min-width: 768px) {
+              div.l-container > main.l-row {
+                z-index: var(--z-index-header);
+              }
+            }
+          `}
+        </style>
+      </section>
     </>
   );
 };

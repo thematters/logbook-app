@@ -19,3 +19,20 @@ export const walletConnectConnector = new WalletConnectConnector({
     qrcode: true,
   },
 });
+
+export const maskAddress = (address: string, prefixLen: number = 6) => {
+  return `${address.substring(0, prefixLen)}...${address.substring(
+    address.length - 4
+  )}`;
+};
+
+export const toPolygonAddressUrl = (address: string) => {
+  const domain = isProd ? "polygonscan.com" : "mumbai.polygonscan.com";
+  const maskedAddress = maskAddress(address);
+
+  return {
+    url: `https://${domain}/address/${address}`,
+    address,
+    maskedAddress,
+  };
+};

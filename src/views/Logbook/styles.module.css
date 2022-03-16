@@ -1,0 +1,6 @@
+.maxWidth {
+  @media (--sm-up) {
+    width: var(--container-width-sm-up);
+    margin: auto;
+  }
+}

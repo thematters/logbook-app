@@ -10,6 +10,7 @@ export const LIBRARY_LOGBOOKS = gql`
     ) {
       id
       title
+      # description
       publications(first: 1, orderBy: createdAt, orderDirection: desc) {
         log {
           content
@@ -21,6 +22,29 @@ export const LIBRARY_LOGBOOKS = gql`
         id
       }
       loggedAt
+    }
+  }
+`;
+
+export const LOGBOOK_DETAIL = gql`
+  query LogbookDetail($id: String) {
+    logbook(id: $id) {
+      id
+      owner {
+        id
+        balance
+      }
+      cover
+      title
+      description
+      forkPrice
+      publications {
+        id
+        log {
+          id
+          content
+        }
+      }
     }
   }
 `;
