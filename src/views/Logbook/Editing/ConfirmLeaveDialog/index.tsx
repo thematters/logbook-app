@@ -45,7 +45,7 @@ const BaseDialog: React.FC<DialogProps> = ({
               borderRadius="5rem"
               onClick={closeDialog}
             >
-              <TextIcon>Continue</TextIcon>
+              <TextIcon>Keep editing</TextIcon>
             </Button>
           </section>
         </Dialog.Footer>

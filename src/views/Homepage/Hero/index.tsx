@@ -13,8 +13,8 @@ export const Hero = () => {
     <section className={styles.hero}>
       <Container className={styles.content}>
         <section className={styles.intro}>
-          <h2>Deliver value and share benefits</h2>
-          <p className={styles.subtitle}>Create, Transfer, Relay</p>
+          <h2>A Collective Book of Your Web3 Trek</h2>
+          <p className={styles.subtitle}>Transfer to co-create</p>
         </section>
 
         <section className={styles.dynamic}>

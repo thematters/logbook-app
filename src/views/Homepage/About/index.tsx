@@ -22,11 +22,9 @@ export const About = () => {
           </TextIcon>
           <p className={styles.subtitle}>Powering the future of Web3</p>
           <p className={styles.content}>
-            Matters Lab was established in 2018, with the mission to create a
-            freer and fairer creator ecosystem through the next evolution of the
-            Internet, Web3. Our initiatives include using decentralization tools
-            to protect digital rights, design a self-governing system and
-            community, and invent models for a new creator economy.
+            Matters Lab is building a Web3 social media ecosystem that makes
+            possible co-creation and monetization of digital assets with
+            autonomy.
           </p>
         </section>
         <section className={styles.links}>

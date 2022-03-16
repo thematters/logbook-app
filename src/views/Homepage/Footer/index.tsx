@@ -44,13 +44,13 @@ const Footer = () => {
       )}
 
       <div className={styles.designerlogo}>
-        <div>2022, Designed by Matters.</div>
+        <div>2022, Designed by Matters Lab.</div>
       </div>
 
       {isSmallUp && (
         <div className={styles.links}>
           <a href={process.env.NEXT_PUBLIC_MATTERS_LINK} target="_blank">
-            <div>Matters</div>
+            <div>Matters.News</div>
           </a>
           <a href={process.env.NEXT_PUBLIC_OPENSEA_LINK} target="_blank">
             <div>Opensea</div>
