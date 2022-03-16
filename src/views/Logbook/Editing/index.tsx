@@ -230,6 +230,9 @@ export const Editing: React.FC<Props> = ({
 
           .remirror-theme .remirror-toolbar {
             background-color: transparent;
+            position: sticky;
+            top: 0;
+            z-index: var(--z-index-above);
           }
 
           .remirror-theme .ProseMirror,
