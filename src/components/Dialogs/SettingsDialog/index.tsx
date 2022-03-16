@@ -62,7 +62,7 @@ const BaseDialog: React.FC<DialogProps> = ({ tokenId, children }) => {
       ].filter(Boolean),
     ];
 
-    const { error } = await multicall({ args: calldata });
+    const { data, error } = await multicall({ args: calldata });
 
     if (error) {
       console.error("error:", error, formik);
@@ -71,8 +71,11 @@ const BaseDialog: React.FC<DialogProps> = ({ tokenId, children }) => {
         title: error?.message || "Failed to set title and summary",
         // summary: errorSummary?.message || "Failed to set summary",
       });
-      return;
     }
+
+    console.log("set title&summary:", data);
+
+    closeDialog();
   };
 
   /* const onValidate = async ({

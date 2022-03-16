@@ -111,7 +111,7 @@ const Dialog: React.FC<DialogProps> = (props) => {
     } else {
       setFade({ opacity: 0, transform: "translateY(100%)" });
     }
-  });
+  }, [isOpen, setFade, setMounted]);
 
   const AnimatedDialogOverlay = animated(DialogOverlay);
   const AnimatedContainer = animated(Container);

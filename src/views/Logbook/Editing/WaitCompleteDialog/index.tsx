@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useWaitForTransaction } from "wagmi";
+import Link from "next/link";
 
 import { Dialog } from "~/components";
 import { useDialogSwitch } from "~/hooks";
@@ -7,11 +8,18 @@ import { useDialogSwitch } from "~/hooks";
 import styles from "./styles.module.css";
 
 interface DialogProps {
+  id: string;
   hash: string;
-  children: ({ openDialog }: { openDialog: () => void }) => React.ReactNode;
+  children: ({
+    openDialog,
+    closeDialog,
+  }: {
+    openDialog: () => void;
+    closeDialog?: () => void;
+  }) => React.ReactNode;
 }
 
-const BaseDialog: React.FC<DialogProps> = ({ hash, children }) => {
+const BaseDialog: React.FC<DialogProps> = ({ id, hash, children }) => {
   const [{ data: dataWait, loading: waitForTransaction }, wait] =
     useWaitForTransaction({
       hash,
@@ -27,24 +35,30 @@ const BaseDialog: React.FC<DialogProps> = ({ hash, children }) => {
 
   return (
     <>
-      {children({ openDialog })}
+      {children({ openDialog, closeDialog })}
 
       <Dialog isOpen={show} onDismiss={closeDialog}>
         <Dialog.Content>
           {!hash ? (
+            <p className={styles.text}>waiting for publishing</p>
+          ) : hash && waitForTransaction ? (
             <p className={styles.text}>
-              waiting for transaction{" "}
-              {hash && <a href="">polygon/link/{hash}</a>}
+              waiting for confirmation:{" "}
+              <a href={`https://mumbai.polygonscan.com/tx/${hash}`}>link</a>
             </p>
           ) : (
-            <p className={styles.text}>Publish successfully🎉</p>
+            <p className={styles.text}>
+              Published successfully🎉{" "}
+              <a href={`https://mumbai.polygonscan.com/tx/${hash}`}>link</a>
+            </p>
           )}
         </Dialog.Content>
 
         <Dialog.Footer.Button
           textColor="black"
           bgColor="greyLighter"
-          onClick={closeDialog}
+          // onClick={closeDialog}
+          htmlHref={`/logbook/?id=${id}`}
         >
           Back to Logbook
         </Dialog.Footer.Button>
@@ -55,6 +69,8 @@ const BaseDialog: React.FC<DialogProps> = ({ hash, children }) => {
 
 export const WaitCompleteDialog = (props: DialogProps) => (
   <Dialog.Lazy mounted={<BaseDialog {...props} />}>
-    {({ openDialog }) => <>{props.children({ openDialog })}</>}
+    {({ openDialog, closeDialog }) => (
+      <>{props.children({ openDialog, closeDialog })}</>
+    )}
   </Dialog.Lazy>
 );

@@ -18,12 +18,12 @@ export interface Publication {
   log: Log;
 }
 
-type Logbook = {
+export type Logbook = {
   id: string;
   title?: string;
   description?: string;
   transferCount?: number;
-  publications?: [Publication];
+  publications: [Publication];
 };
 
 export const LogbookContext = React.createContext({} as Logbook);

@@ -28,7 +28,7 @@ export const ConnectedAccountButton: React.FC<ConnectedAccountButtonProps> = ({
     if (!account) {
       gotoConnectWallet();
     }
-  }, [account]);
+  }, [account, gotoConnectWallet]);
 
   return (
     <SelectButton

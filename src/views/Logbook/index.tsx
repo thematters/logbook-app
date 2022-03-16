@@ -64,15 +64,14 @@ const Logbook: React.FC = () => {
             accountData?.address.toLowerCase() === owner?.id.toLowerCase() &&
             isEditing ? (
               <Editing
-                id={tokenID}
-                transferCount={logbookDetail.logbook.transferCount}
+                id={id}
                 content={initialContent}
                 setContent={setContent}
                 onLeave={() => enableEditing(false)}
               />
             ) : (
               <Book
-                tokenID={id}
+                id={id}
                 // title={logbookDetail.logbook.title}
                 // transferCount={logbookDetail.logbook.transferCount}
                 // description={logbookDetail.logbook.description}

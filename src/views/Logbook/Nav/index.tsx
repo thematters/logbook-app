@@ -6,10 +6,10 @@ import { IconAngleLeft, TextIcon } from "~/components";
 import styles from "./styles.module.css";
 
 export interface NavProps {
-  tokenID: String;
+  id: String;
 }
 
-export const Nav: React.FC<NavProps> = ({ tokenID }) => {
+export const Nav: React.FC<NavProps> = ({ id }) => {
   return (
     <section className={styles.container}>
       <Link href="/bookcase">
@@ -25,7 +25,7 @@ export const Nav: React.FC<NavProps> = ({ tokenID }) => {
       </Link>
       <TextIcon color="blueGreen" weight="bold">
         <span>#&nbsp;</span>
-        <span>{tokenID}</span>
+        <span>{id}</span>
       </TextIcon>
     </section>
   );

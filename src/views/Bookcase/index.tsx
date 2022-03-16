@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Button, Head } from "~/components";
 import { useAccount } from "wagmi";
 import { useRouter } from "next/router";

@@ -5,6 +5,7 @@ interface DialogLazyProps {
     openDialog,
   }: {
     openDialog: () => void;
+    closeDialog?: () => void;
   }) => React.ReactChild | React.ReactChild[] | React.ReactNode;
   mounted: React.ReactChild | React.ReactChild[] | React.ReactNode;
 }

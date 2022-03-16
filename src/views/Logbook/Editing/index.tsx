@@ -32,9 +32,6 @@ import styles from "./styles.module.css";
 
 interface Props {
   id: string;
-  title?: string;
-  description?: string;
-  transferCount: string;
   content: string;
   setContent: (arg0: string) => void;
   onLeave: () => any;
@@ -42,8 +39,6 @@ interface Props {
 
 export const Editing: React.FC<Props> = ({
   id,
-  title,
-  description,
   content,
   setContent,
   onLeave,
@@ -57,7 +52,6 @@ export const Editing: React.FC<Props> = ({
       "publish"
     );
 
-  const [isEditing, enableEditing] = useState(false);
   const isSmallUp = useResponsive("sm-up");
 
   const [estimate, setEstimate] = useState("0.05");
@@ -71,7 +65,10 @@ export const Editing: React.FC<Props> = ({
     signerOrProvider: provider,
   });
 
-  const [{ data: feeData, error: errorFeeData }, getFeeData] = useFeeData({
+  const [
+    { data: feeData, loading: loadingFeeData, error: errorFeeData },
+    getFeeData,
+  ] = useFeeData({
     // skip: true,
     watch: true,
   });
@@ -85,8 +82,12 @@ export const Editing: React.FC<Props> = ({
     setContent(content);
 
     // estimate
-    if (errorFeeData) {
-      console.error(`error getting fee:`, errorFeeData);
+    if (errorFeeData || loadingFeeData) {
+      console.error(
+        `error getting fee or still loading:`,
+        errorFeeData,
+        loadingFeeData
+      );
       return;
     }
 
@@ -107,9 +108,10 @@ export const Editing: React.FC<Props> = ({
     const { gasPrice, maxPriorityFeePerGas } = feeData!;
 
     const estimate = utils.formatUnits(
-      maxGasNeeded.mul(
-        ethers.BigNumber.from(0).add(gasPrice!).add(maxPriorityFeePerGas!)
-      )
+      ethers.BigNumber.from(0)
+        .add(gasPrice!)
+        .add(maxPriorityFeePerGas!)
+        .mul(maxGasNeeded)
     );
 
     console.log("get feeData:", {
@@ -123,34 +125,19 @@ export const Editing: React.FC<Props> = ({
 
   const onPublish = async () => {
     const content = editorRef.current?.getMarkdown();
-    console.log("publish:", { content });
-    // editorRef.current!.setContent(`### title3`);
+    setContent(content);
+    console.log("to publish:", { content });
 
     const { data, error } = await publish({
       args: [id, content],
     });
 
     if (error) {
-      console.error("publish error:", error);
-      return;
+      // console.error("publish error:", error);
+      throw error; // to close dialog
     }
 
-    // openDialog();
-
-    // published
-    console.log("published:", data);
-
-    /*
-    const { data: dataWait, error } = await wait({
-      hash: data.hash,
-      confirmations: 3,
-    });
-
-    console.log("waited:", dataWait, error); */
-
-    // save and leave editor
-    setContent(editorRef.current?.getMarkdown());
-    // onLeave();
+    return data;
   };
 
   const buttonGroup = (
@@ -165,7 +152,6 @@ export const Editing: React.FC<Props> = ({
             shadow
             onClick={() => {
               console.log("leave");
-              // enableEditing(false);
               // onLeave();
               openDialog();
 
@@ -176,10 +162,8 @@ export const Editing: React.FC<Props> = ({
           </Button>
         )}
       </ConfirmLeaveDialog>
-      <WaitCompleteDialog
-        hash={publishWaiting ? (dataPublishing?.hash as string) : ""}
-      >
-        {({ openDialog }) => (
+      <WaitCompleteDialog id={id} hash={dataPublishing?.hash as string}>
+        {({ openDialog, closeDialog }) => (
           <Button
             width="7.5rem"
             height="3rem"
@@ -190,7 +174,15 @@ export const Editing: React.FC<Props> = ({
             disabled={publishWaiting}
             onClick={() => {
               openDialog();
-              onPublish();
+              onPublish()
+                .then((data) => {
+                  // published
+                  console.log("published:", data);
+                })
+                .catch((err) => {
+                  console.error("publish error:", err);
+                  closeDialog?.();
+                });
             }}
           >
             <TextIcon color="white">Publish</TextIcon>
@@ -259,6 +251,10 @@ export const Editing: React.FC<Props> = ({
 
           .remirror-editor.ProseMirror {
             overflow-y: hidden;
+          }
+
+          .remirror-editor.ProseMirror img {
+            max-width: 100%;
           }
 
           .remirror-button {

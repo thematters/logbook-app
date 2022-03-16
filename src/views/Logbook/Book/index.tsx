@@ -4,20 +4,21 @@ import { Button, IconEmptyBook, TextIcon } from "~/components";
 import { Nav } from "../Nav";
 import { Transfer } from "../Transfer";
 import { ButtonGroup } from "../ButtonGroup";
-import { LogList, Publication } from "../LogList";
+import { LogList } from "../LogList";
 
 import styles from "./styles.module.css";
 
 import { useResponsive, LogbookContext } from "~/hooks";
+import type { Logbook } from "~/hooks";
 
 export interface BookProps {
-  tokenID: string;
+  id: string;
   isOwn: boolean;
   onEdit: () => any;
 }
 
 export const Book: React.FC<BookProps> = ({
-  tokenID,
+  id,
   // publications,
   isOwn,
   onEdit,
@@ -35,6 +36,8 @@ export const Book: React.FC<BookProps> = ({
     console.log("title&summary: ", logbook);
   }, [logbook]);
 
+  if (!logbook) return <></>;
+
   const titleClasses = classNames({
     [styles.title]: true,
     [styles.placeholderTitle]: !logbook.title,
@@ -42,36 +45,29 @@ export const Book: React.FC<BookProps> = ({
 
   const buttonGroupClasses = classNames({
     [styles.bottomButton]:
-      !logbook.description && logbook.publications.length == 0,
+      !logbook.description && !logbook.publications?.length,
   });
 
   return (
     <div className={styles.container}>
       <section className={styles.nav}>
-        <Nav tokenID={tokenID} />
+        <Nav id={id} />
       </section>
       <section className={titleClasses}>
         {logbook.title || "Edit title in setting page"}
       </section>
       <section className={styles.transfer}>
         <Transfer transferCount={logbook.transferCount} />
-        {isSmallUp ? (
-          <ButtonGroup id={tokenID} onEdit={onEdit} isOwn={isOwn} />
-        ) : (
-          ""
-        )}
+        {isSmallUp ? <ButtonGroup id={id} onEdit={onEdit} isOwn={isOwn} /> : ""}
       </section>
       {logbook.description && (
-        <section className={`${styles.articleBody} ${styles.flexStart}`}>
+        <section className={classNames([styles.articleBody, styles.flexStart])}>
           {logbook.description}
         </section>
       )}
-      {logbook.publications.length > 0 && (
-        <>
-          <LogList publications={logbook.publications} />
-        </>
-      )}
-      {!logbook.description && logbook.publications.length == 0 && (
+      {logbook.publications.length > 0 ? (
+        <LogList />
+      ) : (
         <>
           <section className={styles.articleTitle}>
             {isOwn
@@ -118,7 +114,7 @@ export const Book: React.FC<BookProps> = ({
       )}
       {!isSmallUp ? (
         <section className={buttonGroupClasses}>
-          <ButtonGroup id={tokenID} onEdit={onEdit} isOwn={isOwn} />
+          <ButtonGroup id={id} onEdit={onEdit} isOwn={isOwn} />
         </section>
       ) : (
         ""
