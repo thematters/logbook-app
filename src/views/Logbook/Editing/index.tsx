@@ -244,6 +244,7 @@ export const Editing: React.FC<Props> = ({
             padding: unset;
             border-radius: unset;
             outline: none;
+            color: var(--color-grey-darker);
           }
 
           .remirror-theme a:link,

@@ -10,6 +10,10 @@
 }
 
 .markdown {
+  & p {
+    color: var(--color-grey-darker);
+  }
+
   & img {
     max-width: 100%;
   }
@@ -37,12 +41,20 @@
 
   &:not(pre) > code,
   & pre {
-    background-color: #ededed;
+    background-color: var(--color-grey-markdown-background);
   }
 
   & code,
   & pre {
     color: var(--color-black);
+  }
+
+  & blockquote {
+    padding-left: 20px;
+    margin-right: 0;
+    margin-left: 0;
+    font-style: italic;
+    border-left: 4px solid var(--color-grey);
   }
 }
 
