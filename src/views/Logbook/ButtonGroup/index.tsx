@@ -25,14 +25,18 @@ import styles from "./styles.module.css";
 const DropdownMenu: React.FC<{
   id: string;
   openSettingsDialog: () => any;
-  openShareDialog: () => any;
-}> = ({ id, openSettingsDialog, openShareDialog }) => (
+  // openShareDialog: () => any;
+}> = ({ id, openSettingsDialog }) => (
   <ul role="menu" className={classNames(["reset", styles.menu])}>
     <li role="menu-item">
-      <Card onClick={openShareDialog}>
-        <IconShareFat size="md" />
-        <TextIcon>Share this Logbook</TextIcon>
-      </Card>
+      <ShareDialog>
+        {({ openDialog: openShareDialog }) => (
+          <Card onClick={openShareDialog}>
+            <IconShareFat size="md" />
+            <TextIcon>Share this Logbook</TextIcon>
+          </Card>
+        )}
+      </ShareDialog>
     </li>
     <li role="menu-item">
       <Card htmlHref={toOpenseaUrl(id)} htmlTarget="_blank">
@@ -66,18 +70,6 @@ export const ButtonGroup: React.FC<Props> = ({
   onEdit,
 }) => {
   // const [isEditing, enableEditing] = useState(false);
-
-  const dropdownMenu = (
-    <ShareDialog>
-      {({ openDialog: openShareDialog }) => (
-        <DropdownMenu
-          id={id}
-          openSettingsDialog={openSettingsDialog}
-          openShareDialog={openShareDialog}
-        />
-      )}
-    </ShareDialog>
-  );
 
   return (
     <section className={styles.container}>
@@ -118,12 +110,22 @@ export const ButtonGroup: React.FC<Props> = ({
             {({ openDialog: openSettingsDialog }) => (
               <DropdownDialog
                 dropdown={{
-                  content: dropdownMenu,
+                  content: (
+                    <DropdownMenu
+                      id={id}
+                      openSettingsDialog={openSettingsDialog}
+                    />
+                  ),
                   placement: "bottom-end",
                 }}
                 dialog={{
                   title: "moreActions",
-                  content: dropdownMenu,
+                  content: (
+                    <DropdownMenu
+                      id={id}
+                      openSettingsDialog={openSettingsDialog}
+                    />
+                  ),
                 }}
               >
                 {({ openDialog, ref }) => (
