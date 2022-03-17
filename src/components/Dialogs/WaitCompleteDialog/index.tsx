@@ -48,10 +48,10 @@ const BaseDialog: React.FC<DialogProps> = ({
     }
   }, [hash, confirmations, wait, onFinish]);
 
-  const hashLink = (
+  const HashLink = ({ hash }: { hash: string }) => (
     <>
       Transaction details:&nbsp;
-      <a href={toPolygonHashUrl(hash).url} target="_blank" rel="noreferrer">
+      <a href={toPolygonHashUrl(hash)} target="_blank" rel="noreferrer">
         link
       </a>
     </>
@@ -69,16 +69,16 @@ const BaseDialog: React.FC<DialogProps> = ({
               <br />
               Please check out your wallet dialog
             </p>
-          ) : hash && waitForTransaction ? (
+          ) : waitForTransaction ? (
             <p className={styles.text}>
               Waiting for confirmation... {dataWait?.confirmations}
               <br />
-              {hashLink}
+              <HashLink hash={hash} />
             </p>
           ) : (
             <p className={styles.text}>
               Publish successfully🎉 <br />
-              {hashLink}
+              <HashLink hash={hash} />
             </p>
           )}
         </Dialog.Content>

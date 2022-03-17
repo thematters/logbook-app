@@ -26,6 +26,13 @@ export const maskAddress = (address: string, prefixLen: number = 6) => {
   )}`;
 };
 
+export const formatHash = function (hash: string, isSmallUp = true) {
+  if (isSmallUp) {
+    return `${hash.slice(2, 6)}...${hash.slice(-4)}`;
+  }
+  return `${hash.slice(2, 4)}...${hash.slice(-3)}`;
+};
+
 export const toPolygonAddressUrl = (address: string) => {
   const domain = isProd ? "polygonscan.com" : "mumbai.polygonscan.com";
   const maskedAddress = maskAddress(address);
@@ -41,11 +48,7 @@ export const toPolygonHashUrl = (txHash: string) => {
   const domain = isProd ? "polygonscan.com" : "mumbai.polygonscan.com";
   const maskedHash = maskAddress(txHash);
 
-  return {
-    url: `https://${domain}/tx/${txHash}`,
-    txHash,
-    maskedHash,
-  };
+  return `https://${domain}/tx/${txHash}`;
 };
 
 export const toOpenseaUrl = (id: string) => {
