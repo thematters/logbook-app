@@ -1,6 +1,7 @@
 // Atomic
 export * from "./Card";
 export * from "./Container";
+export * from "./CopyToClipboard";
 export * from "./Button";
 export * from "./Icon";
 export * from "./InfiniteScroll";
@@ -23,3 +24,4 @@ export * from "./LogbookCard";
 export * from "./Dialogs";
 export * from "./Buttons";
 export * from "./GQL";
+export * from "./Share";

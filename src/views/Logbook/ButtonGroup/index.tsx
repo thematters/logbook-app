@@ -16,18 +16,20 @@ import {
   IconSettings,
   SettingsDialog,
   TextIcon,
+  ShareDialog,
 } from "~/components";
 import { toOpenseaUrl } from "~/utils";
 
 import styles from "./styles.module.css";
 
-const DropdownMenu: React.FC<{ id: string; openSettingsDialog: () => any }> = ({
-  id,
-  openSettingsDialog,
-}) => (
+const DropdownMenu: React.FC<{
+  id: string;
+  openSettingsDialog: () => any;
+  openShareDialog: () => any;
+}> = ({ id, openSettingsDialog, openShareDialog }) => (
   <ul role="menu" className={classNames(["reset", styles.menu])}>
     <li role="menu-item">
-      <Card>
+      <Card onClick={openShareDialog}>
         <IconShareFat size="md" />
         <TextIcon>Share this Logbook</TextIcon>
       </Card>
@@ -63,7 +65,19 @@ export const ButtonGroup: React.FC<Props> = ({
   isOwn,
   onEdit,
 }) => {
-  const [isEditing, enableEditing] = useState(false);
+  // const [isEditing, enableEditing] = useState(false);
+
+  const dropdownMenu = (
+    <ShareDialog>
+      {({ openDialog: openShareDialog }) => (
+        <DropdownMenu
+          id={id}
+          openSettingsDialog={openSettingsDialog}
+          openShareDialog={openShareDialog}
+        />
+      )}
+    </ShareDialog>
+  );
 
   return (
     <section className={styles.container}>
@@ -104,22 +118,12 @@ export const ButtonGroup: React.FC<Props> = ({
             {({ openDialog: openSettingsDialog }) => (
               <DropdownDialog
                 dropdown={{
-                  content: (
-                    <DropdownMenu
-                      id={id}
-                      openSettingsDialog={openSettingsDialog}
-                    />
-                  ),
+                  content: dropdownMenu,
                   placement: "bottom-end",
                 }}
                 dialog={{
                   title: "moreActions",
-                  content: (
-                    <DropdownMenu
-                      id={id}
-                      openSettingsDialog={openSettingsDialog}
-                    />
-                  ),
+                  content: dropdownMenu,
                 }}
               >
                 {({ openDialog, ref }) => (
@@ -154,19 +158,23 @@ export const ButtonGroup: React.FC<Props> = ({
           >
             <IconShoppingCart size="md" weight="bold" color="white" />
           </Button>
-
-          <Button
-            borderRadius="50%"
-            bgColor="white"
-            width="3rem"
-            height="3rem"
-            onClick={() => {
-              // TODO: analytics
-              // TODO: share
-            }}
-          >
-            <IconShareFat size="md" weight="bold" color="greyDarker" />
-          </Button>
+          <ShareDialog>
+            {({ openDialog: openShareDialog }) => (
+              <Button
+                borderRadius="50%"
+                bgColor="white"
+                width="3rem"
+                height="3rem"
+                onClick={() => {
+                  // TODO: analytics
+                  // TODO: share
+                  openShareDialog();
+                }}
+              >
+                <IconShareFat size="md" weight="bold" color="greyDarker" />
+              </Button>
+            )}
+          </ShareDialog>
         </div>
       )}
     </section>

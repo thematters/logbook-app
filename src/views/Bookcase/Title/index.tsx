@@ -41,26 +41,28 @@ export const Title: React.FC<TitleProps> = ({ address }) => {
   }
 
   const { url, maskedAddress } = toPolygonAddressUrl(address);
-
+  console.log({ url });
   return (
     <section>
       <section className={styles.title}>
-        {/* TODO: link to etherscan */}
-        <TextIcon
-          weight="bold"
-          color="black"
-          spacing="xTight"
-          {...titleProps}
-          icon={<IconEtherScan size={iconSize} />}
-        >
-          {maskedAddress}
-        </TextIcon>
+        <a href={url} target="_blank" rel="noreferrer">
+          <TextIcon
+            weight="bold"
+            color="black"
+            spacing="xTight"
+            {...titleProps}
+            icon={<IconEtherScan size={iconSize} />}
+          >
+            {maskedAddress}
+          </TextIcon>
+        </a>
       </section>
-      <section className={styles.bio}>
+      {/*  */}
+      {/* <section className={styles.bio}>
         <p>
           I turned my passion into a career | On a mission to save the world.
         </p>
-      </section>
+      </section> */}
     </section>
   );
 };
