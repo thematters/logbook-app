@@ -23,8 +23,8 @@ const BaseDialog: React.FC<DialogProps> = ({
         <Dialog.Header title="Leave" closeDialog={closeDialog} />
         <Dialog.Content>
           <p className={styles.text}>
-            Content you written will only stored in your browser. Do you want to
-            leave this page?
+            Content you written will only be stored in your browser. Do you want
+            to leave this page?
           </p>
         </Dialog.Content>
         <Dialog.Footer>
@@ -36,7 +36,7 @@ const BaseDialog: React.FC<DialogProps> = ({
               borderRadius="5rem"
               onClick={onLeave}
             >
-              <TextIcon>Leave</TextIcon>
+              <TextIcon color="black">Leave</TextIcon>
             </Button>
             <Button
               width="16rem"
@@ -45,7 +45,7 @@ const BaseDialog: React.FC<DialogProps> = ({
               borderRadius="5rem"
               onClick={closeDialog}
             >
-              <TextIcon>Keep editing</TextIcon>
+              <TextIcon color="white">Keep editing</TextIcon>
             </Button>
           </section>
         </Dialog.Footer>

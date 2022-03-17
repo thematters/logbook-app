@@ -10,6 +10,8 @@ import styles from "./styles.module.css";
 interface DialogProps {
   id: string;
   hash: string;
+  confirmations?: number;
+  onFinish?: () => void;
   children: ({
     openDialog,
     closeDialog,
@@ -19,19 +21,32 @@ interface DialogProps {
   }) => React.ReactNode;
 }
 
-const BaseDialog: React.FC<DialogProps> = ({ id, hash, children }) => {
+const BaseDialog: React.FC<DialogProps> = ({
+  id,
+  hash,
+  confirmations = 3,
+  onFinish,
+  children,
+}) => {
   const [{ data: dataWait, loading: waitForTransaction }, wait] =
     useWaitForTransaction({
-      hash,
-      confirmations: 3,
+      // hash,
+      // confirmations: 3,
+      // hash, confirmations,
       skip: true,
     });
 
   const { show, openDialog, closeDialog } = useDialogSwitch(true);
 
   useEffect(() => {
-    if (hash) wait({ hash }).then((data) => console.log("wait data:", data));
-  }, [hash, wait]);
+    if (hash) {
+      console.log(`start waiting on hash:`, { hash, confirmations });
+      wait({ hash, confirmations }).then((data) => {
+        console.log("wait data:", data, "onFinish:", onFinish);
+        onFinish?.();
+      });
+    }
+  }, [hash, confirmations, wait, onFinish]);
 
   const hashLink = (
     <>

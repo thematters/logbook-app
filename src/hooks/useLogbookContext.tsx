@@ -26,6 +26,7 @@ export type Logbook = {
   description?: string;
   transferCount?: number;
   publications: [Publication];
+  refetch: () => void;
 };
 
 export const LogbookContext = React.createContext({} as Logbook);

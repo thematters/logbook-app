@@ -35,6 +35,7 @@
   z-index: var(--z-index-behind);
   width: 94px;
   height: 109px;
+  clip-path: url("#clipping");
   background-image: url("/images/left-stone.png");
 
   @media (--sm-up) {
@@ -49,9 +50,10 @@
   z-index: var(--z-index-behind);
   width: 126.56px;
   height: 165.17px;
+  clip-path: url("#clipping");
 
   @media (--sm-up) {
-    right: 0;
+    right: 10px;
   }
 
   /* background-image: url("/images/right-stone.png"); */

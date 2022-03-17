@@ -23,6 +23,7 @@ const Logbook: React.FC = () => {
     loading,
     error,
     data: logbookDetail,
+    refetch,
     // fetchMore,
   } = useQuery(LOGBOOK_DETAIL, {
     variables: {
@@ -63,6 +64,7 @@ const Logbook: React.FC = () => {
               description: logbookDetail.logbook.description,
               transferCount: logbookDetail.logbook.transferCount,
               publications: logbookDetail.logbook.publications,
+              refetch,
             }}
           >
             <section className={styles.maxWidth}>
@@ -78,10 +80,6 @@ const Logbook: React.FC = () => {
               ) : (
                 <Book
                   id={id}
-                  // title={logbookDetail.logbook.title}
-                  // transferCount={logbookDetail.logbook.transferCount}
-                  // description={logbookDetail.logbook.description}
-                  // publications={logbookDetail.logbook.publications}
                   isOwn={
                     accountData?.address.toLowerCase() ===
                     owner?.id.toLowerCase()

@@ -1,0 +1,11 @@
+.halfArrow {
+  width: 12px;
+  height: 67px;
+  margin: 6rem auto;
+  background-image: url("/images/half-arrow.svg");
+
+  @media (--sm-up) {
+    width: 30px;
+    height: 130px;
+  }
+}

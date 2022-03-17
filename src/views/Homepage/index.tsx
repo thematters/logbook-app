@@ -6,6 +6,7 @@ import { Head, Layout, Header } from "~/components";
 import { IntroSection } from "./IntroSection";
 import { Showcase } from "./Showcase";
 import { RecentlyWritten } from "./RecentlyWritten";
+import { HalfArrow } from "./HalfArrow";
 import { FAQ } from "./FAQ";
 import { About } from "./About";
 
@@ -26,6 +27,7 @@ const Homepage: Page = () => {
       <Hero />
       <IntroSection />
       <Showcase />
+      <HalfArrow />
       <RecentlyWritten />
       <FAQ />
       <About />

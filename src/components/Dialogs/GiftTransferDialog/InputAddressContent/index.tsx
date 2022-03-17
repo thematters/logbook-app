@@ -1,9 +1,11 @@
+import { utils } from "ethers";
+import { useContext } from "react";
 import { useEnsResolveName, useContractWrite, useAccount } from "wagmi";
 import _debounce from "lodash/debounce";
-import { utils } from "ethers";
 import { Formik, FormikHelpers } from "formik";
 
 import { Dialog, Form } from "~/components";
+import { LogbookContext } from "~/hooks";
 import { logbookInterface } from "~/utils";
 
 type Props = {
@@ -23,6 +25,8 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
   );
 
   const account = accountData?.address;
+
+  const logbook = useContext(LogbookContext);
 
   const onSubmit = async (
     {
@@ -52,7 +56,8 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
       return;
     }
 
-    console.log("transfered:", data);
+    console.log("transfered:", data, "refetch:", logbook?.refetch);
+    logbook?.refetch();
 
     next();
   };
