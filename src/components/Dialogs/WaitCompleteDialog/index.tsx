@@ -45,10 +45,11 @@ const BaseDialog: React.FC<DialogProps> = ({
 
   const HashLink = ({ hash }: { hash: string }) => (
     <>
-      Transaction details:&nbsp;
+      Your transaction is confirmed:&nbsp;
       <a href={toPolygonHashUrl(hash)} target="_blank" rel="noreferrer">
         link
       </a>
+      . In the meanwhile, the network is indexing that might take few minutes.
     </>
   );
 
