@@ -25,6 +25,7 @@ export * from "./IconBookcase";
 export * from "./IconBookEye";
 export * from "./IconCheck";
 export * from "./IconClear";
+export * from "./IconCopy";
 export * from "./IconDiscord";
 export * from "./IconEdit";
 export * from "./IconEmptyBook";

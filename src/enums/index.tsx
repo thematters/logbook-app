@@ -21,3 +21,7 @@ export const Z_INDEX = {
   DIALOG: 200,
   OVER_DIALOG: 201,
 };
+
+// Toasts
+export const ADD_TOAST = "addToast";
+export const REMOVE_TOAST = "removeToast";

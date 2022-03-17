@@ -15,6 +15,7 @@ import {
   IconSettings,
   SettingsDialog,
   TextIcon,
+  ShareDialog,
 } from "~/components";
 import { toOpenseaUrl } from "~/utils";
 
@@ -145,19 +146,23 @@ export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => {
           >
             <IconShoppingCart size="md" weight="bold" color="white" />
           </Button>
-
-          <Button
-            borderRadius="50%"
-            bgColor="white"
-            width="3rem"
-            height="3rem"
-            onClick={() => {
-              // TODO: analytics
-              // TODO: share
-            }}
-          >
-            <IconShareFat size="md" weight="bold" color="greyDarker" />
-          </Button>
+          <ShareDialog>
+            {({ openDialog: openShareDialog }) => (
+              <Button
+                borderRadius="50%"
+                bgColor="white"
+                width="3rem"
+                height="3rem"
+                onClick={() => {
+                  // TODO: analytics
+                  // TODO: share
+                  openShareDialog();
+                }}
+              >
+                <IconShareFat size="md" weight="bold" color="greyDarker" />
+              </Button>
+            )}
+          </ShareDialog>
         </div>
       )}
     </section>
