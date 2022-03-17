@@ -18,6 +18,7 @@
   line-height: var(--line-height-article-body);
   color: var(--color-grey-dark);
 
+  & > a,
   & > span {
     margin-right: var(--spacing-base);
   }

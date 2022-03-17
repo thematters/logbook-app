@@ -1,6 +1,6 @@
 import React from "react";
 import Markdown from "markdown-to-jsx";
-import { formatHash, formatDate } from "~/utils";
+import { formatHash, formatDate, toPolygonAddressUrl } from "~/utils";
 
 import { Button, TextIcon, IconEtherScan } from "~/components";
 
@@ -22,6 +22,7 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   // console.log({ content });
   const isSmallUp = useResponsive("sm-up");
+  const { url, maskedAddress } = toPolygonAddressUrl(authorID);
   const formattedHash = `${authorID.slice(0, 4)}...${authorID.slice(-4)}`;
   const formattedDate = formatDate(new Date(Number(createdAt) * 1000));
   let borderRadius = "1rem";
@@ -46,7 +47,7 @@ export const Card: React.FC<CardProps> = ({
           height={height}
           bgColor="greyLighter"
           borderRadius={borderRadius}
-          is="span"
+          href={`/bookcase?address=${authorID}`}
         >
           <TextIcon spacing="xTight" color="greyDark">
             {formattedHash}
@@ -57,9 +58,11 @@ export const Card: React.FC<CardProps> = ({
           <span>{formattedDate}</span>
         </TextIcon>
 
-        <TextIcon
-          icon={isSmallUp ? <IconEtherScan size="md" /> : <IconEtherScan />}
-        ></TextIcon>
+        <a href={url} target="_blank" rel="noreferrer">
+          <TextIcon
+            icon={isSmallUp ? <IconEtherScan size="md" /> : <IconEtherScan />}
+          ></TextIcon>
+        </a>
       </section>
     </section>
   );

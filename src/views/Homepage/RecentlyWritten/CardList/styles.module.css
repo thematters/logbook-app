@@ -4,6 +4,7 @@
   grid-template-columns: minmax(0, 1fr) var(--container-width) minmax(0, 1fr);
   overflow: hidden;
   @media (--sm-up) {
+    padding-top: 2.5rem;
     padding-bottom: 260px;
   }
 
@@ -44,7 +45,6 @@
 
   @media (--sm-up) {
     margin: 0;
-    margin-top: var(--spacing-xx-loose);
 
     & > li {
       flex: 0 0 420px;

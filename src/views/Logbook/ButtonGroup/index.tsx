@@ -21,13 +21,14 @@ import { toOpenseaUrl } from "~/utils";
 
 import styles from "./styles.module.css";
 
-const DropdownMenu: React.FC<{ id: string; openSettingsDialog: () => any }> = ({
-  id,
-  openSettingsDialog,
-}) => (
+const DropdownMenu: React.FC<{
+  id: string;
+  openSettingsDialog: () => any;
+  openShareDialog: () => any;
+}> = ({ id, openSettingsDialog, openShareDialog }) => (
   <ul role="menu" className={styles.menu}>
     <li role="menu-item">
-      <Card>
+      <Card onClick={openShareDialog}>
         <IconShareFat size="md" />
         <TextIcon>Share this Logbook</TextIcon>
       </Card>
@@ -91,41 +92,45 @@ export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => {
               </Button>
             )}
           </GiftTransferDialog>
-
-          <SettingsDialog tokenId={id}>
-            {({ openDialog: openSettingsDialog }) => (
-              <DropdownDialog
-                dropdown={{
-                  content: (
-                    <DropdownMenu
-                      id={id}
-                      openSettingsDialog={openSettingsDialog}
-                    />
-                  ),
-                  placement: "bottom-end",
-                }}
-                dialog={{
-                  title: "moreActions",
-                  content: (
-                    <DropdownMenu
-                      id={id}
-                      openSettingsDialog={openSettingsDialog}
-                    />
-                  ),
-                }}
-              >
-                {({ openDialog, ref }) => (
-                  <Button ref={ref} onClick={openDialog}>
-                    <IconMore
-                      size="xl"
-                      weight="bold"
-                      className={styles.scaleUp}
-                    />
-                  </Button>
+          <ShareDialog>
+            {({ openDialog: openShareDialog }) => (
+              <SettingsDialog tokenId={id}>
+                {({ openDialog: openSettingsDialog }) => (
+                  <DropdownDialog
+                    dropdown={{
+                      content: (
+                        <DropdownMenu
+                          id={id}
+                          openSettingsDialog={openSettingsDialog}
+                          openShareDialog={openShareDialog}
+                        />
+                      ),
+                      placement: "bottom-end",
+                    }}
+                    dialog={{
+                      title: "moreActions",
+                      content: (
+                        <DropdownMenu
+                          id={id}
+                          openSettingsDialog={openSettingsDialog}
+                        />
+                      ),
+                    }}
+                  >
+                    {({ openDialog, ref }) => (
+                      <Button ref={ref} onClick={openDialog}>
+                        <IconMore
+                          size="xl"
+                          weight="bold"
+                          className={styles.scaleUp}
+                        />
+                      </Button>
+                    )}
+                  </DropdownDialog>
                 )}
-              </DropdownDialog>
+              </SettingsDialog>
             )}
-          </SettingsDialog>
+          </ShareDialog>
         </div>
       )}
 
