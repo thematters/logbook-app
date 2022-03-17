@@ -113,6 +113,7 @@ export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => {
                         <DropdownMenu
                           id={id}
                           openSettingsDialog={openSettingsDialog}
+                          openShareDialog={openShareDialog}
                         />
                       ),
                     }}
