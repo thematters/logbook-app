@@ -58,11 +58,7 @@ interface Props {
   onEdit: () => any;
 }
 
-export const ButtonGroup: React.FC<Props> = ({
-  id,
-  isOwn,
-  onEdit,
-}) => {
+export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => {
   const [hover, updateHover] = useState(false);
 
   return (

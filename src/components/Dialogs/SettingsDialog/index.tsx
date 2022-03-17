@@ -55,8 +55,11 @@ const BaseDialog: React.FC<DialogProps> = ({ id, children }) => {
 
     const calldata = [
       [
-        title && title !== logbook.title && logbookInterface.encodeFunctionData("setTitle", [id, title]),
-        summary && summary !== logbook.description &&
+        title &&
+          title !== logbook.title &&
+          logbookInterface.encodeFunctionData("setTitle", [id, title]),
+        summary &&
+          summary !== logbook.description &&
           logbookInterface.encodeFunctionData("setDescription", [id, summary]),
       ].filter(Boolean),
     ];
