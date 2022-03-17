@@ -54,6 +54,7 @@ export const BookList = () => {
           ({
             id,
             title,
+            description,
             publications: [
               {
                 log: { content },
@@ -68,7 +69,7 @@ export const BookList = () => {
               <LogbookCard
                 key={id}
                 title={title}
-                content={content}
+                content={description}
                 publicationCount={publicationCount}
                 transferCount={transferCount}
                 createdAt={new Date(Number(loggedAt) * 1000)}

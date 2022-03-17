@@ -37,6 +37,7 @@ interface Logbook {
   publicationCount: ethers.BigNumber;
   publications: Array<Publication>;
   title: string;
+  description: string;
   transferCount: ethers.BigNumber;
 }
 
@@ -63,6 +64,7 @@ export const CardList = () => {
     ({
       id,
       title,
+      description,
       publications,
       transferCount,
       publicationCount,
@@ -71,7 +73,7 @@ export const CardList = () => {
       const cardProps: LogbookCardProps = {
         tokenID: id,
         title,
-        content: publications[0].log.content,
+        content: description,
         publicationCount: publicationCount.toString(),
         transferCount: transferCount.toString(),
         txHash: owner.id,
@@ -87,6 +89,7 @@ export const CardList = () => {
             borderRadius
             shadow
             fixedHeight
+            inheritCursor
             background="white"
             {...cardProps}
           />

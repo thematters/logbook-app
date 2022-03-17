@@ -33,6 +33,7 @@ export interface LogbookCardProps {
   borderRadius?: boolean;
   borderHover?: boolean;
   fixedHeight?: boolean;
+  inheritCursor?: boolean;
   [key: string]: any;
 }
 
@@ -54,6 +55,7 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
   borderRadius,
   borderHover,
   fixedHeight,
+  inheritCursor,
   className,
 }) => {
   const containerClass = classNames(
@@ -66,6 +68,7 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
       [styles.borderRadius]: !!borderRadius,
       [styles.borderHover]: !!borderHover,
       [styles.fixedHeight]: !!fixedHeight,
+      [styles.cursorPoint]: !inheritCursor,
     },
     className
   );

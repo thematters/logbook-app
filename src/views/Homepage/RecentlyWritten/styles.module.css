@@ -1,3 +1,10 @@
+.container {
+  padding-bottom: 6.25rem;
+  @media (--sm-up) {
+    padding-bottom: 0;
+  }
+}
+
 .recentlyWritten {
   position: relative;
 }
