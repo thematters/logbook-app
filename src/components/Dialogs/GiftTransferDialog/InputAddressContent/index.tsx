@@ -42,14 +42,17 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
       args: [account, address, tokenId],
     });
 
-    console.log("transfering to:", [account, address, tokenId], { data, error });
+    console.log("transfering to:", [account, address, tokenId], {
+      data,
+      error,
+    });
 
     if (error) {
       formik.setErrors({ address: error?.message || "Failed to transfer" });
       return;
     }
 
-    console.log('transfered:', data);
+    console.log("transfered:", data);
 
     next();
   };

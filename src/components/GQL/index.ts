@@ -39,7 +39,7 @@ export const LOGBOOK_DETAIL = gql`
       description
       forkPrice
       transferCount
-      publications {
+      publications(orderBy: createdAt, orderDirection: desc) {
         id
         log {
           id

@@ -8,14 +8,16 @@ import { Dialog, Form } from "~/components";
 import { useDialogSwitch, LogbookContext } from "~/hooks";
 import { logbookInterface } from "~/utils";
 
+import { WaitCompleteDialog } from "../WaitCompleteDialog";
+
 import styles from "./styles.module.css";
 
 type DialogProps = {
-  tokenId: string;
+  id: string;
   children: ({ openDialog }: { openDialog: () => void }) => React.ReactNode;
 };
 
-const BaseDialog: React.FC<DialogProps> = ({ tokenId, children }) => {
+const BaseDialog: React.FC<DialogProps> = ({ id, children }) => {
   const { show, openDialog, closeDialog } = useDialogSwitch(true);
   // const { account } = useEthers();
 
@@ -26,13 +28,14 @@ const BaseDialog: React.FC<DialogProps> = ({ tokenId, children }) => {
   }, [logbook]);
 
   const [{ data: accountData }] = useAccount();
-  const [{ loading: multicallLoading }, multicall] = useContractWrite(
-    {
-      addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "",
-      contractInterface: logbookInterface,
-    },
-    "multicall"
-  );
+  const [{ data: multicallData, loading: multicallLoading }, multicall] =
+    useContractWrite(
+      {
+        addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "",
+        contractInterface: logbookInterface,
+      },
+      "multicall"
+    );
 
   const account = accountData?.address;
 
@@ -52,13 +55,9 @@ const BaseDialog: React.FC<DialogProps> = ({ tokenId, children }) => {
 
     const calldata = [
       [
-        title &&
-          logbookInterface.encodeFunctionData("setTitle", [tokenId, title]),
+        title && logbookInterface.encodeFunctionData("setTitle", [id, title]),
         summary &&
-          logbookInterface.encodeFunctionData("setDescription", [
-            tokenId,
-            summary,
-          ]),
+          logbookInterface.encodeFunctionData("setDescription", [id, summary]),
       ].filter(Boolean),
     ];
 
@@ -157,15 +156,22 @@ const BaseDialog: React.FC<DialogProps> = ({ tokenId, children }) => {
               </Form>
             </Dialog.Content>
 
-            <Dialog.Footer.Button
-              color="green"
-              type="submit"
-              // disabled={isSubmitting}
-              disabled={isSubmitting || !isValid}
-              onClick={submitForm}
-            >
-              Save
-            </Dialog.Footer.Button>
+            <WaitCompleteDialog id={id} hash={multicallData?.hash as string}>
+              {({ openDialog, closeDialog }) => (
+                <Dialog.Footer.Button
+                  color="green"
+                  type="submit"
+                  // disabled={isSubmitting}
+                  disabled={isSubmitting || !isValid}
+                  onClick={() => {
+                    openDialog();
+                    submitForm();
+                  }}
+                >
+                  Save
+                </Dialog.Footer.Button>
+              )}
+            </WaitCompleteDialog>
           </Dialog>
         </>
       )}
