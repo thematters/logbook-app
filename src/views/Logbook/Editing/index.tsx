@@ -32,7 +32,7 @@ import styles from "./styles.module.css";
 
 interface Props {
   id: string;
-  content: string;
+  content?: string;
   setContent: (arg0: string) => void;
   onLeave: () => any;
 }

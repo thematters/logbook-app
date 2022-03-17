@@ -1,12 +1,19 @@
 .header {
   @mixin flex-center-space-between;
 
+  z-index: var(--z-index-header);
+  justify-content: flex-end;
   width: 100%;
   padding: 2.5rem 1.125rem 0;
 
   @media (--md-up) {
+    justify-content: space-between;
     padding-right: 60px;
     padding-left: 60px;
+  }
+
+  & > * {
+    pointer-events: auto;
   }
 }
 
@@ -18,5 +25,5 @@
   position: fixed;
   right: 0;
   left: 0;
-  z-index: var(--z-index-header);
+  pointer-events: none;
 }

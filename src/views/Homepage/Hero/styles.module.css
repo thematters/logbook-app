@@ -9,8 +9,8 @@
       "buttons";
     grid-template-columns: minmax(0, 1fr);
     justify-items: center;
+    min-height: calc(100vh - 16rem);
     margin: var(--spacing-base);
-    margin-top: 5rem;
 
     @media (--md-up) {
       grid-template-areas:
@@ -46,14 +46,29 @@
     }
 
     & .dynamic {
+      position: relative;
       z-index: var(--z-index-behind);
       grid-area: dynamic;
       width: 100%;
       overflow: hidden;
 
+      & .arrowHero {
+        display: none;
+      }
+
       @media (--md-up) {
         margin-right: var(--spacing-xxx-loose);
         margin-left: var(--spacing-base);
+
+        & .arrowHero {
+          position: absolute;
+          right: calc(50%);
+          bottom: 0;
+          display: block;
+          width: 46px;
+          height: 119px;
+          background-image: url("/images/arrow-hero.svg");
+        }
       }
     }
 

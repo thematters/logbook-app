@@ -1,0 +1,68 @@
+.content {
+  @mixin flex-center-all;
+
+  position: relative;
+  flex-direction: column;
+  margin: 2rem auto;
+  overflow: hidden;
+  text-align: center;
+
+  @media (--md-up) {
+    padding: 0 12rem;
+  }
+}
+
+.bar {
+  width: 3px;
+  height: 4rem;
+  background-image: var(--color-heavy-metal);
+  border-radius: 3px;
+}
+
+.text {
+  max-width: 40rem;
+  padding: 4rem 0;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-information-text);
+  color: var(--color-black);
+}
+
+.left {
+  position: absolute;
+  top: 120px;
+  left: -50px;
+  z-index: var(--z-index-behind);
+  width: 94px;
+  height: 109px;
+  background-image: url("/images/left-stone.png");
+
+  @media (--sm-up) {
+    left: 0;
+  }
+}
+
+.right {
+  position: absolute;
+  top: 179px;
+  right: -60px;
+  z-index: var(--z-index-behind);
+  width: 126.56px;
+  height: 165.17px;
+
+  @media (--sm-up) {
+    right: 0;
+  }
+
+  /* background-image: url("/images/right-stone.png"); */
+
+  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+
+  /* stylelint-disable-next-line */
+  background-image: radial-gradient(49.95% 48.4% at 54.15% 49.67%, rgba(255, 255, 255, 0.3) 38.67%, rgba(104, 88, 205, 0.228) 76.61%, rgba(83, 68, 176, 0.255) 84.49%, rgba(104, 88, 205, 0.228) 93.86%, rgba(170, 161, 230, 0.114) 100%), url("/images/3d_logbook-2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto, contain;
+  background-blend-mode: multiply, normal;
+  transform: rotate(43.02deg);
+}

@@ -22,6 +22,7 @@ export const Hero = () => {
             url="/video/Banner-book_cover.webm"
             posterImg="/images/logbook-intro.png"
           />
+          <section className={styles.arrowHero} />
         </section>
 
         <section className={styles.buttons}>

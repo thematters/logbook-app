@@ -3,10 +3,11 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { Head, Layout, Header } from "~/components";
 
-import { About } from "./About";
-import { FAQ } from "./FAQ";
-import { RecentlyWritten } from "./RecentlyWritten";
+import { IntroSection } from "./IntroSection";
 import { Showcase } from "./Showcase";
+import { RecentlyWritten } from "./RecentlyWritten";
+import { FAQ } from "./FAQ";
+import { About } from "./About";
 
 type Page<P = {}> = NextPage<P> & {
   getLayout?: (page: ReactNode) => ReactNode;
@@ -23,6 +24,7 @@ const Homepage: Page = () => {
       <Head title="Homepage" />
 
       <Hero />
+      <IntroSection />
       <Showcase />
       <RecentlyWritten />
       <FAQ />
