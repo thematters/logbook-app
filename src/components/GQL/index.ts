@@ -10,7 +10,7 @@ export const LIBRARY_LOGBOOKS = gql`
     ) {
       id
       title
-      # description
+      description
       publications(first: 1, orderBy: createdAt, orderDirection: desc) {
         log {
           content

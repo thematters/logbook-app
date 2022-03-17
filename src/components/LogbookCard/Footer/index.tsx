@@ -84,6 +84,10 @@ export const Footer: React.FC<FooterProps> = ({
         borderRadius={borderRadius}
         bgActiveColor="greenLighter"
         className={styles.button}
+        onClick={(e) => {
+          console.log("e", e);
+          e?.stopPropagation();
+        }}
       >
         <TextIcon
           spacing="xTight"

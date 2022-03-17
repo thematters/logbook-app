@@ -29,8 +29,6 @@
     var(--color-gradient-heavy-metal-end) 97.66%
   );
 
-  cursor: pointer;
-
   & > * {
     margin-bottom: var(--spacing-base);
   }
@@ -41,6 +39,10 @@
 
   &.fixedHeight > *:last-child {
     margin-top: var(--spacing-loose);
+  }
+
+  &.cursorPoint {
+    cursor: pointer;
   }
 
   /* padding */

@@ -35,25 +35,29 @@ export const RecentlyWritten = () => {
 
   if (isSmallUP) {
     return (
-      <Container>
-        <section className={styles.recentlyWritten}>
-          <div className={styles.header}>
-            <h1 className={styles.title}>Recently written</h1>
-            {buttonElement}
-          </div>
-          <CardList />
-        </section>
-      </Container>
+      <section className={styles.container}>
+        <Container>
+          <section className={styles.recentlyWritten}>
+            <div className={styles.header}>
+              <h1 className={styles.title}>Recently written</h1>
+              {buttonElement}
+            </div>
+          </section>
+        </Container>
+        <CardList />
+      </section>
     );
   }
 
   return (
-    <Container>
-      <section className={styles.recentlyWritten}>
-        <h1 className={styles.title}>Recently written</h1>
-        <CardList />
-        {buttonElement}
-      </section>
-    </Container>
+    <section className={styles.container}>
+      <Container>
+        <section className={styles.recentlyWritten}>
+          <h1 className={styles.title}>Recently written</h1>
+        </section>
+      </Container>
+      <CardList />
+      <Container>{buttonElement}</Container>
+    </section>
   );
 };

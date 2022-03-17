@@ -22,6 +22,7 @@ const OWN_LOGBOOKS = gql`
         id
         title
         loggedAt
+        description
         publications {
           log {
             content
@@ -100,6 +101,7 @@ export const LoggedBookList: React.FC<LoggedBookListProps> = ({ address }) => {
         id,
         title,
         loggedAt,
+        description,
         publications: [
           {
             log: { content },
@@ -112,7 +114,7 @@ export const LoggedBookList: React.FC<LoggedBookListProps> = ({ address }) => {
         {
           id,
           title,
-          content,
+          content: description,
           publicationCount, // : ethers.BigNumber.from(publicationCount),
           transferCount, // : ethers.BigNumber.from(transferCount),
           createdAt: new Date(Number(loggedAt) * 1000),
@@ -120,7 +122,7 @@ export const LoggedBookList: React.FC<LoggedBookListProps> = ({ address }) => {
       ]
     )
   );
-
+  console.log({ logbookMap });
   return (
     <section>
       <section className={styles.container}>
