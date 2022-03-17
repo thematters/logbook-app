@@ -31,7 +31,7 @@ const BaseDialog: React.FC<DialogProps> = ({ id, hash, children }) => {
 
   useEffect(() => {
     if (hash) wait({ hash }).then((data) => console.log("wait data:", data));
-  }, [hash]);
+  }, [hash, wait]);
 
   const hashLink = (
     <>

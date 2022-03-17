@@ -39,7 +39,7 @@ export const Card: React.FC<CardProps> = ({
   }
   return (
     <section className={styles.container}>
-      <section>
+      <section className={styles.markdown}>
         <Markdown>{content}</Markdown>
       </section>
 

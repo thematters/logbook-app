@@ -40,7 +40,7 @@ const ConnectWalletContent: React.FC<ConnectWalletContentProps> = ({
     }
 
     next();
-  }, [account]);
+  });
 
   return (
     <Dialog.Content>

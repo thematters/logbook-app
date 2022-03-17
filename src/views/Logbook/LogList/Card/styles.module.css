@@ -9,6 +9,43 @@
   }
 }
 
+.markdown {
+  & img {
+    max-width: 100%;
+  }
+
+  & hr {
+    display: block;
+    width: 10rem;
+    height: 0.25rem;
+    margin: 1.5rem auto;
+
+    /* padding: 1rem 0; */
+    border-color: #2e2e2e;
+    border-width: 1px 0;
+    border-top-color: rgb(0 0 0 / 24%);
+    border-top-style: solid;
+    border-bottom-color: rgb(0 0 0 / 24%);
+    border-bottom-style: solid;
+  }
+
+  & a:link,
+  & a:visited {
+    color: var(--color-gradient-green-start);
+    text-decoration: underline;
+  }
+
+  &:not(pre) > code,
+  & pre {
+    background-color: #ededed;
+  }
+
+  & code,
+  & pre {
+    color: var(--color-black);
+  }
+}
+
 .footer {
   @mixin flex-center-start;
 
