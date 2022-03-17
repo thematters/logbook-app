@@ -275,7 +275,7 @@ export const RichMarkdownEditor: React.FC<EditorProps> = ({
   /* const linkExtension = useMemo(() => {
     const extension = new LinkExtension({ autoLink: true });
     extension.addHandler('onClick', (_, data) => {
-      console.log(`You clicked link: ${JSON.stringify(data)}`);
+      // console.log(`You clicked link: ${JSON.stringify(data)}`);
       return true;
     });
     return extension;
