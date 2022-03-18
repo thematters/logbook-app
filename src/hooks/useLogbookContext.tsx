@@ -11,6 +11,7 @@ interface Log {
   createdAt: string;
   content: string;
   author: Account;
+  txHash: string;
 }
 
 export interface Publication {
@@ -26,6 +27,8 @@ export type Logbook = {
   description?: string;
   transferCount?: number;
   publications: [Publication];
+
+  // methods, refetch from thegraph
   refetch: () => void;
 };
 

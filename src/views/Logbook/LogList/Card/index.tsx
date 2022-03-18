@@ -3,9 +3,9 @@ import Markdown from "markdown-to-jsx";
 import { formatHash, formatDate, toPolygonHashUrl } from "~/utils";
 
 import { Button, TextIcon, IconEtherScan } from "~/components";
+import { useResponsive } from "~/hooks";
 
 import styles from "./styles.module.css";
-import { useResponsive } from "~/hooks";
 
 export interface CardProps {
   id: string;
@@ -22,10 +22,8 @@ export const Card: React.FC<CardProps> = ({
   authorID,
   publicationTxHash,
 }) => {
-  // console.log({ content });
   const isSmallUp = useResponsive("sm-up");
-  const url = toPolygonHashUrl(publicationTxHash);
-  const formattedHash = `${authorID.slice(0, 4)}...${authorID.slice(-4)}`;
+  const { url: hashLink, maskedHash } = toPolygonHashUrl(publicationTxHash);
   const formattedDate = formatDate(new Date(Number(createdAt) * 1000));
   let borderRadius = "1rem";
   let width = "3.25rem";
@@ -52,7 +50,7 @@ export const Card: React.FC<CardProps> = ({
           href={`/bookcase?address=${authorID}`}
         >
           <TextIcon spacing="xTight" color="greyDark">
-            {formattedHash}
+            {maskedHash}
           </TextIcon>
         </Button>
 
@@ -60,7 +58,7 @@ export const Card: React.FC<CardProps> = ({
           <span>{formattedDate}</span>
         </TextIcon>
 
-        <a href={url} target="_blank" rel="noreferrer">
+        <a href={hashLink} target="_blank" rel="noreferrer">
           <TextIcon
             icon={isSmallUp ? <IconEtherScan size="md" /> : <IconEtherScan />}
           ></TextIcon>

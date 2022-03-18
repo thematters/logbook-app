@@ -51,7 +51,7 @@ const BaseDialog: React.FC<DialogProps> = ({
   const hashLink = (
     <>
       Transaction details:&nbsp;
-      <a href={toPolygonHashUrl(hash)} target="_blank" rel="noreferrer">
+      <a href={toPolygonHashUrl(hash).url} target="_blank" rel="noreferrer">
         link
       </a>
     </>

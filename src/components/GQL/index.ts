@@ -29,6 +29,7 @@ export const LOGBOOK_DETAIL = gql`
         id
         balance
       }
+      tokenURI
       title
       description
       forkPrice
@@ -43,6 +44,7 @@ export const LOGBOOK_DETAIL = gql`
           author {
             id
           }
+          txHash
         }
       }
     }
