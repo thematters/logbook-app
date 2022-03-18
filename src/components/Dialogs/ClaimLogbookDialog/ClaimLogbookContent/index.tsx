@@ -210,7 +210,7 @@ const ClaimLogbookContent: React.FC<ClaimLogbookContentProps> = ({
         <p>
           Have no Traveloggers? Collect one from{" "}
           <a
-            href="https://opensea.io/collection/traveloggers"
+            href={process.env.NEXT_PUBLIC_TRAVELOGGERS_OPENSEA_LINK}
             target="_blank"
             rel="noreferrer"
           >
