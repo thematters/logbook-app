@@ -232,7 +232,7 @@ const ClaimLogbookContent: React.FC<ClaimLogbookContentProps> = ({
       <Dialog.Content>
         <p>
           Logbook 2.0 has just launched. If you own Travloggers, get started to
-          claim Logbook 2.0 by connecting wallet .
+          claim Logbook 2.0.
         </p>
 
         <ConnectedAccountButton gotoConnectWallet={gotoConnectWallet} />

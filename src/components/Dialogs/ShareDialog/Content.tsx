@@ -29,7 +29,7 @@ const ShareDialogContent: React.FC<ShareDialogContentProps> = ({
 }) => (
   <>
     <Dialog.Header
-      title={headerTitle || "share"}
+      title={headerTitle || "Share"}
       closeDialog={closeDialog}
       // closeTextId="close"
       // mode={headerTitle ? 'inner' : 'hidden'}
