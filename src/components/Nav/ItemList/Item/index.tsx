@@ -84,11 +84,11 @@ const Item: React.FC<ItemProps> = ({
 
   if (href) {
     return (
-      <li {...containerProps}>
+      <section {...containerProps}>
         <Link href={href} replace={replace}>
           <a>{element}</a>
         </Link>
-      </li>
+      </section>
     );
   }
   return <li {...containerProps}>{element}</li>;

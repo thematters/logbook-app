@@ -32,7 +32,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     }
 
     const tokenId = parseInt(debouncedTerm);
-    if (!tokenId || tokenId < MIN_TOKEN_ID || tokenId > MAX_TOKEN_ID) {
+    if (!tokenId) {
       return;
     }
 

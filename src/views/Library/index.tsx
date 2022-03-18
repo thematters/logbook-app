@@ -6,32 +6,13 @@ import * as Yup from "yup";
 
 import styles from "./styles.module.css";
 
-import { Head, Form, SearchBar } from "~/components";
+import { Head, SearchBar } from "~/components";
 
 import { BookList } from "./BookList";
-
-interface FormValues {
-  title: string;
-  description: string;
-}
-
-const EditLogbookSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(2, "Too Short!")
-    .max(45, "Too Long!")
-    .required("Required"),
-  description: Yup.string()
-    .min(2, "Too Short!")
-    .max(240, "Too Long!")
-    .required("Required"),
-});
+import { SearchResult } from "./SearchResult";
 
 const Library: React.FC = () => {
-  const initialValues: FormValues = { title: "", description: "" };
-
-  const handleSubmit = ({ title, description }: FormValues) => {
-    console.log({ title, description });
-  };
+  const [searchingID, updateSeachingID] = useState("");
 
   return (
     <>
@@ -41,11 +22,25 @@ const Library: React.FC = () => {
         <section className={styles.header}>
           <h1 className={styles.title}>Library</h1>
           <div className={styles.searchBarWrapper}>
-            <SearchBar onSearch={(e) => console.log(e)} />
+            <SearchBar
+              onSearch={(e) => {
+                updateSeachingID(e);
+                console.log("e", e);
+              }}
+            />
           </div>
         </section>
-
-        <BookList />
+        {searchingID == "" ? (
+          <section>
+            <h1 className={styles.resultTitle}>Latest Written</h1>
+            <BookList />
+          </section>
+        ) : (
+          <section>
+            <h1 className={styles.resultTitle}>Search Result</h1>
+            <SearchResult id={searchingID} />
+          </section>
+        )}
         <style jsx global>
           {`
             html {

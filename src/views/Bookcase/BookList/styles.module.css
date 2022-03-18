@@ -17,3 +17,21 @@
     width: var(--container-width-sm-up);
   }
 }
+
+.emptyNote {
+  font-size: var(--font-size-article-body);
+  font-weight: var(--font-weight-article-body);
+  line-height: var(--line-height-article-body);
+  color: var(--color-grey);
+
+  & a {
+    @mixin all-transition;
+
+    text-decoration: underline;
+
+    &:link,
+    &:visited {
+      color: var(--color-matters-green);
+    }
+  }
+}

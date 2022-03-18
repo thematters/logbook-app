@@ -8,6 +8,7 @@ import {
   IconExchange,
   IconFile,
   IconShare,
+  ShareDialog,
 } from "~/components";
 
 import styles from "./styles.module.css";
@@ -15,6 +16,9 @@ import styles from "./styles.module.css";
 import { useResponsive } from "~/hooks";
 
 export interface FooterProps {
+  // decimal id
+  id: string;
+  title?: string;
   exchange?: string; // ethers.BigNumber;
   history?: string; // ethers.BigNumber;
   txHash?: string;
@@ -22,6 +26,8 @@ export interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({
+  id,
+  title,
   exchange,
   history,
   txHash,
@@ -77,24 +83,30 @@ export const Footer: React.FC<FooterProps> = ({
           {history?.toString()}
         </TextIcon>
       </Button>
-      <Button
-        width={height}
-        height={height}
-        bgColor="greyLighter"
-        borderRadius={borderRadius}
-        bgActiveColor="greenLighter"
-        className={styles.button}
-        onClick={(e) => {
-          console.log("e", e);
-          e?.stopPropagation();
-        }}
-      >
-        <TextIcon
-          spacing="xTight"
-          color="greyDark"
-          icon={<IconShare></IconShare>}
-        ></TextIcon>
-      </Button>
+      {/* TODO: when title blank, what to display */}
+      <ShareDialog title={title} path={`/logbook?id=${parseInt(id, 16)}`}>
+        {({ openDialog: openShareDialog }) => (
+          <Button
+            width={height}
+            height={height}
+            bgColor="greyLighter"
+            borderRadius={borderRadius}
+            bgActiveColor="greenLighter"
+            className={styles.button}
+            onClick={(e) => {
+              // console.log("e", e);
+              e?.stopPropagation();
+              openShareDialog();
+            }}
+          >
+            <TextIcon
+              spacing="xTight"
+              color="greyDark"
+              icon={<IconShare></IconShare>}
+            ></TextIcon>
+          </Button>
+        )}
+      </ShareDialog>
       {!!txHash ? (
         <Button
           width={hashWidth}

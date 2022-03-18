@@ -16,6 +16,16 @@
   line-height: var(--line-height-section-title);
 }
 
+.resultTitle {
+  padding-bottom: var(--spacing-x-tight);
+  margin-top: var(--spacing-xx-loose);
+  font-size: var(--font-size-article-title);
+  font-style: italic;
+  line-height: var(--line-height-article-title);
+  color: var(--color-grey-darker);
+  border-bottom: 3px solid var(--color-grey-darker);
+}
+
 .maxWidth {
   @media (--sm-up) {
     width: var(--container-width-sm-up);

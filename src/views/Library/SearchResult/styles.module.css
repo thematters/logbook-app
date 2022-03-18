@@ -1,0 +1,25 @@
+.item {
+  padding-top: 2rem;
+}
+
+.empty {
+  @mixin flex-center-all;
+
+  flex-direction: column;
+  padding-top: 2rem;
+  text-align: center;
+
+  & h1 {
+    margin-bottom: var(--spacing-base);
+    font-size: var(--font-size-article-title);
+    font-weight: var(--font-weight-article-title);
+    line-height: var(--line-height-article-title);
+  }
+
+  & p {
+    font-size: var(--font-size-article-body);
+    font-weight: var(--font-weight-article-body);
+    line-height: var(--line-height-article-body);
+    color: var(--color-grey-dark);
+  }
+}

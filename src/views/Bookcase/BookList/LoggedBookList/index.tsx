@@ -87,12 +87,12 @@ export const LoggedBookList: React.FC<LoggedBookListProps> = ({ address }) => {
     if (logbookList?.length >= 1)
       variables.loggedAt = logbookList[logbookList.length - 1]?.loggedAt;
     const { data } = await fetchMore({ variables });
-    console.log({ data });
+    // console.log({ data });
     const {
       account: { logbooks },
     } = data as any;
     updateLogbookList(logbookList.concat(logbooks));
-    console.log({ logbookList });
+    // console.log({ logbookList });
     updateHasNextPage(logbooks.length >= first);
   };
 

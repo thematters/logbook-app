@@ -78,6 +78,8 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
     [styles.fixedHeight]: !!fixedHeight,
   });
 
+  const displayTitle = title === "" ? "Unknown logbook title" : title;
+
   return (
     // TODO: link to log book inside page
     <Link href={`logbook?id=${parseInt(tokenID, 16)}`} passHref>
@@ -88,7 +90,7 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
           ""
         )}
         <Title
-          title={title}
+          title={displayTitle}
           date={createdAt}
           giftSign={giftSign}
           fixedHeight={fixedHeight}
@@ -97,6 +99,8 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
           <p className={contentClasses}>{content}</p>
         </section>
         <Footer
+          id={tokenID}
+          title={displayTitle}
           exchange={transferCount}
           history={publicationCount}
           txHash={!!footerHash && !!txHash ? txHash : ""}
