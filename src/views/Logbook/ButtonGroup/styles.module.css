@@ -19,21 +19,59 @@
   }
 }
 
-/* .menu {
-  width: 100%;
-  text-align: left;
-} */
-
 .scaleUp {
   transform: scale(1.5);
 }
 
-/* .editing {
-  @mixin flex-center-space-between;
+.hoverButton {
+  @mixin all-transition;
 
-  margin: 0.5rem 0 1rem;
+  box-shadow: 0 0 16px rgb(0 0 0 / 8%);
 
-  & button + button {
-    margin-left: 1.5rem;
+  &:hover {
+    box-shadow: 0 4px 12px rgb(51 51 51 / 16%);
   }
-} */
+}
+
+.moreButton {
+  & circle {
+    @mixin all-transition;
+
+    fill: var(--color-grey-darker);
+  }
+
+  &:hover {
+    & circle {
+      fill: var(--color-matters-green);
+    }
+  }
+}
+
+.shareButton {
+  & path {
+    @mixin all-transition;
+
+    stroke: var(--color-grey-darker);
+  }
+
+  &:hover {
+    & path {
+      stroke: var(--color-matters-green);
+    }
+  }
+}
+
+.iconWrapper {
+  position: relative;
+}
+
+.giftIcon {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  @mixin all-transition;
+}
+
+.giftIconHover {
+  opacity: 1;
+}

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import _debounce from "lodash/debounce";
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Button,
@@ -9,6 +9,7 @@ import {
   GiftTransferDialog,
   IconEdit,
   IconGift,
+  IconGiftGradient,
   IconMore,
   IconShare,
   IconShareFat,
@@ -55,121 +56,156 @@ interface Props {
   id: string;
   isOwn: boolean;
   onEdit: () => any;
+  title: string;
+  description: string;
 }
 
-export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => (
-  <section className={styles.container}>
-    {isOwn && (
-      <div className={styles.actions}>
-        <Button
-          borderRadius="50%"
-          onClick={() => {
-            // TODO: analytics
-            console.log("Edit");
-            // enableEditing(true);
-            onEdit();
-          }}
-        >
-          <IconEdit
-            size="xl"
-            weight="bold"
-            color="green"
-            className={styles.scaleUp}
-          />
-        </Button>
+export const ButtonGroup: React.FC<Props> = ({
+  id,
+  title,
+  description,
+  isOwn,
+  onEdit,
+}) => {
+  const [hover, updateHover] = useState(false);
 
-        <GiftTransferDialog tokenId={id}>
-          {({ openDialog }) => (
-            <Button
-              onClick={() => {
-                // TODO: analytics
-                openDialog();
-                console.log("Gift");
-              }}
-            >
-              <IconGift size="xl" className={styles.scaleUp} />
-            </Button>
-          )}
-        </GiftTransferDialog>
+  return (
+    <section className={styles.container}>
+      {isOwn && (
+        <div className={styles.actions}>
+          <Button
+            width="3rem"
+            height="3rem"
+            borderRadius="50%"
+            bgColor="blueGreen"
+            bgActiveColor="blueGreenDarker"
+            className={styles.hoverButton}
+            onClick={() => {
+              // TODO: analytics
+              // console.log("Edit");
+              onEdit();
+            }}
+          >
+            <IconEdit className={styles.scaleUp} />
+          </Button>
 
-        <ShareDialog>
-          {({ openDialog: openShareDialog }) => (
-            <SettingsDialog tokenId={id}>
-              {({ openDialog: openSettingsDialog }) => (
-                <DropdownDialog
-                  dropdown={{
-                    content: (
-                      <DropdownMenu
-                        id={id}
-                        openSettingsDialog={openSettingsDialog}
-                        openShareDialog={openShareDialog}
-                      />
-                    ),
-                    placement: "bottom-end",
-                  }}
-                  dialog={{
-                    title: "moreActions",
-                    content: (
-                      <DropdownMenu
-                        id={id}
-                        openSettingsDialog={openSettingsDialog}
-                        openShareDialog={openShareDialog}
-                      />
-                    ),
-                  }}
-                >
-                  {({ openDialog, ref }) => (
-                    <Button ref={ref} onClick={openDialog}>
-                      <IconMore
-                        size="xl"
-                        weight="bold"
-                        className={styles.scaleUp}
-                      />
-                    </Button>
-                  )}
-                </DropdownDialog>
-              )}
-            </SettingsDialog>
-          )}
-        </ShareDialog>
-      </div>
-    )}
+          <GiftTransferDialog tokenId={id}>
+            {({ openDialog }) => (
+              <Button
+                width="3rem"
+                height="3rem"
+                borderRadius="50%"
+                bgColor="white"
+                className={styles.hoverButton}
+                onClick={() => {
+                  // TODO: analytics
+                  openDialog();
+                  console.log("Gift");
+                }}
+                onMouseEnter={() => updateHover(true)}
+                onMouseLeave={() => updateHover(false)}
+              >
+                <span className={styles.iconWrapper}>
+                  <IconGift className={styles.scaleUp} />
+                  <IconGiftGradient
+                    className={`${styles.scaleUp} ${styles.giftIcon} ${
+                      hover && styles.giftIconHover
+                    }`}
+                  />
+                </span>
+              </Button>
+            )}
+          </GiftTransferDialog>
 
-    {!isOwn && (
-      <div className={styles.actions}>
-        <Button
-          borderRadius="50%"
-          bgColor="blueGreen"
-          width="3rem"
-          height="3rem"
-          htmlHref={toOpenseaUrl(id)}
-          htmlTarget="_blank"
-          className={styles.shoppingCard}
-          onClick={() => {
-            // TODO: analytics
-            // console.log("buy");
-          }}
-        >
-          <IconShoppingCart size="md" weight="bold" color="white" />
-        </Button>
-        <ShareDialog>
-          {({ openDialog: openShareDialog }) => (
-            <Button
-              borderRadius="50%"
-              bgColor="white"
-              width="3rem"
-              height="3rem"
-              onClick={() => {
-                // TODO: analytics
-                // TODO: share
-                openShareDialog();
-              }}
-            >
-              <IconShareFat size="md" weight="bold" color="greyDarker" />
-            </Button>
-          )}
-        </ShareDialog>
-      </div>
-    )}
-  </section>
-);
+          <ShareDialog title={title} description={description}>
+            {({ openDialog: openShareDialog }) => (
+              <SettingsDialog tokenId={id}>
+                {({ openDialog: openSettingsDialog }) => (
+                  <DropdownDialog
+                    dropdown={{
+                      content: (
+                        <DropdownMenu
+                          id={id}
+                          openSettingsDialog={openSettingsDialog}
+                          openShareDialog={openShareDialog}
+                        />
+                      ),
+                      placement: "bottom-end",
+                    }}
+                    dialog={{
+                      title: "moreActions",
+                      content: (
+                        <DropdownMenu
+                          id={id}
+                          openSettingsDialog={openSettingsDialog}
+                          openShareDialog={openShareDialog}
+                        />
+                      ),
+                    }}
+                  >
+                    {({ openDialog, ref }) => (
+                      <Button
+                        width="3rem"
+                        height="3rem"
+                        borderRadius="50%"
+                        bgColor="white"
+                        className={`${styles.moreButton} ${styles.hoverButton}`}
+                        ref={ref}
+                        onClick={openDialog}
+                      >
+                        <IconMore
+                          // size="xl"
+                          // weight="bold"
+                          className={styles.scaleUp}
+                        />
+                      </Button>
+                    )}
+                  </DropdownDialog>
+                )}
+              </SettingsDialog>
+            )}
+          </ShareDialog>
+        </div>
+      )}
+
+      {!isOwn && (
+        <div className={styles.actions}>
+          <Button
+            width="3rem"
+            height="3rem"
+            borderRadius="50%"
+            bgColor="blueGreen"
+            bgActiveColor="blueGreenDarker"
+            className={styles.hoverButton + " " + styles.shoppingCard}
+            htmlHref={toOpenseaUrl(id)}
+            htmlTarget="_blank"
+            onClick={() => {
+              // TODO: analytics
+              // console.log("buy");
+            }}
+          >
+            <IconShoppingCart size="md" weight="bold" color="white" />
+          </Button>
+          <ShareDialog>
+            {({ openDialog: openShareDialog }) => (
+              <Button
+                borderRadius="50%"
+                bgColor="white"
+                width="3rem"
+                height="3rem"
+                className={styles.hoverButton + " " + styles.shareButton}
+                onClick={() => {
+                  // TODO: analytics
+                  // TODO: share
+                  openShareDialog();
+                }}
+              >
+                <IconShareFat size="md" weight="bold" color="greyDarker" />
+              </Button>
+            )}
+          </ShareDialog>
+        </div>
+      )}
+    </section>
+  );
+};

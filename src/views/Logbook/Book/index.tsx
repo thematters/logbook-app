@@ -86,6 +86,7 @@ export const Book: React.FC<BookProps> = ({
                 width={buttonWidth}
                 height="3rem"
                 bgColor="blueGreen"
+                bgActiveColor="blueGreenDarker"
                 borderRadius="6.25rem"
                 shadow
                 onClick={onEdit}
@@ -99,6 +100,7 @@ export const Book: React.FC<BookProps> = ({
                 width={isSmallUp ? "15.25rem" : buttonWidth}
                 height="3rem"
                 bgColor="blueGreen"
+                bgActiveColor="blueGreenDarker"
                 borderRadius="6.25rem"
                 shadow
                 htmlHref="https://opensea.io/collection/traveloggers"

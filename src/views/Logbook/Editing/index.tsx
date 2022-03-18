@@ -150,6 +150,7 @@ export const Editing: React.FC<Props> = ({
             bgColor="white"
             borderRadius="1.75rem"
             shadow
+            className={styles.leaveButton}
             onClick={() => {
               console.log("leave");
               // onLeave();
@@ -168,9 +169,9 @@ export const Editing: React.FC<Props> = ({
             width="7.5rem"
             height="3rem"
             bgColor="blueGreen"
-            // bgActiveColor="greenLighter"
-            borderRadius="1.75rem"
+            bgActiveColor="blueGreenDarker"
             shadow
+            borderRadius="1.75rem"
             disabled={publishWaiting}
             onClick={() => {
               openDialog();
