@@ -53,3 +53,11 @@
 .hint {
   font-family: var(--font-roboto);
 }
+
+.leaveButton {
+  @mixin all-transition;
+
+  &:hover {
+    color: var(--color-matters-green);
+  }
+}

@@ -58,7 +58,15 @@ export const Book: React.FC<BookProps> = ({
       </section>
       <section className={styles.transfer}>
         <Transfer transferCount={logbook.transferCount} />
-        {isSmallUp ? <ButtonGroup id={id} onEdit={onEdit} isOwn={isOwn} /> : ""}
+        {isSmallUp ? (
+          <ButtonGroup
+            id={id}
+            onEdit={onEdit}
+            isOwn={isOwn}
+          />
+        ) : (
+          ""
+        )}
       </section>
       {logbook.description && (
         <section className={classNames([styles.articleBody, styles.flexStart])}>
@@ -86,6 +94,7 @@ export const Book: React.FC<BookProps> = ({
                 width={buttonWidth}
                 height="3rem"
                 bgColor="blueGreen"
+                bgActiveColor="blueGreenDarker"
                 borderRadius="6.25rem"
                 shadow
                 onClick={onEdit}
@@ -99,6 +108,7 @@ export const Book: React.FC<BookProps> = ({
                 width={isSmallUp ? "15.25rem" : buttonWidth}
                 height="3rem"
                 bgColor="blueGreen"
+                bgActiveColor="blueGreenDarker"
                 borderRadius="6.25rem"
                 shadow
                 htmlHref="https://opensea.io/collection/traveloggers"
@@ -114,7 +124,11 @@ export const Book: React.FC<BookProps> = ({
       )}
       {!isSmallUp ? (
         <section className={buttonGroupClasses}>
-          <ButtonGroup id={id} onEdit={onEdit} isOwn={isOwn} />
+          <ButtonGroup
+            id={id}
+            onEdit={onEdit}
+            isOwn={isOwn}
+          />
         </section>
       ) : (
         ""
