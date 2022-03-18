@@ -92,7 +92,7 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
                 type="text"
                 name="address"
                 placeholder="e.g. 0xFb3... or matters.eth"
-                hint={`"Travelogger #${tokenId}" will be transferred to ${
+                hint={`"Logbook #${tokenId}" will be transferred to ${
                   values.address || "..."
                 }`}
               />
