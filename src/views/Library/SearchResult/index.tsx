@@ -53,7 +53,7 @@ export const SearchResult: React.FC<SearchResultProps> = ({ id }) => {
         publicationCount={publicationCount}
         transferCount={transferCount}
         createdAt={new Date(Number(loggedAt) * 1000)}
-        tokenID={id}
+        tokenID={`0x${Number(id).toString(16)}`}
         showHeader
         txHash={(owner as any).id}
         className={styles.item}
