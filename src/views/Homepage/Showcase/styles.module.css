@@ -10,7 +10,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: -1;
+    z-index: var(--z-index-behind);
     display: block;
     width: 100%;
     max-width: 822px;
@@ -28,22 +28,17 @@
 }
 
 .header {
-  margin-bottom: 40px;
+  margin: 0 0 var(--spacing-xx-loose);
 
   @media (--sm-up) {
-    margin-bottom: 68px;
+    margin: 0 0 var(--spacing-xxx-loose);
   }
 
   & .title {
-    font-size: 28px;
-    line-height: 32px;
-    color: #333;
+    font-size: var(--font-size-section-title);
+    line-height: var(--line-height-section-title);
+    color: var(--color-black);
     text-align: center;
-
-    @media (--sm-up) {
-      font-size: 48px;
-      line-height: 56px;
-    }
   }
 }
 
@@ -79,13 +74,13 @@
   }
 
   &::before {
-    z-index: 1;
+    z-index: var(--z-index-above);
     background-color: #c4c4c4;
     opacity: 0.5;
   }
 
   &::after {
-    z-index: 2;
+    z-index: var(--z-index-header);
     background-image: url("/images/showcase-overlay.png");
     background-repeat: no-repeat;
     background-position: center center;
@@ -95,44 +90,38 @@
 }
 
 .content_title {
-  margin: 0 0 8px;
+  margin: 0 0 var(--spacing-x-tight);
 
   @media (--md-up) {
-    margin: 0 0 16px;
+    margin: 0 0 var(--spacing-base);
   }
 
   & .content_title_h3 {
-    font-size: 18px;
-    line-height: 24px;
-    color: #333;
-
-    @media (--md-up) {
-      font-size: 24px;
-      line-height: 32px;
-    }
+    font-size: var(--font-size-article-title);
+    line-height: var(--line-height-article-title);
+    color: var(--color-black);
   }
 }
 
 .content_text {
-  margin: 0 0 16px;
+  margin: 0 0 var(--spacing-base);
 
   @media (--md-up) {
-    margin: 0 0 24px;
+    margin: 0 0 var(--spacing-loose);
   }
 
   & .content_text_p {
-    display: box;
+    /* stylelint-disable-next-line value-no-vendor-prefix */
+    display: -webkit-box;
     margin: 0;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
-    font-size: 16px;
-    line-height: 20px;
-    color: #808080;
+    font-size: var(--font-size-article-body);
+    line-height: var(--line-height-article-body);
+    color: var(--color-grey-darker);
 
     @media (--md-up) {
-      font-size: 18px;
-      line-height: 24px;
       -webkit-line-clamp: 1;
     }
   }
@@ -160,16 +149,14 @@
   }
 
   & .wallet_address {
-    padding: 4px 12px;
-    font-size: 16px;
-    line-height: 20px;
-    color: #fff;
-    background: #333;
+    padding: var(--spacing-xx-tight) var(--spacing-tight);
+    font-size: var(--font-size-article-body);
+    line-height: var(--line-height-article-body);
+    color: var(--color-white);
+    background: var(--color-black);
     border-radius: 16px;
 
     @media (--md-up) {
-      font-size: 18px;
-      line-height: 24px;
       -webkit-line-clamp: 1;
     }
   }
