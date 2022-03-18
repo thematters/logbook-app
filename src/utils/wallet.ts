@@ -37,6 +37,12 @@ export const toPolygonAddressUrl = (address: string) => {
   };
 };
 
+export const toPolygonHashUrl = (txHash: string) => {
+  const domain = isProd ? "polygonscan.com" : "mumbai.polygonscan.com";
+
+  return `https://${domain}/tx/${txHash}`;
+};
+
 export const toOpenseaUrl = (id: string) => {
   const OPENSEA_URL = isProd
     ? "https://opensea.io"

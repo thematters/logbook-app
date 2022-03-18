@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useWaitForTransaction } from "wagmi";
-import Link from "next/link";
 
-import { Dialog } from "~/components";
+import { Dialog, Spinner } from "~/components";
 import { useDialogSwitch } from "~/hooks";
+import { toPolygonHashUrl } from "~/utils";
 
 import styles from "./styles.module.css";
 
@@ -33,6 +33,15 @@ const BaseDialog: React.FC<DialogProps> = ({ id, hash, children }) => {
     if (hash) wait({ hash }).then((data) => console.log("wait data:", data));
   }, [hash]);
 
+  const hashLink = (
+    <>
+      Transaction details:&nbsp;
+      <a href={toPolygonHashUrl(hash)} target="_blank" rel="noreferrer">
+        link
+      </a>
+    </>
+  );
+
   return (
     <>
       {children({ openDialog, closeDialog })}
@@ -40,16 +49,21 @@ const BaseDialog: React.FC<DialogProps> = ({ id, hash, children }) => {
       <Dialog isOpen={show} onDismiss={closeDialog}>
         <Dialog.Content>
           {!hash ? (
-            <p className={styles.text}>waiting for publishing</p>
+            <p className={styles.text}>
+              Waiting for publishing...
+              <br />
+              Please check out your wallet dialog
+            </p>
           ) : hash && waitForTransaction ? (
             <p className={styles.text}>
-              waiting for confirmation:{" "}
-              <a href={`https://mumbai.polygonscan.com/tx/${hash}`}>link</a>
+              Waiting for confirmation... {dataWait?.confirmations}
+              <br />
+              {hashLink}
             </p>
           ) : (
             <p className={styles.text}>
-              Published successfully🎉{" "}
-              <a href={`https://mumbai.polygonscan.com/tx/${hash}`}>link</a>
+              Publish successfully🎉 <br />
+              {hashLink}
             </p>
           )}
         </Dialog.Content>
@@ -60,7 +74,7 @@ const BaseDialog: React.FC<DialogProps> = ({ id, hash, children }) => {
           // onClick={closeDialog}
           htmlHref={`/logbook/?id=${id}`}
         >
-          Back to Logbook
+          {waitForTransaction ? <Spinner /> : <>Back to Logbook</>}
         </Dialog.Footer.Button>
       </Dialog>
     </>

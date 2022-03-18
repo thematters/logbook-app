@@ -10,6 +10,7 @@ import {
   // RichMarkdownEditor,
   Spinner,
   TextIcon,
+  WaitCompleteDialog,
 } from "~/components";
 import { logbookInterface } from "~/utils";
 
@@ -18,7 +19,6 @@ import { useResponsive } from "~/hooks";
 import type { EditorRef } from "~/components/RichMarkdownEditor/markdown-editor";
 
 import { ConfirmLeaveDialog } from "./ConfirmLeaveDialog";
-import { WaitCompleteDialog } from "./WaitCompleteDialog";
 
 const RichMarkdownEditor = dynamic(
   () => import("~/components/RichMarkdownEditor"),
@@ -101,7 +101,7 @@ export const Editing: React.FC<Props> = ({
       await logbookContract.estimateGas.publish(id, content);
 
     // add buffer
-    const maxGasNeeded = gasNeeded.mul(4).div(3); // +33%
+    const maxGasNeeded = gasNeeded; // .mul(4).div(3); // +33%
 
     console.log("get maxGasNeeded:", { maxGasNeeded, feeData });
 
@@ -181,7 +181,7 @@ export const Editing: React.FC<Props> = ({
                   console.log("published:", data);
                 })
                 .catch((err) => {
-                  console.error("publish error:", err);
+                  console.error("publish error:", err, closeDialog);
                   closeDialog?.();
                 });
             }}
@@ -198,7 +198,6 @@ export const Editing: React.FC<Props> = ({
       <div className={styles.editing}>
         <div className={styles.gasEstimate}>Gas: {estimate} MATIC</div>
         {isSmallUp && buttonGroup}
-        {publishWaiting && <>publishWaiting</>}
       </div>
       <RichMarkdownEditor
         placeholder="Write *something*..."
@@ -232,6 +231,9 @@ export const Editing: React.FC<Props> = ({
 
           .remirror-theme .remirror-toolbar {
             background-color: transparent;
+            position: sticky;
+            top: 0;
+            z-index: var(--z-index-above);
           }
 
           .remirror-theme .ProseMirror,
