@@ -56,14 +56,10 @@ interface Props {
   id: string;
   isOwn: boolean;
   onEdit: () => any;
-  title: string;
-  description: string;
 }
 
 export const ButtonGroup: React.FC<Props> = ({
   id,
-  title,
-  description,
   isOwn,
   onEdit,
 }) => {
@@ -117,7 +113,7 @@ export const ButtonGroup: React.FC<Props> = ({
             )}
           </GiftTransferDialog>
 
-          <ShareDialog title={title} description={description}>
+          <ShareDialog>
             {({ openDialog: openShareDialog }) => (
               <SettingsDialog tokenId={id}>
                 {({ openDialog: openSettingsDialog }) => (

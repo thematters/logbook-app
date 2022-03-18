@@ -58,7 +58,15 @@ export const Book: React.FC<BookProps> = ({
       </section>
       <section className={styles.transfer}>
         <Transfer transferCount={logbook.transferCount} />
-        {isSmallUp ? <ButtonGroup id={id} onEdit={onEdit} isOwn={isOwn} /> : ""}
+        {isSmallUp ? (
+          <ButtonGroup
+            id={id}
+            onEdit={onEdit}
+            isOwn={isOwn}
+          />
+        ) : (
+          ""
+        )}
       </section>
       {logbook.description && (
         <section className={classNames([styles.articleBody, styles.flexStart])}>
@@ -116,7 +124,11 @@ export const Book: React.FC<BookProps> = ({
       )}
       {!isSmallUp ? (
         <section className={buttonGroupClasses}>
-          <ButtonGroup id={id} onEdit={onEdit} isOwn={isOwn} />
+          <ButtonGroup
+            id={id}
+            onEdit={onEdit}
+            isOwn={isOwn}
+          />
         </section>
       ) : (
         ""
