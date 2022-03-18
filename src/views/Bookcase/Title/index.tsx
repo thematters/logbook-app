@@ -1,5 +1,6 @@
 import React from "react";
-import { useEnsLookup } from "wagmi";
+import { useAccount } from "wagmi";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 import {
@@ -22,13 +23,10 @@ export interface TitleProps {
 
 export const Title: React.FC<TitleProps> = ({ address }) => {
   // TODO: lookup ens name in polygon?
-  // const [{ data, error, loading }] = useEnsLookup({
-  //   address: address.toLowerCase(),
-  // });
+  const [{ data: accountData }] = useAccount();
+  const router = useRouter();
+  const { address: urlAddress } = router.query;
   const isSmallUp = useResponsive("sm-up");
-
-  // if (loading) return <Spinner />;
-  // if (error) return <div>Error fetching name</div>;
 
   let titleProps: TextIconProps = {
     size: "md",
@@ -39,6 +37,11 @@ export const Title: React.FC<TitleProps> = ({ address }) => {
     titleProps.size = "lg";
     iconSize = "xl";
   }
+
+  const isMyBookCase =
+    (accountData && !urlAddress) ||
+    accountData?.address?.toLowerCase() ===
+      (urlAddress as string).toLowerCase();
 
   const { url, maskedAddress } = toPolygonAddressUrl(address);
   console.log({ url });
@@ -53,7 +56,7 @@ export const Title: React.FC<TitleProps> = ({ address }) => {
             {...titleProps}
             icon={<IconEtherScan size={iconSize} />}
           >
-            {maskedAddress}
+            {isMyBookCase ? "My Bookcase" : maskedAddress}
           </TextIcon>
         </a>
       </section>

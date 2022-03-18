@@ -48,7 +48,6 @@ export const BookList = () => {
 
   return (
     <div>
-      <h1 className={styles.title}>Latest Written</h1>
       <InfiniteScroll hasNextPage={hasNextPage} loadMore={loadMore}>
         {logbookList?.map(
           ({

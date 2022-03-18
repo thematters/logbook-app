@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
+
 import classNames from "classnames";
 import { ethers } from "ethers";
 import { useQuery } from "@apollo/client";
@@ -42,12 +44,16 @@ interface Logbook {
 }
 
 export const CardList = () => {
-  const [emblaRef] = useEmblaCarousel({
-    dragFree: true,
-    draggable: true,
-    loop: false,
-    containScroll: "trimSnaps",
-  });
+  const wheelGestures = WheelGesturesPlugin();
+  const [emblaRef] = useEmblaCarousel(
+    {
+      dragFree: true,
+      draggable: true,
+      loop: false,
+      containScroll: "trimSnaps",
+    },
+    [wheelGestures]
+  );
   const first = 10;
   const [lastLoggedAt] = useState(Date.now().toString());
   const { loading, error, data } = useQuery(LIBRARY_LOGBOOKS, {

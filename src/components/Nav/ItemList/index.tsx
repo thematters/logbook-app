@@ -37,7 +37,7 @@ const ItemList: React.FC<ItemListProps> = ({ show, onClick }) => {
   if (accountData) {
     return (
       <>
-        <ul className={containerClasses}>
+        <section className={containerClasses}>
           <Item
             href="library"
             text="Library"
@@ -54,20 +54,23 @@ const ItemList: React.FC<ItemListProps> = ({ show, onClick }) => {
             text={
               accountData.ens?.name
                 ? `${accountData.ens?.name}`
-                : accountData.address
+                : `${accountData.address.slice(
+                    0,
+                    6
+                  )}...${accountData.address.slice(-4)}`
             }
             icon={<IconWalletGradient size={iconSize} />}
             onClick={() => {
-              disconnect();
+              // disconnect();
             }}
           ></Item>
-        </ul>
+        </section>
       </>
     );
   }
   return (
     <>
-      <ul className={classNames(["reset", containerClasses])}>
+      <section className={classNames(["reset", containerClasses])}>
         <Item
           href="library"
           text="Library"
@@ -88,7 +91,7 @@ const ItemList: React.FC<ItemListProps> = ({ show, onClick }) => {
             />
           )}
         </ConnectWalletDialog>
-      </ul>
+      </section>
     </>
   );
 };

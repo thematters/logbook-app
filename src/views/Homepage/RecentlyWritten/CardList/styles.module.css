@@ -28,14 +28,13 @@
 
   display: flex;
   grid-column: 2 / -1;
-  margin: 1.25rem 0;
+  margin: 1.25rem 0 !important;
   cursor: inherit;
 
   & > li {
     position: relative;
     flex: 0 0 290px;
-    margin-right: var(--spacing-base);
-    margin-bottom: var(--spacing-base);
+    margin-right: var(--spacing-base) !important;
     cursor: inherit;
   }
 
