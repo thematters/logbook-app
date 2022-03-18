@@ -111,7 +111,7 @@ export const ButtonGroup: React.FC<Props> = ({ id, isOwn, onEdit }) => {
 
           <ShareDialog>
             {({ openDialog: openShareDialog }) => (
-              <SettingsDialog tokenId={id}>
+              <SettingsDialog id={id}>
                 {({ openDialog: openSettingsDialog }) => (
                   <DropdownDialog
                     dropdown={{
