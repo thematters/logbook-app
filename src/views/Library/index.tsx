@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 
-import { Formik } from "formik";
-import Link from "next/link";
-import * as Yup from "yup";
-
 import styles from "./styles.module.css";
 
 import { Head, SearchBar } from "~/components";
@@ -25,7 +21,6 @@ const Library: React.FC = () => {
             <SearchBar
               onSearch={(e) => {
                 updateSeachingID(e);
-                console.log("e", e);
               }}
             />
           </div>
