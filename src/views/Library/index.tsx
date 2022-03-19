@@ -41,11 +41,6 @@ const Library: React.FC = () => {
             html {
               background-color: var(--color-white);
             }
-            @media (min-width: 768px) {
-              div.l-container > main.l-row {
-                z-index: var(--z-index-header);
-              }
-            }
           `}
         </style>
       </section>
