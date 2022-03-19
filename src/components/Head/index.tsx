@@ -1,6 +1,6 @@
 import NextHead from "next/head";
 import { useRouter } from "next/router";
-import IMAGE_LOGBOOK_OG from "/public/images/logbook-og.jpg";
+import IMAGE_LOGBOOK_OG from "/public/images/logbook-OG.jpg";
 
 const isProd = process.env.NEXT_PUBLIC_RUNTIME_ENV === "production";
 
