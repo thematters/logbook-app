@@ -1,5 +1,6 @@
 import NextHead from "next/head";
 import { useRouter } from "next/router";
+import IMAGE_LOGBOOK_OG from "/public/images/logbook-og.jpg";
 
 const isProd = process.env.NEXT_PUBLIC_RUNTIME_ENV === "production";
 
@@ -31,7 +32,7 @@ export const Head: React.FC<HeadProps> = (props) => {
       : asPath
       ? `//${domain}${asPath}`
       : `//${domain}`,
-    image: image || "...",
+    image: image || IMAGE_LOGBOOK_OG.src,
   };
   const canonicalUrl = head.url?.split("#")[0].split("?")[0];
 

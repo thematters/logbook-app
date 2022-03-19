@@ -25,3 +25,4 @@ export * from "./Dialogs";
 export * from "./Buttons";
 export * from "./GQL";
 export * from "./Share";
+export * from "./Toast";

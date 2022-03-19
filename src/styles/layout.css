@@ -47,3 +47,18 @@
 .l-col-full {
   grid-column: 1 / -1;
 }
+
+/*
+ * Three Column Layout
+ */
+.l-col-three-mid {
+  grid-column: 1 / -1;
+
+  @media (--sm-up) {
+    grid-column: col-start 0 / span 3;
+  }
+
+  @media (--lg-up) {
+    grid-column: col-start 2 / span 3;
+  }
+}

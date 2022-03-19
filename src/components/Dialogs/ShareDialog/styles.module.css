@@ -40,6 +40,7 @@
     margin-left: var(--spacing-x-tight);
     font-size: var(--font-size-sm);
     color: var(--color-grey);
+    cursor: pointer;
     background: var(--color-grey-lighter);
   }
 }

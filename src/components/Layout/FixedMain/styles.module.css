@@ -1,0 +1,10 @@
+.fixedMain {
+  position: fixed;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.content {
+  pointer-events: initial;
+}
