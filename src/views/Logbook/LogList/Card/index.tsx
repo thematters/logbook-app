@@ -1,6 +1,6 @@
 import React from "react";
 import Markdown from "markdown-to-jsx";
-import { formatHash, formatDate, toPolygonAddressUrl } from "~/utils";
+import { formatHash, formatDate, toPolygonHashUrl } from "~/utils";
 
 import { Button, TextIcon, IconEtherScan } from "~/components";
 
@@ -12,6 +12,7 @@ export interface CardProps {
   createdAt: string;
   content: string;
   authorID: string;
+  publicationTxHash: string;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -19,10 +20,11 @@ export const Card: React.FC<CardProps> = ({
   createdAt,
   content,
   authorID,
+  publicationTxHash,
 }) => {
   // console.log({ content });
   const isSmallUp = useResponsive("sm-up");
-  const { url, maskedAddress } = toPolygonAddressUrl(authorID);
+  const url = toPolygonHashUrl(publicationTxHash);
   const formattedHash = `${authorID.slice(0, 4)}...${authorID.slice(-4)}`;
   const formattedDate = formatDate(new Date(Number(createdAt) * 1000));
   let borderRadius = "1rem";

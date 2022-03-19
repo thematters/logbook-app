@@ -11,11 +11,6 @@ export const LIBRARY_LOGBOOKS = gql`
       id
       title
       description
-      publications(first: 1, orderBy: createdAt, orderDirection: desc) {
-        log {
-          content
-        }
-      }
       transferCount
       publicationCount
       owner {
@@ -34,13 +29,13 @@ export const LOGBOOK_DETAIL = gql`
         id
         balance
       }
-      cover
       title
       description
       forkPrice
       transferCount
       publications(orderBy: createdAt, orderDirection: desc) {
         id
+        txHash
         log {
           id
           content

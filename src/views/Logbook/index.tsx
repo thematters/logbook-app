@@ -50,40 +50,48 @@ const Logbook: React.FC = () => {
       {loading || !logbookDetail?.logbook ? (
         <Spinner />
       ) : (
-        <LogbookContext.Provider
-          value={{
-            id: logbookDetail.logbook.id,
-            title: logbookDetail.logbook.title,
-            description: logbookDetail.logbook.description,
-            transferCount: logbookDetail.logbook.transferCount,
-            publications: logbookDetail.logbook.publications,
-          }}
-        >
-          <section className={styles.maxWidth}>
-            {accountData &&
-            accountData?.address.toLowerCase() === owner?.id.toLowerCase() &&
-            isEditing ? (
-              <Editing
-                id={id}
-                content={initialContent}
-                setContent={setContent}
-                onLeave={() => enableEditing(false)}
-              />
-            ) : (
-              <Book
-                id={id}
-                // title={logbookDetail.logbook.title}
-                // transferCount={logbookDetail.logbook.transferCount}
-                // description={logbookDetail.logbook.description}
-                // publications={logbookDetail.logbook.publications}
-                isOwn={
-                  accountData?.address.toLowerCase() === owner?.id.toLowerCase()
-                }
-                onEdit={() => enableEditing(true)}
-              />
-            )}
-          </section>
-        </LogbookContext.Provider>
+        <>
+          <Head
+            title={logbookDetail.logbook.title}
+            description={logbookDetail.logbook.description}
+          />
+          <LogbookContext.Provider
+            value={{
+              id: logbookDetail.logbook.id,
+              title: logbookDetail.logbook.title,
+              owner: logbookDetail.logbook.owner,
+              description: logbookDetail.logbook.description,
+              transferCount: logbookDetail.logbook.transferCount,
+              publications: logbookDetail.logbook.publications,
+            }}
+          >
+            <section className={styles.maxWidth}>
+              {accountData &&
+              accountData?.address.toLowerCase() === owner?.id.toLowerCase() &&
+              isEditing ? (
+                <Editing
+                  id={id}
+                  content={initialContent}
+                  setContent={setContent}
+                  onLeave={() => enableEditing(false)}
+                />
+              ) : (
+                <Book
+                  id={id}
+                  // title={logbookDetail.logbook.title}
+                  // transferCount={logbookDetail.logbook.transferCount}
+                  // description={logbookDetail.logbook.description}
+                  // publications={logbookDetail.logbook.publications}
+                  isOwn={
+                    accountData?.address.toLowerCase() ===
+                    owner?.id.toLowerCase()
+                  }
+                  onEdit={() => enableEditing(true)}
+                />
+              )}
+            </section>
+          </LogbookContext.Provider>
+        </>
       )}
     </>
   );
