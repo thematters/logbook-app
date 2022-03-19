@@ -5,7 +5,7 @@
   overflow: hidden;
   @media (--sm-up) {
     padding-top: 2.5rem;
-    padding-bottom: 260px;
+    margin-bottom: 260px;
   }
 
   @media (--sm-up) {

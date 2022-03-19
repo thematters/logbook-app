@@ -7,11 +7,10 @@ import styles from "./styles.module.css";
 
 export const LogList = () => {
   const logbook = useContext(LogbookContext);
-
   return (
     <section className={styles.container}>
       {logbook.publications.map(
-        ({ log: { id, content, createdAt, author } }) => {
+        ({ txHash, log: { id, content, createdAt, author } }) => {
           return (
             <section key={id} className={styles.item}>
               <Card
@@ -19,6 +18,7 @@ export const LogList = () => {
                 content={content}
                 createdAt={createdAt}
                 authorID={author?.id}
+                publicationTxHash={txHash}
               />
             </section>
           );

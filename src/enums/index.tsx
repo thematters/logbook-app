@@ -25,3 +25,6 @@ export const Z_INDEX = {
 // Toasts
 export const ADD_TOAST = "addToast";
 export const REMOVE_TOAST = "removeToast";
+
+// Time
+export const TOAST_DURATION = 1000 * 3;

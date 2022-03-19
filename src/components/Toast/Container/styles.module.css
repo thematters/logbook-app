@@ -1,0 +1,10 @@
+.toastContainer {
+  & :global(.fixed-main) {
+    top: 4rem;
+    z-index: calc(var(--z-index-dialog) + 1);
+
+    @media (--sm-up) {
+      top: 5.25rem;
+    }
+  }
+}

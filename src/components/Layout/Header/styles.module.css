@@ -1,12 +1,5 @@
 .header {
-  /* display: flex; */
   @mixin flex-center-space-between;
-
-  justify-content: flex-end;
-
-  @media (--md-up) {
-    justify-content: space-between;
-  }
 
   width: 100%;
   padding: 2.5rem 1.125rem 0;
@@ -15,6 +8,10 @@
     padding-right: 60px;
     padding-left: 60px;
   }
+}
+
+.flexEnd {
+  justify-content: flex-end;
 }
 
 .fixed {

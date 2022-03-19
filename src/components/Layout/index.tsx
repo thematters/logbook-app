@@ -6,13 +6,17 @@ import { Head } from "~/components";
 import Header from "./Header";
 import Footer from "./Footer";
 
+import FixedMain from "./FixedMain";
+
 import styles from "./styles.module.css";
 
 type PageProps = {
   footer?: ReactNode;
 };
 
-const Layout: React.FC<PageProps> = ({ children, footer }) => {
+const Layout: React.FC<PageProps> & {
+  FixedMain: typeof FixedMain;
+} = ({ children, footer }) => {
   return (
     <>
       <Head />
@@ -26,5 +30,7 @@ const Layout: React.FC<PageProps> = ({ children, footer }) => {
     </>
   );
 };
+
+Layout.FixedMain = FixedMain;
 
 export { Layout, Header };

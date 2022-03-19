@@ -51,7 +51,7 @@ export const Book: React.FC<BookProps> = ({
   return (
     <div className={styles.container}>
       <section className={styles.nav}>
-        <Nav id={id} />
+        <Nav id={id} isOwn={isOwn} OwnerId={logbook.owner?.id || ""} />
       </section>
       <section className={titleClasses}>
         {logbook.title || "Edit title in setting page"}

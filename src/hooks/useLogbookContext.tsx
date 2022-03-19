@@ -16,10 +16,12 @@ interface Log {
 export interface Publication {
   __typename: "Publication";
   log: Log;
+  txHash: string;
 }
 
 export type Logbook = {
   id: string;
+  owner?: Account;
   title?: string;
   description?: string;
   transferCount?: number;

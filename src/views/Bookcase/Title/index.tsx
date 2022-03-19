@@ -44,7 +44,6 @@ export const Title: React.FC<TitleProps> = ({ address }) => {
       (urlAddress as string).toLowerCase();
 
   const { url, maskedAddress } = toPolygonAddressUrl(address);
-  console.log({ url });
   return (
     <section>
       <section className={styles.title}>

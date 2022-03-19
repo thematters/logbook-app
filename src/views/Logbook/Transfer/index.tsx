@@ -7,11 +7,11 @@ export interface TransferProps {
   transferCount?: number;
 }
 
-export const Transfer: React.FC<TransferProps> = ({ transferCount }) => {
+export const Transfer: React.FC<TransferProps> = ({ transferCount = 0 }) => {
   return (
     <section className={styles.container}>
       <span>Transfer</span>
-      <TextIcon color="blueGreen">{transferCount || 0}</TextIcon>
+      <TextIcon color="blueGreen">{transferCount}</TextIcon>
     </section>
   );
 };

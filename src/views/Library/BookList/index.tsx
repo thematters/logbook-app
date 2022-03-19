@@ -23,8 +23,7 @@ export const BookList = () => {
   });
   const [logbookList, updateLogbookList] = useState([]);
   useEffect(() => {
-    // console.log('useEffect ', data)
-    updateLogbookList(data?.logbooks);
+    updateLogbookList(data?.logbooks || []);
   }, [data]);
 
   if (error) return <></>;
@@ -33,17 +32,21 @@ export const BookList = () => {
   }
 
   const loadMore = async () => {
-    const [lastLogbook] = logbookList.slice(-1);
-    const { loggedAt } = lastLogbook;
-    const { data } = await fetchMore({
-      variables: {
-        first,
-        lastLoggedAt: loggedAt,
-      },
-    });
-    const { logbooks } = data;
-    updateLogbookList(logbookList.concat(logbooks));
-    updateHasNextPage(logbooks.length >= first);
+    if (logbookList.length >= 1) {
+      const [lastLogbook] = logbookList.slice(-1);
+      const { loggedAt } = lastLogbook;
+      const { data } = await fetchMore({
+        variables: {
+          first,
+          lastLoggedAt: loggedAt,
+        },
+      });
+      const { logbooks } = data;
+      updateLogbookList(logbookList.concat(logbooks));
+      updateHasNextPage(logbooks.length >= first);
+    } else {
+      updateHasNextPage(false);
+    }
   };
 
   return (
@@ -54,11 +57,6 @@ export const BookList = () => {
             id,
             title,
             description,
-            publications: [
-              {
-                log: { content },
-              },
-            ],
             transferCount,
             publicationCount,
             owner,
