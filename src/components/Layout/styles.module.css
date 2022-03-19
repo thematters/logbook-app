@@ -1,6 +1,6 @@
 .main {
   min-height: calc(100vh - 6rem);
-  @media (--sm-up) {
+  @media (--md-up) {
     z-index: calc(var(--z-index-header) + 1);
   }
 }
