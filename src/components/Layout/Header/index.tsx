@@ -1,18 +1,24 @@
 import Link from "next/link";
 import classNames from "classnames";
+import { useRouter } from "next/router";
 
-import { IconLogo, Button, TextIcon, Nav } from "~/components";
+import { IconLogo, IconChevronLeft, Button, TextIcon, Nav } from "~/components";
 import { useResponsive } from "~/hooks";
 
 import styles from "./styles.module.css";
 
 const Header = () => {
-  // const cls = classNames([styles.header, "l-col-full"]);
   const isMediumUp = useResponsive("md-up");
-
+  const router = useRouter();
+  const HomepagePath = "/";
+  const isHomepage = router.pathname === HomepagePath;
+  const headerClasses = classNames({
+    [styles.header]: true,
+    [styles.flexEnd]: isHomepage && !isMediumUp,
+  });
   return (
     <header className={styles.fixed}>
-      <div className={styles.header}>
+      <div className={headerClasses}>
         {isMediumUp && (
           <Link href="/">
             <a>
@@ -28,7 +34,11 @@ const Header = () => {
             </a>
           </Link>
         )}
-
+        {!isHomepage && !isMediumUp && (
+          <Button onClick={() => history.back()}>
+            <TextIcon icon={<IconChevronLeft size="md" />}></TextIcon>
+          </Button>
+        )}
         <Nav />
       </div>
     </header>
