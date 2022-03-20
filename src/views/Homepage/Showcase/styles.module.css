@@ -1,8 +1,12 @@
 .showcase {
   position: relative;
   width: 100vw;
-  padding: 300px 0;
+  padding: 60px 0;
   overflow: hidden;
+
+  @media (--md-up) {
+    padding: 100px 0;
+  }
 
   &::before {
     position: absolute;

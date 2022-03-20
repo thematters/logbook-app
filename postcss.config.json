@@ -19,8 +19,7 @@
          "./src/styles/variables/z-index.css"
         ],
         "autoprefixer": {
-          "flexbox": "no-2009",
-          "box": "autoreplace"
+          "flexbox": "no-2009"
         },
         "stage": 0
       }
