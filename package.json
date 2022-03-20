@@ -41,7 +41,7 @@
     "classnames": "^2.3.1",
     "embla-carousel-react": "^6.2.0",
     "embla-carousel-wheel-gestures": "^2.1.0",
-    "ethers": "^5.6.0",
+    "ethers": "^5.6.1",
     "formik": "^2.2.9",
     "graphql": "^16.3.0",
     "lodash": "^4.17.21",
