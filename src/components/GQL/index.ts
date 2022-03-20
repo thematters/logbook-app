@@ -50,3 +50,15 @@ export const LOGBOOK_DETAIL = gql`
     }
   }
 `;
+
+export const CLIENT_INFO = gql`
+  query ClientInfo {
+    clientInfo @client {
+      id
+      viewportSize {
+        width
+        height
+      }
+    }
+  }
+`;
