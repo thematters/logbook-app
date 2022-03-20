@@ -192,7 +192,7 @@ const ClaimLogbookContent: React.FC<ClaimLogbookContentProps> = ({
     if (!account) return;
 
     getClaimableLogbooks(account);
-  });
+  }, [account]);
 
   // fetching Traveloggers
   if (loading) {
