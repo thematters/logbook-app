@@ -23,8 +23,9 @@ export const Card: React.FC<CardProps> = ({
   publicationTxHash,
 }) => {
   const isSmallUp = useResponsive("sm-up");
-  const { url: hashLink, maskedHash } = toPolygonHashUrl(publicationTxHash);
+  const { url: hashLink } = toPolygonHashUrl(publicationTxHash);
   const formattedDate = formatDate(new Date(Number(createdAt) * 1000));
+  const formattedHash = `${authorID.slice(0, 4)}...${authorID.slice(-4)}`;
   let borderRadius = "1rem";
   let width = "3.25rem";
   let height = "1.75rem";
@@ -50,7 +51,7 @@ export const Card: React.FC<CardProps> = ({
           href={`/bookcase?address=${authorID}`}
         >
           <TextIcon spacing="xTight" color="greyDark">
-            {maskedHash}
+            {formattedHash}
           </TextIcon>
         </Button>
 
