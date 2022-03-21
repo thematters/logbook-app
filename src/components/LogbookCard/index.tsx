@@ -78,7 +78,7 @@ export const LogbookCard: React.FC<LogbookCardProps> = ({
     [styles.fixedHeight]: !!fixedHeight,
   });
 
-  const displayTitle = title === "" ? "Unknown logbook title" : title;
+  const displayTitle = title === "" ? "Untitled" : title;
 
   return (
     // TODO: link to log book inside page

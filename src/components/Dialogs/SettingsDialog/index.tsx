@@ -137,7 +137,7 @@ const BaseDialog: React.FC<DialogProps> = ({ id, children }) => {
           >
             {({ openDialog: openWaitCompleteDialog }) => (
               <Dialog isOpen={show} onDismiss={closeDialog}>
-                <Dialog.Header title="Setting" closeDialog={closeDialog} />
+                <Dialog.Header title="Settings" closeDialog={closeDialog} />
 
                 <Dialog.Content>
                   <Form>
