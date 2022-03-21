@@ -158,6 +158,7 @@ export const Showcase = () => {
             navigation={true}
             allowTouchMove={false}
             grabCursor={false}
+            className={styles.swiper}
           >
             <SwiperSlide className={styles.slide}>
               <figure className={styles.figure}>
