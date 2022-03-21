@@ -60,7 +60,7 @@ export const EmptyBookList: React.FC<EmptyBookListProps> = ({ address }) => {
             key={id}
             tokenID={id}
             className={styles.item}
-            title={title ? title : "Empty book"}
+            title={title ? title : "Untitled"}
             content="Leave your stories or thoughts..."
             publicationCount="0"
             transferCount="0"
