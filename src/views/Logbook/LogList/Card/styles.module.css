@@ -9,21 +9,21 @@
   }
 }
 
-.markdown > * {
-  font-size: 1rem;
-  line-height: 1.7;
+.markdown {
+  font-size: var(--font-size-article-body);
+  line-height: var(--line-height-article-body);
   color: var(--color-grey-darker);
   outline: none;
 
-  & > * + * {
+  & div > * + * {
     margin: var(--spacing-loose) 0;
   }
 
-  & > *:first-child {
+  & div > *:first-child {
     margin-top: 0;
   }
 
-  & > *:last-child {
+  & div > *:last-child {
     margin-bottom: var(--spacing-loose);
   }
 
