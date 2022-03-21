@@ -9,52 +9,155 @@
   }
 }
 
-.markdown {
+.markdown > * {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-grey-darker);
+  outline: none;
+
+  & > * + * {
+    margin: var(--spacing-loose) 0;
+  }
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  & > *:last-child {
+    margin-bottom: var(--spacing-loose);
+  }
+
   & p {
-    color: var(--color-grey-darker);
+    /* FIXME: Firefox eats trailing spaces
+     *
+     * @see {@url https://github.com/quilljs/quill/issues/1760}
+     */
+    white-space: pre-wrap;
   }
 
-  & img {
-    max-width: 100%;
+  /* Media
+   ========================================================================== */
+  & img,
+  video,
+  audio {
+    display: block;
+    margin: 0 auto;
   }
 
+  /* Figure
+   ========================================================================== */
+  & figure {
+    margin: var(--spacing-x-loose) calc(var(--spacing-base) * -1);
+    text-align: center;
+
+    & figcaption {
+      padding: 0 var(--spacing-base);
+      margin-top: var(--spacing-x-tight);
+      font-size: var(--font-size-sm-s);
+      color: var(--color-grey);
+      white-space: pre-wrap;
+    }
+  }
+
+  /* Blockquote
+   ========================================================================== */
+  & blockquote {
+    position: relative;
+    padding: 0 var(--spacing-base);
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      content: "";
+      background: var(--color-grey);
+    }
+  }
+
+  /* List
+   ========================================================================== */
+  & ul,
+  & ol {
+    padding-left: var(--spacing-x-loose);
+  }
+
+  & li {
+    padding-left: var(--spacing-x-tight);
+    margin: var(--spacing-base) 0;
+  }
+
+  & ul {
+    list-style-type: disc;
+  }
+
+  & ol {
+    list-style-type: decimal;
+  }
+
+  /* Heading
+   ========================================================================== */
+  & h1 {
+    font-size: var(--font-size-article-h1);
+  }
+
+  & h2 {
+    font-size: var(--font-size-article-h2);
+  }
+
+  & h3 {
+    font-size: var(--font-size-article-h3);
+  }
+
+  & h4 {
+    font-size: var(--font-size-article-h4);
+  }
+
+  & h5 {
+    font-size: var(--font-size-article-h5);
+  }
+
+  & h6 {
+    font-size: var(--font-size-article-h6);
+  }
+
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    margin-top: var(--spacing-x-loose);
+    line-height: var(--line-height-article-heading);
+    color: var(--color-black);
+  }
+
+  /* Link
+   ========================================================================== */
+  & a {
+    padding-bottom: 2px;
+    color: var(--color-matters-green);
+    border-bottom: 1px solid currentcolor;
+  }
+
+  /* fix frequent misuse of links */
+  & u > a,
+  ins > a {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  /* Misc
+   ========================================================================== */
   & hr {
     display: block;
     width: 10rem;
     height: 0.25rem;
-    margin: 1.5rem auto;
-
-    /* padding: 1rem 0; */
-    border-color: #2e2e2e;
-    border-width: 1px 0;
-    border-top-color: rgb(0 0 0 / 24%);
-    border-top-style: solid;
-    border-bottom-color: rgb(0 0 0 / 24%);
-    border-bottom-style: solid;
-  }
-
-  & a:link,
-  & a:visited {
-    color: var(--color-gradient-green-start);
-    text-decoration: underline;
-  }
-
-  &:not(pre) > code,
-  & pre {
-    background-color: var(--color-grey-markdown-background);
-  }
-
-  & code,
-  & pre {
-    color: var(--color-black);
-  }
-
-  & blockquote {
-    padding-left: 20px;
-    margin-right: 0;
-    margin-left: 0;
-    font-style: italic;
-    border-left: 4px solid var(--color-grey);
+    margin: var(--spacing-x-loose) auto;
+    border: 0;
+    border-top: 1px solid var(--color-grey-dark);
+    border-bottom: 1px solid var(--color-grey-dark);
   }
 }
 
