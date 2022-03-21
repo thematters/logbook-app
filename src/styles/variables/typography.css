@@ -110,7 +110,7 @@
 
     /* Article Body */
     --font-size-article-body: var(--font-size-md-s);
-    --line-height-article-body: 1.333;
+    --line-height-article-body: 1.7;
     --font-weight-article-body: var(--font-weight-normal);
 
     /* Information Text */
