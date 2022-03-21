@@ -37,12 +37,6 @@ export const Showcase = () => {
           background-position: left top;
           background-size: contain;
         }
-        .swiper-slide-active figure {
-          width: 191px;
-          height: 212px;
-          transition: transform 0.5s ease;
-          transform: translate(18px, 24px);
-        }
         .swiper-slide-active figure img {
           filter: grayscale(0) !important;
         }
@@ -106,6 +100,7 @@ export const Showcase = () => {
             width: 353px;
             height: 391px;
             transform: translate(43px, 72px);
+            transition: transform 0.5s ease;
             animation: changeShapes 0.5s ease forwards;
           }
           .swiper-slide .content {
@@ -123,27 +118,14 @@ export const Showcase = () => {
         }
         @media (max-width: 991px) {
           .swiper-slide-active figure {
-            clip-path: path(
-              M1.562,
-              75.717c9.927,
-              28.6,
-              35.112,
-              10.585,
-              74.691,
-              1.792,
-              129.5-10.384,
-              191.536,
-              41.868,
-              191,
-              86.548s130.82,
-              214.9,
-              74.691,
-              211.923-6.8,
-              122.834,
-              1.562,
-              75.717z
-            );
+            width: 191px;
+            height: 212px;
+            transform: translate(18px, 24px);
             margin: 0 0 60px;
+            transition: transform 0.5s ease;
+            clip-path: path(
+              "M1.562,75.455C9.927,28.5,35.112,10.549,74.691,1.786,129.5-10.348,191.536,41.724,191,86.249S130.82,214.158,74.691,211.189-6.8,122.409,1.562,75.455Z"
+            );
           }
         }
         @keyframes changeShapes {
@@ -159,22 +141,6 @@ export const Showcase = () => {
           }
         }
       `}</style>
-      <svg
-        className={styles.svg}
-        width="0"
-        height="0"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <clipPath
-            id="clipping"
-            clipPathUnits="objectBoundingBox"
-            transform="scale(0.005, 0.004385964912281)"
-          >
-            <path d="M0.030766 136.327C1.44292 77.7242 27.5678 64.3091 65.6961 24.7699C122.889 -22.5358 161.017 2.17614 188.554 62.897C216.091 123.618 194.202 199.872 120.064 222.466C45.9259 245.06 -1.38139 194.93 0.030766 136.327Z" />
-          </clipPath>
-        </defs>
-      </svg>
       <Container>
         <div className={styles.header}>
           <h1 className={styles.title}>Showcase</h1>
@@ -189,6 +155,7 @@ export const Showcase = () => {
         navigation={true}
         allowTouchMove={false}
         grabCursor={false}
+        className={styles.swiper}
       >
         <SwiperSlide className={styles.slide}>
           <figure className={styles.figure}>
