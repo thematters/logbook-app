@@ -43,8 +43,8 @@ const Homepage: Page = () => {
 
       <Hero />
       <IntroSection />
-      {/* <Showcase /> */}
-      {/* <HalfArrow /> */}
+      <Showcase />
+      <HalfArrow />
 
       <RecentlyWritten />
       <FAQ />
