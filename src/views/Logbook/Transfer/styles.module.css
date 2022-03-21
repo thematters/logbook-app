@@ -1,4 +1,6 @@
 .container {
+  @mixin flex-center-start;
+
   font-size: var(--font-size-information-text);
   font-weight: var(--font-weight-information-text);
   line-height: var(--line-height-information-text);

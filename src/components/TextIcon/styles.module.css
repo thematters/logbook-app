@@ -6,17 +6,9 @@
   user-select: none;
 }
 
-.textIconSafari {
-  display: block;
-}
-
 .text {
   display: inline-flex;
   line-height: 1;
-}
-
-.textSafari {
-  display: inline;
 }
 
 /* placement */
@@ -128,6 +120,14 @@
 
     background-color: var(--color-blue-green);
     background-image: var(--color-blue-green);
+
+    &.textIconSafari {
+      display: block;
+
+      & > .textSafari {
+        display: inline;
+      }
+    }
   }
 
   &.blueGreenDarker {
