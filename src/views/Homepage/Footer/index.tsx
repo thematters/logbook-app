@@ -85,7 +85,7 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <div>Opensea</div>
+            <div>OpenSea</div>
           </a>
           <a
             href={process.env.NEXT_PUBLIC_DISCORD_LINK}
