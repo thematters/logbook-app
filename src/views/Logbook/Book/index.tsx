@@ -49,9 +49,7 @@ export const Book: React.FC<BookProps> = ({
       <section className={styles.nav}>
         <Nav id={id} isOwn={isOwn} OwnerId={logbook.owner?.id || ""} />
       </section>
-      <section className={titleClasses}>
-        {logbook.title || "Edit title in setting page"}
-      </section>
+      <section className={titleClasses}>{logbook.title || "Untitled"}</section>
       <section className={styles.transfer}>
         <Transfer transferCount={logbook.transferCount} />
         {isSmallUp ? <ButtonGroup id={id} onEdit={onEdit} isOwn={isOwn} /> : ""}
