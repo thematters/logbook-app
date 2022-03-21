@@ -16,7 +16,7 @@
     width: 100%;
   }
 
-  & .designerlogo {
+  & .designerlogo > div {
     @mixin text-fill-gradient-color;
 
     background-color: var(--color-blue-green);
