@@ -45,7 +45,7 @@ const DropdownMenu: React.FC<{
     <li role="menu-item">
       <Card onClick={openSettingsDialog}>
         <IconSettings size="md" />
-        <TextIcon>Setting</TextIcon>
+        <TextIcon>Settings</TextIcon>
       </Card>
     </li>
   </ul>

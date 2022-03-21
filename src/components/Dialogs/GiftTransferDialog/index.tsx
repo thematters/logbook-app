@@ -43,6 +43,7 @@ const BaseDialog: React.FC<DialogProps> = ({ tokenId, children }) => {
           <InputAddressContent
             // account={account as string}
             tokenId={tokenId}
+            gotoConnectWallet={() => forward("connect-wallet")}
             next={() => forward("completed")}
           />
         )}

@@ -1,6 +1,11 @@
 import { utils } from "ethers";
-import { useContext } from "react";
-import { useEnsResolveName, useContractWrite, useAccount } from "wagmi";
+import { useContext, useEffect } from "react";
+import {
+  useEnsResolveName,
+  useContractWrite,
+  useAccount,
+  useNetwork,
+} from "wagmi";
 import _debounce from "lodash/debounce";
 import { Formik, FormikHelpers } from "formik";
 
@@ -11,9 +16,15 @@ import { logbookInterface } from "~/utils";
 type Props = {
   tokenId: string;
   next: () => void;
+  gotoConnectWallet: () => void;
 };
 
-export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
+export const InputAddressContent: React.FC<Props> = ({
+  tokenId,
+  next,
+  gotoConnectWallet,
+}) => {
+  const [{ data: networkData }, switchNetwork] = useNetwork();
   const [{ data: accountData }] = useAccount();
   const [{ loading: ensLoading }, resolveName] = useEnsResolveName();
   const [{ loading: transferLoading }, transfer] = useContractWrite(
@@ -25,8 +36,15 @@ export const InputAddressContent: React.FC<Props> = ({ tokenId, next }) => {
   );
 
   const account = accountData?.address;
+  const isUnsupportedNetwork = networkData.chain?.unsupported;
 
   const logbook = useContext(LogbookContext);
+
+  useEffect(() => {
+    if (isUnsupportedNetwork) {
+      gotoConnectWallet();
+    }
+  }, [isUnsupportedNetwork]);
 
   const onSubmit = async (
     {
