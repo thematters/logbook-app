@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 import { Button, IconEmptyBook, TextIcon } from "~/components";
 import { Nav } from "../Nav";
@@ -31,10 +31,6 @@ export const Book: React.FC<BookProps> = ({
   }
 
   const logbook = useContext(LogbookContext);
-
-  useEffect(() => {
-    console.log("title&summary: ", logbook);
-  }, [logbook]);
 
   if (!logbook) return <></>;
 

@@ -73,12 +73,8 @@ export const Editing: React.FC<Props> = ({
     watch: true,
   });
 
-  /* useEffect(() => {
-    console.log("initial content:", content);
-  }, [content]); */
-
   const editorUpdate = _debounce(async ({ content }: { content: string }) => {
-    console.log("got update:", { content, errorFeeData });
+    // console.log("got update:", { content, errorFeeData });
     setContent(content);
 
     // estimate
@@ -126,7 +122,6 @@ export const Editing: React.FC<Props> = ({
   const onPublish = async () => {
     const content = editorRef.current?.getMarkdown();
     setContent(content);
-    // console.log("to publish:", { content });
 
     const { data, error } = await publish({
       args: [id, content],
@@ -152,8 +147,6 @@ export const Editing: React.FC<Props> = ({
             shadow
             className={styles.leaveButton}
             onClick={() => {
-              // console.log("leave");
-              // onLeave();
               openDialog();
 
               setContent(editorRef.current?.getMarkdown());
@@ -176,10 +169,7 @@ export const Editing: React.FC<Props> = ({
             onClick={() => {
               openDialog();
               onPublish()
-                .then((data) => {
-                  // published
-                  // console.log("published:", data);
-                })
+                // .then((data) => { // published // console.log("published:", data); })
                 .catch((err) => {
                   // console.error("publish error:", err, closeDialog);
                   closeDialog?.();

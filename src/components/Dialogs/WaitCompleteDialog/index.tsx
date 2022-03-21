@@ -29,20 +29,15 @@ const BaseDialog: React.FC<DialogProps> = ({
   children,
 }) => {
   const [{ data: dataWait, loading: waitForTransaction }, wait] =
-    useWaitForTransaction({
-      // hash,
-      // confirmations: 3,
-      // hash, confirmations,
-      skip: true,
-    });
+    useWaitForTransaction({ skip: true });
 
   const { show, openDialog, closeDialog } = useDialogSwitch(true);
 
   useEffect(() => {
     if (hash) {
-      console.log(`start waiting on hash:`, { hash, confirmations });
+      // console.log(`start waiting on hash:`, { hash, confirmations });
       wait({ hash, confirmations }).then((data) => {
-        console.log("wait data:", data, "onFinish:", onFinish);
+        // console.log("wait data:", data, "onFinish:", onFinish);
         onFinish?.();
       });
     }

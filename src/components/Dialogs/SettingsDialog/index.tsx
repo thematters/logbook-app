@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Formik, FormikHelpers } from "formik";
 // import { useEthers } from "@usedapp/core";
-import { useContractWrite, useAccount } from "wagmi";
+import { useContractWrite } from "wagmi";
 
 import { Dialog, Form } from "~/components";
 import { useDialogSwitch, LogbookContext } from "~/hooks";
@@ -19,17 +19,11 @@ type DialogProps = {
 
 const BaseDialog: React.FC<DialogProps> = ({ id, children }) => {
   const { show, openDialog, closeDialog } = useDialogSwitch(true);
-  // const { account } = useEthers();
 
   const logbook = useContext(LogbookContext);
 
-  useEffect(() => {
-    console.log("in SettingsDialog: title&summary:", logbook);
-  }, [logbook]);
-
   const [hash, setHash] = useState("");
 
-  const [{ data: accountData }] = useAccount();
   const [, multicall] = useContractWrite(
     {
       addressOrName: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || "",
@@ -52,11 +46,7 @@ const BaseDialog: React.FC<DialogProps> = ({ id, children }) => {
     "setDescription"
   );
 
-  const account = accountData?.address;
-
   const maxAllowedLength = { title: 45, summary: 240 };
-
-  // const { values, isSubmitting, isValid } = useFormikContext();
 
   const onSubmit = async (
     { title, summary }: { title: string; summary: string },
@@ -66,7 +56,6 @@ const BaseDialog: React.FC<DialogProps> = ({ id, children }) => {
     }>
   ) => {
     // TODO: analytics
-    console.log("submitting:", { title, summary });
 
     const changedTitle = title !== logbook.title;
     const changedSummary = summary !== logbook.description;
@@ -99,8 +88,6 @@ const BaseDialog: React.FC<DialogProps> = ({ id, children }) => {
     }
 
     if (error) {
-      console.error("error:", error, formik);
-
       formik.setErrors({
         title: error?.message || "Failed to set title and summary",
         // summary: errorSummary?.message || "Failed to set summary",
@@ -108,7 +95,6 @@ const BaseDialog: React.FC<DialogProps> = ({ id, children }) => {
     }
 
     setHash(data?.hash as string);
-    console.log("set title&summary:", data, "refetch:", logbook?.refetch);
     logbook?.refetch();
 
     closeDialog();
@@ -136,7 +122,6 @@ const BaseDialog: React.FC<DialogProps> = ({ id, children }) => {
       }}
       onSubmit={onSubmit}
       // validate={onValidate}
-      // onSubmit={() => {console.log("submit!");}}
       // validator={() => ({})}
     >
       {({ values, isSubmitting, isValid, dirty, submitForm }) => (

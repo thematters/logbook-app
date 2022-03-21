@@ -15,7 +15,7 @@ export class FigcaptionExtension extends ImageExtension {
     override: NodeSpecOverride
   ): NodeExtensionSpec {
     const spec = super.createNodeSpec(extra, override);
-    console.log("image spec:", spec);
+    // console.log("image spec:", spec);
 
     return {
       ...spec,
@@ -42,7 +42,7 @@ export class FigcaptionExtension extends ImageExtension {
   createInputRules(): InputRule[] {
     // const regexp = new RegExp(String.raw`\s*\!\[(.*)\]\((https?://.*)\)`);
     const regexp = /(?:^|\s+)\!\[(.*)\]\((https?:\/\/.*)\)(?:$|\s+)/;
-    console.log("createInputRules:", regexp);
+    // console.log("createInputRules:", regexp);
 
     return [
       // wrappingInputRule(regexp, this.type),
@@ -53,7 +53,7 @@ export class FigcaptionExtension extends ImageExtension {
           title,
           src,
         } as ImageAttributes);
-        console.log("inputrule:", regexp, state, _match, start, end);
+        // console.log("inputrule:", regexp, state, _match, start, end);
 
         const tr = state.tr;
         tr.replaceRangeWith(start, end, node);

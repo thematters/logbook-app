@@ -50,7 +50,7 @@ export interface LoggedBookListProps {
 
 export const LoggedBookList: React.FC<LoggedBookListProps> = ({ address }) => {
   const first = 10;
-  // const ownID = "0x479029844f8bdd76b8b9271f577a8f8919bf16cc";
+
   const [lastLoggedAt] = useState(Date.now().toString());
   const [hasNextPage, updateHasNextPage] = useState(true);
   const isSmallUp = useResponsive("sm-up");
@@ -88,6 +88,7 @@ export const LoggedBookList: React.FC<LoggedBookListProps> = ({ address }) => {
       variables.loggedAt = logbookList[logbookList.length - 1]?.loggedAt;
     const { data } = await fetchMore({ variables });
     // console.log({ data });
+
     const {
       account: { logbooks },
     } = data as any;
@@ -123,7 +124,8 @@ export const LoggedBookList: React.FC<LoggedBookListProps> = ({ address }) => {
       ]
     )
   );
-  console.log({ logbookMap });
+  // console.log({ logbookMap });
+
   return (
     <section>
       <section className={styles.container}>
