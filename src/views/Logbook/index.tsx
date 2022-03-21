@@ -32,7 +32,7 @@ const Logbook: React.FC = () => {
   });
 
   /* useEffect(() => {
-    console.log("logbookDetail:", { logbookDetail, accountData });
+  // console.log("logbookDetail:", { logbookDetail, accountData });
   }, [logbookDetail, accountData]); */
 
   const [initialContent, setContent] = useState<string>("");

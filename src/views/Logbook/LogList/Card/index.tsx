@@ -1,6 +1,6 @@
 import React from "react";
 import Markdown from "markdown-to-jsx";
-import { formatHash, formatDate, toPolygonHashUrl } from "~/utils";
+import { formatDate, maskAddress, toPolygonHashUrl } from "~/utils";
 
 import { Button, TextIcon, IconEtherScan } from "~/components";
 import { useResponsive } from "~/hooks";
@@ -23,8 +23,9 @@ export const Card: React.FC<CardProps> = ({
   publicationTxHash,
 }) => {
   const isSmallUp = useResponsive("sm-up");
-  const { url: hashLink, maskedHash } = toPolygonHashUrl(publicationTxHash);
+
   const formattedDate = formatDate(new Date(Number(createdAt) * 1000));
+
   let borderRadius = "1rem";
   let width = "3.25rem";
   let height = "1.75rem";
@@ -50,7 +51,7 @@ export const Card: React.FC<CardProps> = ({
           href={`/bookcase?address=${authorID}`}
         >
           <TextIcon spacing="xTight" color="greyDark">
-            {maskedHash}
+            {maskAddress(authorID, 4)}
           </TextIcon>
         </Button>
 
@@ -58,7 +59,11 @@ export const Card: React.FC<CardProps> = ({
           <span>{formattedDate}</span>
         </TextIcon>
 
-        <a href={hashLink} target="_blank" rel="noreferrer">
+        <a
+          href={toPolygonHashUrl(publicationTxHash)}
+          target="_blank"
+          rel="noreferrer"
+        >
           <TextIcon
             icon={isSmallUp ? <IconEtherScan size="md" /> : <IconEtherScan />}
           ></TextIcon>

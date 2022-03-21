@@ -1,3 +1,7 @@
+import { useApolloClient, useQuery } from "@apollo/client";
+// import { useEffect } from "react";
+
+import { CLIENT_INFO } from "~/components/GQL";
 import { BREAKPOINTS } from "~/enums";
 
 import { useWindowResize } from "./useWindowResize";
@@ -5,7 +9,12 @@ import { useWindowResize } from "./useWindowResize";
 type Type = "sm-down" | "sm-up" | "md-up" | "lg-up" | "sm" | "xs" | "md" | "lg";
 
 export const useResponsive = (type: Type) => {
-  const [width] = useWindowResize();
+  const { data } = useQuery(CLIENT_INFO, {
+    variables: { id: "local" },
+  });
+  const width = data?.clientInfo.viewportSize.width;
+
+  // useEffect(() => { console.log("updated viewport:", [width]); }, [width]);
 
   if (!width) {
     return false;

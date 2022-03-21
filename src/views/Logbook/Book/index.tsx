@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 import { Button, IconEmptyBook, TextIcon } from "~/components";
 import { Nav } from "../Nav";
@@ -32,10 +32,6 @@ export const Book: React.FC<BookProps> = ({
 
   const logbook = useContext(LogbookContext);
 
-  useEffect(() => {
-    console.log("title&summary: ", logbook);
-  }, [logbook]);
-
   if (!logbook) return <></>;
 
   const titleClasses = classNames({
@@ -53,9 +49,7 @@ export const Book: React.FC<BookProps> = ({
       <section className={styles.nav}>
         <Nav id={id} isOwn={isOwn} OwnerId={logbook.owner?.id || ""} />
       </section>
-      <section className={titleClasses}>
-        {logbook.title || "Edit title in setting page"}
-      </section>
+      <section className={titleClasses}>{logbook.title || "Untitled"}</section>
       <section className={styles.transfer}>
         <Transfer transferCount={logbook.transferCount} />
         {isSmallUp ? <ButtonGroup id={id} onEdit={onEdit} isOwn={isOwn} /> : ""}

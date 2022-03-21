@@ -30,16 +30,5 @@ export const formatDate = function (date: Date) {
     date.getDate(),
     date.getFullYear(),
   ];
-  return `${monthNamesShort[month]} ${day},${year}`;
+  return `${monthNamesShort[month]} ${day}, ${year}`;
 };
-
-export const formatHash = function (hash: string, isSmallUp = true) {
-  if (isSmallUp) {
-    return `${hash.slice(2, 6)}...${hash.slice(-4)}`;
-  }
-  return `${hash.slice(2, 4)}...${hash.slice(-3)}`;
-};
-
-export function shortenAddress(str: string) {
-  return str.substring(0, 6) + "..." + str.substring(str.length - 4);
-}

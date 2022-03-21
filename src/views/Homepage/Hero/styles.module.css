@@ -64,7 +64,8 @@
           position: absolute;
           right: calc(50%);
           bottom: 0;
-          display: block;
+
+          /* display: block; */
           width: 46px;
           height: 119px;
           background-image: url("/images/arrow-hero.svg");

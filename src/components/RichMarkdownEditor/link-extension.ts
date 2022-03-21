@@ -25,7 +25,7 @@ import { InputRule, wrappingInputRule } from "@remirror/pm/inputrules";
 export class MarkdownLinkExtension extends LinkExtension {
   createInputRules(): InputRule[] {
     const regexp = /[^\!]\[(.*)\]\((https?:\/\/.*)\) /gim;
-    console.log("createInputRules:", regexp);
+    // console.log("createInputRules:", regexp);
 
     return [
       // wrappingInputRule(regexp, this.type),
@@ -33,15 +33,7 @@ export class MarkdownLinkExtension extends LinkExtension {
         // const { from, to } = getTextSelection(selection ?? tr.selection, tr.doc);
         const [, title, href] = _match;
         const tr = state.tr;
-        console.log(
-          "inputrule:",
-          regexp,
-          state,
-          "matched:",
-          _match,
-          start,
-          end
-        );
+        // console.log("inputrule:", regexp, state, "matched:", _match, start, end);
 
         /*
         const node = this.store.commands.wrapInNode(

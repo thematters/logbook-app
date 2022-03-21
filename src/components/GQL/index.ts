@@ -34,7 +34,7 @@ export const LOGBOOK_DETAIL = gql`
       description
       forkPrice
       transferCount
-      publications(orderBy: createdAt, orderDirection: desc) {
+      publications(orderBy: createdAt, orderDirection: asc) {
         id
         txHash
         log {
@@ -46,6 +46,18 @@ export const LOGBOOK_DETAIL = gql`
           }
           txHash
         }
+      }
+    }
+  }
+`;
+
+export const CLIENT_INFO = gql`
+  query ClientInfo {
+    clientInfo @client {
+      id
+      viewportSize {
+        width
+        height
       }
     }
   }

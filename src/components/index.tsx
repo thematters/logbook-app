@@ -16,6 +16,8 @@ export * from "./Spacer";
 export * from "./SelectButton";
 export * from "./Spinner";
 
+export * from "./ClientUpdater";
+
 // Composed
 export * from "./DropdownDialog";
 export * from "./Layout";

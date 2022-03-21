@@ -29,31 +29,27 @@ const BaseDialog: React.FC<DialogProps> = ({
   children,
 }) => {
   const [{ data: dataWait, loading: waitForTransaction }, wait] =
-    useWaitForTransaction({
-      // hash,
-      // confirmations: 3,
-      // hash, confirmations,
-      skip: true,
-    });
+    useWaitForTransaction({ skip: true });
 
   const { show, openDialog, closeDialog } = useDialogSwitch(true);
 
   useEffect(() => {
     if (hash) {
-      console.log(`start waiting on hash:`, { hash, confirmations });
+      // console.log(`start waiting on hash:`, { hash, confirmations });
       wait({ hash, confirmations }).then((data) => {
-        console.log("wait data:", data, "onFinish:", onFinish);
+        // console.log("wait data:", data, "onFinish:", onFinish);
         onFinish?.();
       });
     }
   }, [hash, confirmations, wait, onFinish]);
 
-  const hashLink = (
+  const HashLink = ({ hash }: { hash: string }) => (
     <>
-      Transaction details:&nbsp;
-      <a href={toPolygonHashUrl(hash).url} target="_blank" rel="noreferrer">
+      Your transaction is confirmed:&nbsp;
+      <a href={toPolygonHashUrl(hash)} target="_blank" rel="noreferrer">
         link
       </a>
+      . In the meanwhile, the network is indexing that might take few minutes.
     </>
   );
 
@@ -69,16 +65,16 @@ const BaseDialog: React.FC<DialogProps> = ({
               <br />
               Please check out your wallet dialog
             </p>
-          ) : hash && waitForTransaction ? (
+          ) : waitForTransaction ? (
             <p className={styles.text}>
               Waiting for confirmation... {dataWait?.confirmations}
               <br />
-              {hashLink}
+              <HashLink hash={hash} />
             </p>
           ) : (
             <p className={styles.text}>
               Publish successfully🎉 <br />
-              {hashLink}
+              <HashLink hash={hash} />
             </p>
           )}
         </Dialog.Content>

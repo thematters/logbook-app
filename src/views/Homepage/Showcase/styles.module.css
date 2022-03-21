@@ -180,11 +180,9 @@
 
   & .wallet_address {
     padding: var(--spacing-xx-tight) var(--spacing-tight);
-    font-size: var(--font-size-article-body);
-    line-height: var(--line-height-article-body);
-    color: var(--color-white);
-    background: var(--color-black);
-    border-radius: 16px;
+    font-size: var(--font-size-md-s);
+    line-height: 1.5rem;
+    color: var(--color-grey);
 
     @media (--md-up) {
       -webkit-line-clamp: 1;

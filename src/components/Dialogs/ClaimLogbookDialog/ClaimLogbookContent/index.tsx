@@ -52,6 +52,7 @@ const ClaimLogbookContent: React.FC<ClaimLogbookContentProps> = ({
   onClaim,
   gotoConnectWallet,
 }) => {
+  const [{ data: networkData }, switchNetwork] = useNetwork();
   const [{ data: accountData }] = useAccount();
   const [__, signMessage] = useSignMessage();
   const [_, ownerOf] = useContractRead(
@@ -63,6 +64,13 @@ const ClaimLogbookContent: React.FC<ClaimLogbookContentProps> = ({
   );
 
   const account = accountData?.address;
+  const isUnsupportedNetwork = networkData.chain?.unsupported;
+
+  useEffect(() => {
+    if (isUnsupportedNetwork) {
+      gotoConnectWallet();
+    }
+  }, [isUnsupportedNetwork]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -192,7 +200,7 @@ const ClaimLogbookContent: React.FC<ClaimLogbookContentProps> = ({
     if (!account) return;
 
     getClaimableLogbooks(account);
-  });
+  }, [account]);
 
   // fetching Traveloggers
   if (loading) {

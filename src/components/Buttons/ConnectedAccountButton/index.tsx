@@ -6,7 +6,7 @@ import {
   IconIndicator,
   IconWallet,
 } from "~/components";
-import { shortenAddress } from "~/utils";
+import { maskAddress } from "~/utils";
 
 type ConnectedAccountButtonProps = {
   gotoConnectWallet: () => void;
@@ -32,7 +32,7 @@ export const ConnectedAccountButton: React.FC<ConnectedAccountButtonProps> = ({
 
   return (
     <SelectButton
-      title={ensName ? ensName : account ? shortenAddress(account) : ""}
+      title={ensName ? ensName : account ? maskAddress(account) : ""}
       subtitle={
         chainName ? (
           <TextIcon
