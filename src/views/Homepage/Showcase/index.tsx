@@ -275,18 +275,18 @@ export const Showcase = () => {
                   <p className={styles.content_text_p}>
                     In 2022, Trump announced his candidacy for the 2024
                     presidential race. With the unpopularity of the Biden
-                    administration's epidemic policy and international issues in
-                    2021, many analysts believe that Trump is still very likely
-                    to win the election. Hollywood and the fame and fortune
-                    circles, suffering from cancel culture, began to change the
-                    trend of one-sided support for the Democratic Party two
-                    years ago, and the division of the United States has further
-                    intensified.
+                    administration&apos;s epidemic policy and international
+                    issues in 2021, many analysts believe that Trump is still
+                    very likely to win the election. Hollywood and the fame and
+                    fortune circles, suffering from cancel culture, began to
+                    change the trend of one-sided support for the Democratic
+                    Party two years ago, and the division of the United States
+                    has further intensified.
                   </p>
                 </div>
                 <div className={styles.wallet}>
                   <div className={styles.wallet_avatar}></div>
-                  <div className={styles.wallet_address}>yihanhuang.eth</div>
+                  <div className={styles.wallet_address}>0xDE...431c</div>
                 </div>
               </div>
             </SwiperSlide>
@@ -303,7 +303,7 @@ export const Showcase = () => {
                 <div className={styles.content_text}>
                   <p className={styles.content_text_p}>
                     A small-scale war broke out in the Taiwan Strait, the
-                    People's Liberation Army attempted to capture the Matsu
+                    People&apos;s Liberation Army attempted to capture the Matsu
                     Islands, and U.S. ships sailed into the Taiwan Strait.
                     Taiwan and the United States officially announced the launch
                     of military cooperation to build a US military base in
@@ -316,7 +316,7 @@ export const Showcase = () => {
                 </div>
                 <div className={styles.wallet}>
                   <div className={styles.wallet_avatar}></div>
-                  <div className={styles.wallet_address}>0x35...f691</div>
+                  <div className={styles.wallet_address}>0xD4...Aded</div>
                 </div>
               </div>
             </SwiperSlide>
@@ -344,7 +344,7 @@ export const Showcase = () => {
                 </div>
                 <div className={styles.wallet}>
                   <div className={styles.wallet_avatar}></div>
-                  <div className={styles.wallet_address}>beryliu.eth</div>
+                  <div className={styles.wallet_address}>0xb4...3A1f</div>
                 </div>
               </div>
             </SwiperSlide>
@@ -372,7 +372,7 @@ export const Showcase = () => {
                 </div>
                 <div className={styles.wallet}>
                   <div className={styles.wallet_avatar}></div>
-                  <div className={styles.wallet_address}>0x73...DAf8</div>
+                  <div className={styles.wallet_address}>0xDE...431c</div>
                 </div>
               </div>
             </SwiperSlide>
@@ -404,7 +404,7 @@ export const Showcase = () => {
                 </div>
                 <div className={styles.wallet}>
                   <div className={styles.wallet_avatar}></div>
-                  <div className={styles.wallet_address}>0xf1...40D3</div>
+                  <div className={styles.wallet_address}>0xD4...Aded</div>
                 </div>
               </div>
             </SwiperSlide>
@@ -433,7 +433,7 @@ export const Showcase = () => {
                 </div>
                 <div className={styles.wallet}>
                   <div className={styles.wallet_avatar}></div>
-                  <div className={styles.wallet_address}>0xD8...35a1</div>
+                  <div className={styles.wallet_address}>0xb4...3A1f</div>
                 </div>
               </div>
             </SwiperSlide>
