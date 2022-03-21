@@ -6,9 +6,17 @@
   user-select: none;
 }
 
+.textIconSafari {
+  display: block;
+}
+
 .text {
   display: inline-flex;
   line-height: 1;
+}
+
+.textSafari {
+  display: inline;
 }
 
 /* placement */
