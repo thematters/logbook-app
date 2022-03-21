@@ -53,7 +53,7 @@ export const toPolygonHashUrl = (txHash: string) => {
 
 export const toOpenseaUrl = (id: string) => {
   const OPENSEA_URL = isProd
-    ? "https://opensea.io/assets"
+    ? "https://opensea.io/assets/matic"
     : "https://testnets.opensea.io/assets/mumbai";
 
   return `${OPENSEA_URL}/${process.env.NEXT_PUBLIC_CONTRACT_ADDRESS}/${id}`;
