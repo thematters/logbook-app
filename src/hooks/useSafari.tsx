@@ -4,7 +4,7 @@ import { isSafari } from "~/utils";
 export const useSafari = () => {
   const [safari, updateSafari] = useState(false);
   useEffect(() => {
-    updateSafari(isSafari)
+    updateSafari(isSafari())
   }, [])
   return safari
 }
