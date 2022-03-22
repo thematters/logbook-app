@@ -2,6 +2,8 @@ import classNames from "classnames";
 
 import styles from "./styles.module.css";
 
+import { useSafari } from "~/hooks/useSafari";
+
 export type TextIconColor =
   | "gold"
   | "red"
@@ -76,12 +78,17 @@ export const TextIcon: React.FC<TextIconProps> = ({
     [styles.weight]: !!weight,
     ...(weight ? { [styles[weight]]: true } : {}),
     [styles.hasIcon]: !!icon,
+    [styles.textIconSafari]: useSafari(),
+  });
+  const textClasses = classNames({
+    [styles.text]: true,
+    [styles.textSafari]: useSafari(),
   });
 
   if (textPlacement === "left") {
     return (
       <span className={textIconClasses} {...rest}>
-        {children && <span className={styles.text}>{children}</span>}
+        {children && <span className={textClasses}>{children}</span>}
 
         {icon}
       </span>
@@ -92,7 +99,7 @@ export const TextIcon: React.FC<TextIconProps> = ({
     <span className={textIconClasses} {...rest}>
       {icon}
 
-      {children && <span className={styles.text}>{children}</span>}
+      {children && <span className={textClasses}>{children}</span>}
     </span>
   );
 };

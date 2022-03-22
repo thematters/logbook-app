@@ -1,4 +1,6 @@
 .container {
+  @mixin flex-center-start;
+
   padding-top: 5rem;
   font-size: var(--font-size-logbook-number);
   line-height: var(--line-height-logbook-number);

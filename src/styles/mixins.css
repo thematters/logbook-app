@@ -227,3 +227,13 @@
 
   /* -webkit-line-clamp: 4; */
 }
+
+@define-mixin gradient-text-in-safari {
+  &.textIconSafari {
+    display: block;
+
+    & > .textSafari {
+      display: inline;
+    }
+  }
+}
