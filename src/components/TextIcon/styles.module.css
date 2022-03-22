@@ -117,6 +117,7 @@
 
   &.blueGreen {
     @mixin text-fill-gradient-color;
+    @mixin gradient-text-in-safari;
 
     background-color: var(--color-blue-green);
     background-image: var(--color-blue-green);
@@ -124,6 +125,7 @@
 
   &.blueGreenDarker {
     @mixin text-fill-gradient-color;
+    @mixin gradient-text-in-safari;
 
     background-color: var(--color-blue-green-darker);
     background-image: var(--color-blue-green-darker);
@@ -131,6 +133,7 @@
 
   &.heavyMetal {
     @mixin text-fill-gradient-color;
+    @mixin gradient-text-in-safari;
 
     background-color: var(--color-heavy-metal);
     background-image: var(--color-heavy-metal);
@@ -138,6 +141,7 @@
 
   &.heavyMetalHover {
     @mixin text-fill-gradient-color;
+    @mixin gradient-text-in-safari;
 
     background-color: var(--color-heavy-metal-hover);
     background-image: var(--color-heavy-metal-hover);

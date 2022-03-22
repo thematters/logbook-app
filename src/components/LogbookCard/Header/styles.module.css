@@ -6,6 +6,8 @@
 }
 
 .leftInfo {
+  display: flex;
+
   & > *:last-child {
     position: relative;
     top: 1px;
