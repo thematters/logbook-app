@@ -6,13 +6,6 @@
   column-gap: 10rem;
   margin: var(--spacing-xx-loose);
 
-  /* @mixin text-fill-gradient-color; */
-  background-image: var(--color-blue-green);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
-
   @media (--sm-up) {
     flex-direction: row;
   }
@@ -23,11 +16,22 @@
     width: 100%;
   }
 
+  & .designerlogo {
+    @mixin text-fill-gradient-color;
+
+    background-color: var(--color-blue-green);
+    background-image: var(--color-blue-green);
+  }
+
   & .links {
     @mixin flex-center-space-between;
 
     & div {
+      @mixin text-fill-gradient-color;
+
       margin: 0 var(--spacing-tight);
+      background-color: var(--color-blue-green);
+      background-image: var(--color-blue-green);
     }
   }
 }
