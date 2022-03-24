@@ -7,7 +7,7 @@ export const isSafari = () => {
     const match = userAgent.match(/version\/(\d+).+?safari/);
     return match !== null;
   }
-  return false
+  return false;
 };
 
 export const isMobile = () => {
