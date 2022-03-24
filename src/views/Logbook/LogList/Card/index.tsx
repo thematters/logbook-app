@@ -1,12 +1,11 @@
 import React from "react";
 import Markdown from "markdown-to-jsx";
-import { formatDate, maskAddress, toPolygonHashUrl } from "~/utils";
+import { maskAddress, toPolygonHashUrl, datetimeFormat } from "~/utils";
 
 import { Button, TextIcon, IconEtherScan } from "~/components";
 import { useResponsive } from "~/hooks";
 
 import styles from "./styles.module.css";
-
 export interface CardProps {
   id: string;
   createdAt: string;
@@ -24,7 +23,7 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   const isSmallUp = useResponsive("sm-up");
 
-  const formattedDate = formatDate(new Date(Number(createdAt) * 1000));
+  const formattedDate = datetimeFormat.absolute(new Date(Number(createdAt) * 1000));
 
   let borderRadius = "1rem";
   let width = "3.25rem";
