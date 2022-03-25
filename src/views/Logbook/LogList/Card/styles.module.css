@@ -149,6 +149,17 @@
     border-bottom: 0;
   }
 
+  /* codeblock */
+  &:not(pre) > code,
+  & pre {
+    background-color: var(--color-grey-markdown-background);
+  }
+
+  & code,
+  & pre {
+    color: var(--color-black);
+  }
+
   /* Misc
    ========================================================================== */
   & hr {
