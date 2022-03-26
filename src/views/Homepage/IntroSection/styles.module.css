@@ -21,11 +21,15 @@
 
 .text {
   max-width: 40rem;
-  padding: 4rem 0;
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-information-text);
+  padding: 4rem 1.875rem;
+  font-size: var(--font-size-article-title);
+  font-weight: var(--font-weight-article-title);
+  line-height: var(--line-height-article-title);
   color: var(--color-black);
+
+  @media (--sm-up) {
+    padding: 4rem 0;
+  }
 }
 
 .left {

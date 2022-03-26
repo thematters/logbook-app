@@ -11,7 +11,10 @@
     padding-right: var(--spacing-x-tight);
   }
 
-  & span:last-child {
-    vertical-align: baseline;
+  & > span:last-child {
+    @media (--sm-up) {
+      position: relative;
+      top: -1px;
+    }
   }
 }
