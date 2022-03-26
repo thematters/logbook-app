@@ -10,7 +10,7 @@ export const LogList = () => {
   return (
     <section className={styles.container}>
       {logbook.publications.map(
-        ({ log: { id, content, createdAt, author, txHash } }) => {
+        ({ log: { id, content, createdAt, author }, txHash }) => {
           return (
             <section key={id} className={styles.item}>
               <Card
