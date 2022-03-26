@@ -44,7 +44,6 @@ export const LOGBOOK_DETAIL = gql`
           author {
             id
           }
-          txHash
         }
       }
     }
