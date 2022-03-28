@@ -35,6 +35,7 @@ export * from "./IconExchange";
 export * from "./IconExclaim";
 export * from "./IconFacebook";
 export * from "./IconFile";
+export * from "./IconFilter";
 export * from "./IconGift";
 export * from "./IconGiftGradient";
 export * from "./IconGiftSign";

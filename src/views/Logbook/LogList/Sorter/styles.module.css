@@ -1,0 +1,20 @@
+.container {
+  margin-bottom: var(--spacing-base);
+  font-size: var(--font-size-md-s);
+  line-height: 1.333;
+}
+
+.menu {
+  @media (--sm-up) {
+    overflow: hidden;
+    border-radius: var(--spacing-base);
+  }
+
+  & .item {
+    padding-right: 2.375rem;
+    padding-left: 0.25rem;
+    font-size: var(--font-size-md-s);
+    font-weight: var(--font-weight-semi-bold);
+    line-height: 1.333;
+  }
+}
