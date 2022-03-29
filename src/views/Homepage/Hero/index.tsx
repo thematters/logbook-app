@@ -8,7 +8,15 @@ const DynamicIntro = dynamic(() => import("~/components/BannerVideo"), {
   loading: () => <img src="/images/logbook-intro.png" width="100%" />,
 });
 
+import * as analytics from "~/utils/analytics";
+
 export const Hero = () => {
+  const claimEvent = () => {
+    analytics.event({
+      action: "claim",
+    });
+  };
+
   return (
     <section className={styles.hero}>
       <Container className={styles.content}>
@@ -37,7 +45,7 @@ export const Hero = () => {
                   bgActiveColor="lightMetalHover"
                   borderRadius="1.75rem"
                   onClick={() => {
-                    // TODO: analytics
+                    claimEvent();
                     openDialog();
                   }}
                 >
@@ -54,7 +62,7 @@ export const Hero = () => {
                   bgActiveColor="lightMetalHover"
                   borderRadius="1.75rem"
                   onClick={() => {
-                    // TODO: analytics
+                    claimEvent();
                     openDialog();
                   }}
                 >

@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { providers } from "ethers";
 import { Provider } from "wagmi";
 import type { AppLayoutProps } from "next/app";
+import { useRouter } from "next/router";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import "../styles/variables/breakpoints.css";
@@ -22,6 +24,8 @@ import "remirror/styles/all.css";
 import { Layout, Toast, ClientUpdater } from "~/components";
 import { GlobalStyles } from "~/components/GlobalStyles";
 import { injectedConnector, walletConnectConnector } from "~/utils";
+
+import * as analytics from "~/utils/analytics";
 
 const connectors = ({ chainId }: { chainId?: any }) => {
   return [injectedConnector, walletConnectConnector];
@@ -47,6 +51,24 @@ const client = new ApolloClient({
 function LogbookApp({ Component, pageProps }: AppLayoutProps) {
   const defaultLayout = (page: ReactNode) => <Layout>{page}</Layout>;
   const getLayout = Component.getLayout ?? defaultLayout;
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      analytics.pageview(url);
+    };
+
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <Provider
