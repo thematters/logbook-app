@@ -28,3 +28,11 @@ export const REMOVE_TOAST = "removeToast";
 
 // Time
 export const TOAST_DURATION = 1000 * 3;
+
+// Sorter
+export const SORT_ASC = "asc";
+export const SORT_DESC = "desc";
+export enum SORT_TYPE {
+  asc = "asc",
+  desc = "desc",
+}
