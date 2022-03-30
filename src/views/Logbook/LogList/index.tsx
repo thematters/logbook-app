@@ -9,7 +9,7 @@ import { Sorter } from "./Sorter";
 
 import styles from "./styles.module.css";
 
-export const LogList = () => {
+const useSorter = () => {
   const router = useRouter();
   let sort: string | undefined = router.query.sort as string;
   if (!Object.values<string>(SORT_TYPE).includes(sort)) {
@@ -20,7 +20,15 @@ export const LogList = () => {
     SORT_TYPE.asc as string
   );
   const [sortState, updateSortState] = useState(sort || localSort);
+  const updateState = (state: string) => {
+    updateLocalSort(state);
+    updateSortState(state);
+  }
+  return [sortState, updateState] as [string, (val: string) => void];
+};
 
+export const LogList = () => {
+  const [sortState, updateSortState] = useSorter();
   const logbook = useContext(LogbookContext);
   const { publications } = logbook;
   let pubList = Array.from(publications);
@@ -33,8 +41,7 @@ export const LogList = () => {
       <Sorter
         sort={sortState}
         updateSort={(state) => {
-          updateLocalSort(state);
-          updateSortState(state);
+          updateSortState(state)
         }}
       />
       {pubList.map(({ log: { id, content, createdAt, author, txHash } }) => {
