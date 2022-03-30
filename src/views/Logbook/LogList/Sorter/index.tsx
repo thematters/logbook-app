@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React from "react";
-import { SORT_ASC, SORT_DESC, SORT_TYPE } from "~/enums";
+import { SORT_TYPE } from "~/enums";
 
 import {
   Button,
@@ -12,7 +12,7 @@ import {
 
 import styles from "./styles.module.css";
 
-export type sortType = typeof SORT_ASC | typeof SORT_DESC;
+type sortType = string;
 
 const DropdownMenu: React.FC<{
   updateSort: (sort: sortType) => any;
@@ -25,7 +25,7 @@ const DropdownMenu: React.FC<{
     <li role="menu-item">
       <Card
         onClick={() => {
-          updateSort(SORT_ASC);
+          updateSort(SORT_TYPE.asc);
         }}
       >
         <span className={styles.item}>Oldest to Newest</span>
@@ -34,7 +34,7 @@ const DropdownMenu: React.FC<{
     <li role="menu-item">
       <Card
         onClick={() => {
-          updateSort(SORT_DESC);
+          updateSort(SORT_TYPE.desc);
         }}
       >
         <span className={styles.item}>Newest to Oldest</span>
@@ -63,7 +63,8 @@ export const Sorter: React.FC<Props> = ({ sort, updateSort }) => {
         {({ openDialog, ref }) => (
           <Button ref={ref} onClick={openDialog}>
             <TextIcon icon={<IconFilter />} color="grey" spacing="xTight">
-              Sort {sort === SORT_ASC ? "Oldest to Newest" : "Newest to Oldest"}
+              Sort{" "}
+              {sort === SORT_TYPE.asc ? "Oldest to Newest" : "Newest to Oldest"}
             </TextIcon>
           </Button>
         )}
