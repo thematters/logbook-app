@@ -74,6 +74,7 @@ export const Sorter: React.FC = ({}) => {
         {({ openDialog, ref }) => (
           <Button ref={ref} onClick={openDialog}>
             <TextIcon icon={<IconFilter />} color="grey" spacing="xTight">
+              Sort{" "}
               {sort === SORT_TYPE.asc ? "Oldest to Newest" : "Newest to Oldest"}
             </TextIcon>
           </Button>
