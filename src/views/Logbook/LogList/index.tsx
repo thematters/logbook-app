@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 
 const useSorter = () => {
   const router = useRouter();
-  let sort: string | undefined = router.query.sort as string;
+  let sort: string | undefined = (router.query.sort as string)?.toLowerCase();
   if (!Object.values<string>(SORT_TYPE).includes(sort)) {
     sort = undefined;
   }
