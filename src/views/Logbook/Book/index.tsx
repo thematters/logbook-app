@@ -31,6 +31,7 @@ export const Book: React.FC<BookProps> = ({
   }
 
   const logbook = useContext(LogbookContext);
+  console.log("Book", { logbook });
 
   if (!logbook) return <></>;
 
@@ -59,7 +60,7 @@ export const Book: React.FC<BookProps> = ({
           {logbook.description}
         </section>
       )}
-      {logbook.publications.length > 0 ? (
+      {logbook.publications?.length > 0 ? (
         <LogList />
       ) : (
         <>

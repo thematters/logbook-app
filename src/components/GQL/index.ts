@@ -22,7 +22,7 @@ export const LIBRARY_LOGBOOKS = gql`
 `;
 
 export const LOGBOOK_DETAIL = gql`
-  query LogbookDetail($id: String) {
+  query LogbookDetail($id: String, $order: String) {
     logbook(id: $id) {
       id
       owner {
@@ -34,7 +34,7 @@ export const LOGBOOK_DETAIL = gql`
       description
       forkPrice
       transferCount
-      publications(orderBy: createdAt, orderDirection: asc) {
+      publications(orderBy: createdAt, orderDirection: $order) {
         id
         txHash
         log {
