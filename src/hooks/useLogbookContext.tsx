@@ -27,7 +27,7 @@ export type Logbook = {
   description?: string;
   transferCount?: number;
   publications: [Publication];
-  updatePublications: (newPublications: [Publication]) => void;
+
   // methods, refetch from thegraph
   refetch: () => void;
 };

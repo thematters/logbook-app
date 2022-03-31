@@ -31,7 +31,6 @@ export const Book: React.FC<BookProps> = ({
   }
 
   const logbook = useContext(LogbookContext);
-  console.log("Book", { logbook });
 
   if (!logbook) return <></>;
 
