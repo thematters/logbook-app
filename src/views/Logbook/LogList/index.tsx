@@ -14,15 +14,18 @@ export const LogList = () => {
     <section className={styles.container}>
       <Sorter />
       {publications.map(
-        ({ log: { id, content, createdAt, author, txHash } }) => {
+        ({
+          txHash: publicationTxHash,
+          log: { id, content, createdAt, author, txHash },
+        }) => {
           return (
-            <section key={id} className={styles.item}>
+            <section key={publicationTxHash} className={styles.item}>
               <Card
                 id={id}
                 content={content}
                 createdAt={createdAt}
                 authorID={author?.id}
-                publicationTxHash={txHash}
+                publicationTxHash={publicationTxHash}
               />
             </section>
           );
