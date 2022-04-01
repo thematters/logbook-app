@@ -3,7 +3,7 @@ import { Button, TextIcon } from "~/components";
 
 import styles from "./styles.module.css";
 import { useResponsive } from "~/hooks";
-import { formatDate, formatHash } from "~/utils";
+import { formatHash, datetimeFormat } from "~/utils";
 export interface HeaderProps {
   tokenID?: string;
   createdAt?: Date;
@@ -25,7 +25,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   let formattedDate;
   if (!!createdAt) {
-    formattedDate = formatDate(createdAt);
+    formattedDate = datetimeFormat.absolute(createdAt);
   }
 
   let formattedHash;
