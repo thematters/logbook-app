@@ -58,6 +58,10 @@
   }
 }
 
+.description {
+  color: var(--color-grey-dark);
+}
+
 .emptyBook {
   margin-bottom: var(--spacing-loose);
 
