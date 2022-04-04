@@ -5,12 +5,14 @@ import { CardList } from "./CardList";
 
 import { useResponsive } from "~/hooks";
 
+import * as analytics from "~/utils/analytics";
+
 import styles from "./styles.module.css";
 
 export const RecentlyWritten = () => {
   const isSmallUP = useResponsive("sm-up");
 
-  let buttonProps: ButtonProps = {
+  const buttonProps: ButtonProps = {
     width: "100%",
     height: "3rem",
     bgColor: "heavyMetal",
@@ -19,6 +21,9 @@ export const RecentlyWritten = () => {
     shadow: true,
     href: "/library",
     className: [styles.button],
+    onClick() {
+      analytics.event("enter-library");
+    },
   };
 
   if (isSmallUP) {

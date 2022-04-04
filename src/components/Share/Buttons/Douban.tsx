@@ -4,6 +4,8 @@ import { TextIcon, withIcon } from "~/components";
 
 import { dom } from "~/utils";
 
+import * as analytics from "~/utils/analytics";
+
 import { ReactComponent as IconShareDouban } from "/public/icons/16px/share-douban.svg";
 import { ReactComponent as IconShareDoubanCircle } from "/public/icons/40px/share-douban-circle.svg";
 
@@ -32,6 +34,9 @@ const Douban = ({
       // analytics.trackEvent("share", {
       //   type: "douban",
       // });
+
+      analytics.event("share", { type: "douban" });
+
       return window.open(shareUrl);
     }}
   >

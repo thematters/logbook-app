@@ -12,9 +12,7 @@ import * as analytics from "~/utils/analytics";
 
 export const Hero = () => {
   const claimEvent = () => {
-    analytics.event({
-      action: "claim",
-    });
+    analytics.event("claim");
   };
 
   return (
