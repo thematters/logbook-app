@@ -5,7 +5,7 @@ import { useAccount } from "wagmi";
 
 import { Head, Spinner } from "~/components";
 import { LOGBOOK_DETAIL } from "~/components/GQL";
-import { LogbookContext } from "~/hooks";
+import { LogbookContext, useLogListSorter } from "~/hooks";
 
 import { Book } from "./Book";
 import { Editing } from "./Editing";
@@ -19,6 +19,8 @@ const Logbook: React.FC = () => {
   const id = router.query.id as string;
   const tokenID = `0x${Number(id).toString(16)}`;
 
+  const [sortState] = useLogListSorter();
+
   const {
     loading,
     error,
@@ -28,19 +30,11 @@ const Logbook: React.FC = () => {
   } = useQuery(LOGBOOK_DETAIL, {
     variables: {
       id: tokenID,
+      order: sortState,
     },
   });
 
-  /* useEffect(() => {
-  // console.log("logbookDetail:", { logbookDetail, accountData });
-  }, [logbookDetail, accountData]); */
-
   const [initialContent, setContent] = useState<string>("");
-
-  /* useEffect(() => {
-    if (!logbookDetail?.logbook) return;
-    setContent(logbookDetail.logbook.publications?.[0]?.log?.content);
-  }, [logbookDetail]); */
 
   const owner = logbookDetail?.logbook?.owner;
 

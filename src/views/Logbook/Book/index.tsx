@@ -55,11 +55,17 @@ export const Book: React.FC<BookProps> = ({
         {isSmallUp ? <ButtonGroup id={id} onEdit={onEdit} isOwn={isOwn} /> : ""}
       </section>
       {logbook.description && (
-        <section className={classNames([styles.articleBody, styles.flexStart])}>
+        <section
+          className={classNames([
+            styles.articleBody,
+            styles.flexStart,
+            styles.description,
+          ])}
+        >
           {logbook.description}
         </section>
       )}
-      {logbook.publications.length > 0 ? (
+      {logbook.publications?.length > 0 ? (
         <LogList />
       ) : (
         <>

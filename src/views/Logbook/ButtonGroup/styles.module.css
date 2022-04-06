@@ -20,8 +20,10 @@
 }
 
 .menu {
-  overflow: hidden;
-  border-radius: var(--spacing-base);
+  @media (--sm-up) {
+    overflow: hidden;
+    border-radius: var(--spacing-base);
+  }
 }
 
 .scaleUp {
