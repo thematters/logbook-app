@@ -4,6 +4,8 @@ import C2C from "react-copy-to-clipboard";
 
 import { ADD_TOAST } from "~/enums";
 
+import * as analytics from "~/utils/analytics";
+
 interface CopyToClipboardProps {
   text: string;
 }
@@ -36,6 +38,8 @@ export const CopyToClipboard: React.FC<CopyToClipboardProps> = ({
             },
           })
         );
+
+        analytics.event("share-copy-link");
       }}
     >
       {children}

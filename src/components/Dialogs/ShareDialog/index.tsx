@@ -5,6 +5,8 @@ import { useDialogSwitch } from "~/hooks";
 
 import { isMobile } from "~/utils";
 
+import * as analytics from "~/utils/analytics";
+
 import { ShareDialogContentProps } from "./Content";
 
 export type ShareDialogProps = {
@@ -86,6 +88,8 @@ export const ShareDialog = (props: ShareDialogProps) => {
     } else {
       fallbackShare();
     }
+
+    analytics.event("open-share-dialog");
   };
 
   return (
