@@ -53,6 +53,17 @@ export const About = () => {
             </li>
             <li>
               <a
+                href="https://www.thespace.game/"
+                rel="noreferrer"
+                target="_blank"
+                className={styles.link}
+              >
+                The Space
+                <IconWave className={styles.wave} />
+              </a>
+            </li>
+            <li>
+              <a
                 href="https://matters-lab.io/"
                 rel="noreferrer"
                 target="_blank"
