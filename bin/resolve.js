@@ -38,5 +38,5 @@ const domain = 'log-book.eth'
   //   }
   // )
   // console.log(tx)
-  process.exit(1)
+  process.exit(0)
 })()
