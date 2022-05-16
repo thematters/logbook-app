@@ -9,7 +9,8 @@ on:
 
 jobs:
   build_and_deploy:
-    if: github.event.pull_request.merged == true
+    # if: github.event.pull_request.merged == true
+    if: github.base_ref == 'feat/resolve-ens'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
