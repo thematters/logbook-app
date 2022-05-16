@@ -25,18 +25,16 @@ const domain = 'log-book.eth'
 
   const gasPrice = await provider.getGasPrice()
 
-  console.log(gas, gasPrice, content)
-
-  // const tx = await contractWithSigner.setContenthash(
-  //   namehash(domain),
-  //   encodeContenthash(content),
-  //   {
-  //     gasPrice: gasPrice,
-  //     gasLimit: gas,
-  //     maxPriorityFeePerGas: 1 * 10 ** 9,
-  //     maxFeePerGas: 2 * gasPrice + 1 * 10 ** 9,
-  //   }
-  // )
-  // console.log(tx)
+  const tx = await contractWithSigner.setContenthash(
+    namehash(domain),
+    encodeContenthash(content),
+    {
+      gasPrice: gasPrice,
+      gasLimit: gas,
+      maxPriorityFeePerGas: 1 * 10 ** 9,
+      maxFeePerGas: 2 * gasPrice + 1 * 10 ** 9,
+    }
+  )
+  console.log(tx)
   process.exit(0)
 })()
