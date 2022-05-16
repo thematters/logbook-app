@@ -29,7 +29,6 @@ const domain = 'log-book.eth'
     namehash(domain),
     encodeContenthash(content),
     {
-      gasPrice: gasPrice,
       gasLimit: gas,
       maxPriorityFeePerGas: 1 * 10 ** 9,
       maxFeePerGas: 2 * gasPrice + 1 * 10 ** 9,
