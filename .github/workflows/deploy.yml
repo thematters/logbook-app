@@ -9,8 +9,7 @@ on:
 
 jobs:
   build_and_deploy:
-    # if: github.event.pull_request.merged == true
-    if: github.base_ref == 'feat/resolve-ens'
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,12 +22,12 @@ jobs:
           cache: 'npm'
 
       - name: Prepare Env (Develop)
-        if: github.base_ref == 'deve'
+        if: github.base_ref == 'develop'
         run: |
           cp -va .env.devel .env
 
       - name: Prepare Env (Production)
-        if: github.base_ref == 'develop'
+        if: github.base_ref == 'main'
         run: |
           cp -va .env.prod .env
 
@@ -39,7 +38,7 @@ jobs:
           npm run export
 
       - name: Deploy
-        if: github.base_ref == 'develop'
+        # if: github.base_ref == 'develop'
         uses: aquiladev/ipfs-action@v0.2.0
         id: upload
         with:
