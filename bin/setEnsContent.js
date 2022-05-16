@@ -18,22 +18,27 @@ const domain = 'log-book.eth'
   const contract = new ethers.Contract(contractAddress, abi, provider)
   const contractWithSigner = contract.connect(wallet)
 
-  const gas = await contractWithSigner.estimateGas.setContenthash(
-    namehash(domain),
-    encodeContenthash(content)
-  )
+  try {
+    const gas = await contractWithSigner.estimateGas.setContenthash(
+      namehash(domain),
+      encodeContenthash(content)
+    )
 
-  const gasPrice = await provider.getGasPrice()
+    const gasPrice = await provider.getGasPrice()
 
-  const tx = await contractWithSigner.setContenthash(
-    namehash(domain),
-    encodeContenthash(content),
-    {
-      gasLimit: gas,
-      maxPriorityFeePerGas: 1 * 10 ** 9,
-      maxFeePerGas: 2 * gasPrice + 1 * 10 ** 9,
-    }
-  )
-  console.log(tx)
-  process.exit(0)
+    const tx = await contractWithSigner.setContenthash(
+      namehash(domain),
+      encodeContenthash(content),
+      {
+        gasLimit: gas,
+        maxPriorityFeePerGas: 1 * 10 ** 9,
+        maxFeePerGas: 2 * gasPrice + 1 * 10 ** 9,
+      }
+    )
+    console.log(tx)
+    process.exit(0)
+  } catch (err) {
+    console.log(err)
+    process.exit(1)
+  }
 })()
