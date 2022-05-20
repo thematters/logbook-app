@@ -53,7 +53,7 @@ export const About = () => {
             </li>
             <li>
               <a
-                href="https://www.thespace.game/"
+                href="https://thespace.game/"
                 rel="noreferrer"
                 target="_blank"
                 className={styles.link}
