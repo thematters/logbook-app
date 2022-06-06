@@ -50,6 +50,7 @@ jobs:
           verbose: true
 
       - name: Update Eth domain
+        if: github.base_ref == 'main'
         run: |
           echo ipfs://${{ steps.upload.outputs.hash }}
           API_KEY=${{ secrets.API_KEY }} WALLET=${{ secrets.WALLET }} IPFS_HASH=ipfs://${{ steps.upload.outputs.hash }} node bin/setEnsContent.js
