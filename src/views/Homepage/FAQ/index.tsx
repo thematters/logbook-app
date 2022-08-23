@@ -19,17 +19,8 @@ const TEXTS = {
   ans3_1: "For now, only Traveloggers owners could claim a new Logbook 2.0.",
   ans3_2: "Once Logbook 2.0 is listed on OpenSea, you can click here for ",
   ans3_3: "purchase instructions",
-  ans4_1:
-    "Yes, every Traveloggers comes with a Logbook issued on the Polygon. However, since " +
-    "Logbook is a transferable NFT that could be only minted once, if the previous owner " +
-    "has claimed or transferred it, you will not be able to have a new Logbook to write on.",
-  ans4_2: "To check if the Traveloggers’ Logbook has been claimed, check on ",
-  ans4_3:
-    " by entering the Traveloggers number in the search bar to ensure the transactions.",
-  ans4_4:
-    "Of course, the easiest way is to buy Traveloggers from official on Opensea: ",
-  ans5_1: "You can sell your Logbook 2.0 through OpenSea.",
-  ans6_1:
+  ans4_1: "You can sell your Logbook 2.0 through OpenSea.",
+  ans5_1:
     "Gas fees are the handling fees required when a transaction is initiated on the " +
     "blockchain to compensate miners. When you transfer assets on Polygon chain, gas " +
     "fees are paid to miners for the computing power needed to process and validate transactions.",
@@ -85,48 +76,15 @@ export const FAQ = () => {
         />
 
         <Expandable
-          title="Does every Traveloggers come with a Logbook 2.0 ?"
-          hasBorder
-          content={
-            <>
-              <p>{TEXTS.ans4_1}</p>
-              <p>
-                {TEXTS.ans4_2}
-                <a
-                  className={styles.instruction}
-                  href="https://polygonscan.com/token/0xcdf8d568ec808de5fcbb35849b5bafb5d444d4c0"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Polyscan
-                </a>
-                {TEXTS.ans4_3}
-              </p>
-              <p>
-                {TEXTS.ans4_4}
-                <a
-                  className={styles.instruction}
-                  href="https://opensea.io/Traveloggers"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  https://opensea.io/Traveloggers
-                </a>
-              </p>
-            </>
-          }
-        />
-
-        <Expandable
           title="How do I sell Logbook 2.0 ?"
           hasBorder
-          content={<p>{TEXTS.ans5_1}</p>}
+          content={<p>{TEXTS.ans4_1}</p>}
         />
 
         <Expandable
           title="What are gas fees? Why are gas fees necessary?"
           hasBorder
-          content={<p>{TEXTS.ans6_1}</p>}
+          content={<p>{TEXTS.ans5_1}</p>}
         />
       </section>
     </Container>
