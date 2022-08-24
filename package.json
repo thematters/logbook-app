@@ -1,7 +1,7 @@
 {
   "name": "logbook-app",
   "description": "Logbook Web App",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Matters Dev <dev@matters.news>",
   "license": "Apache License",
   "repository": {
@@ -66,6 +66,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@ensdomains/ensjs": "^2.1.0",
     "@remirror/types": "^0.1.1",
     "@types/gtag.js": "^0.0.10",
     "@types/lodash": "^4.14.179",

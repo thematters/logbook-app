@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-          cache: 'npm'
+          cache: "npm"
 
       - name: Prepare Env (Develop)
         if: github.base_ref == 'develop'
@@ -37,18 +37,20 @@ jobs:
           npm run build && \
           npm run export
 
-      - name: Deploy
-        # if: github.base_ref == 'develop'
-        uses: aquiladev/ipfs-action@v0.2.0
-        id: upload
-        with:
-          path: ./build
-          service: pinata
-          pinataKey: ${{ secrets.PINATA_KEY }}
-          pinataSecret: ${{ secrets.PINATA_SECRET }}
-          pinataPinName: logbook
-          verbose: true
+      # - name: Deploy
+      # if: github.base_ref == 'develop'
+      # uses: aquiladev/ipfs-action@v0.2.0
+      # id: upload
+      # with:
+      #   path: ./build
+      #   service: pinata
+      #   pinataKey: ${{ secrets.PINATA_KEY }}
+      #   pinataSecret: ${{ secrets.PINATA_SECRET }}
+      #   pinataPinName: logbook
+      #   verbose: true
 
-      - name: Update Eth domain
-        run: |
-          echo ipfs://${{ steps.upload.outputs.hash }}
+      # - name: Update Eth domain
+      #   if: github.base_ref == 'main'
+      #   run: |
+      #     echo ipfs://${{ steps.upload.outputs.hash }}
+      #     API_KEY=${{ secrets.API_KEY }} WALLET=${{ secrets.WALLET }} IPFS_HASH=ipfs://${{ steps.upload.outputs.hash }} node bin/setEnsContent.js
