@@ -78,7 +78,7 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <div>Matters.News</div>
+            <div>Matters.Town</div>
           </a>
           <a
             href={process.env.NEXT_PUBLIC_LOGBOOK_OPENSEA_LINK}
