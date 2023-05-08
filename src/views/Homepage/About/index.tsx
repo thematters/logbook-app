@@ -31,18 +31,18 @@ export const About = () => {
           <ul className="reset">
             <li>
               <a
-                href="https://matters.news/"
+                href="https://matters.town/"
                 rel="noreferrer"
                 target="_blank"
                 className={styles.link}
               >
-                Matters.News
+                Matters.Town
                 <IconWave className={styles.wave} />
               </a>
             </li>
             <li>
               <a
-                href="https://traveloggers.matters.news/"
+                href="https://traveloggers.matters.town/"
                 rel="noreferrer"
                 target="_blank"
                 className={styles.link}

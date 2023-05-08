@@ -28,7 +28,7 @@ export const Head: React.FC<HeadProps> = (props) => {
       `Logbook 2.0, the NFT that empowers collective collection beyond private ownership, issued by Matters Lab.`,
     keywords: `${(keywords || []).join(
       ","
-    )},logbook,matters,traveloggers,matters.news`,
+    )},logbook,matters,traveloggers,matters.town,matters.news`,
     url: path
       ? `//${domain}${path}`
       : asPath
