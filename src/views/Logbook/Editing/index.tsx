@@ -54,7 +54,7 @@ export const Editing: React.FC<Props> = ({
 
   const isSmallUp = useResponsive("sm-up");
 
-  const [estimate, setEstimate] = useState("0.05");
+  const [estimate, setEstimate] = useState("0.005");
 
   const editorRef = useRef<EditorRef | null>(null);
 
@@ -87,34 +87,21 @@ export const Editing: React.FC<Props> = ({
       return;
     }
 
-    /* await Promise.all([
-      logbookContract.estimateGas.publish(id, content),
-      getFeeData(),
-    ]); */
-
-    const gasNeeded =
-      // data: { gasPrice, maxFeePerGas, maxPriorityFeePerGas },
-      await logbookContract.estimateGas.publish(id, content);
+    const gasNeeded = await logbookContract.estimateGas.publish(id, content);
 
     // add buffer
-    const maxGasNeeded = gasNeeded; // .mul(4).div(3); // +33%
+    const maxGasNeeded = gasNeeded.mul(4).div(3); // +33%
 
     // console.log("get maxGasNeeded:", { maxGasNeeded, feeData });
 
     const { gasPrice, maxPriorityFeePerGas } = feeData!;
 
-    const estimate = utils.formatUnits(
+    const estimate = (+utils.formatUnits(
       ethers.BigNumber.from(0)
         .add(gasPrice!)
         .add(maxPriorityFeePerGas!)
         .mul(maxGasNeeded)
-    );
-
-    /* console.log("get feeData:", {
-      gasNeeded,
-      feeData, // gasPrice, maxFeePerGas, maxPriorityFeePerGas,
-      estimate,
-    }); */
+    )).toFixed(8);
 
     setEstimate(estimate);
   }, 1300);
@@ -128,7 +115,7 @@ export const Editing: React.FC<Props> = ({
     });
 
     if (error) {
-      // console.error("publish error:", error);
+      console.error("publish error:", error);
       throw error; // to close dialog
     }
 
@@ -168,12 +155,9 @@ export const Editing: React.FC<Props> = ({
             disabled={publishWaiting}
             onClick={() => {
               openDialog();
-              onPublish()
-                // .then((data) => { // published // console.log("published:", data); })
-                .catch((err) => {
-                  // console.error("publish error:", err, closeDialog);
-                  closeDialog?.();
-                });
+              onPublish().catch((err) => {
+                closeDialog?.();
+              });
             }}
           >
             <TextIcon color="white">Publish</TextIcon>
